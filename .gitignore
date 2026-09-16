@@ -25,6 +25,3 @@ desktop.ini
 # 로컬 미리보기 산출물
 qa/
 
-# Master Version 캡처는 실제 양산 버전 번호가 그대로 보여서 공개 저장소에 올리지 않습니다.
-# 필요하면 대시보드에서 직접 캡처해 tools/shots/ 에 두세요. (없으면 그 자리만 비워 생성됩니다)
-tools/shots/c-master.png
