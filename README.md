@@ -49,6 +49,15 @@ python -m http.server 8080
 
 Azure 앱 등록에는 **리디렉션 URI**(실행 주소)와 `Sites.ReadWrite.All` 권한이 필요합니다.
 
+## 이어서 작업하려면
+
+| 문서 | 내용 |
+|---|---|
+| [CLAUDE.md](CLAUDE.md) | 작업 규칙 — 기술 스택 제약, 검증 방법, 비밀값 취급 |
+| [docs/인수인계.md](docs/인수인계.md) | 현재 상태, 미검증 항목, 다음 할 일 |
+| [docs/결정기록.md](docs/결정기록.md) | 왜 그렇게 만들었는지 |
+| [tools/README.md](tools/README.md) | 로컬 미리보기·발표자료 생성 도구 |
+
 ## 파일
 
 | 파일 | 내용 |

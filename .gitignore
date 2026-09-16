@@ -21,3 +21,6 @@ Thumbs.db
 desktop.ini
 .DS_Store
 .vscode/
+
+# 로컬 미리보기 산출물
+qa/
