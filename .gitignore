@@ -1,0 +1,23 @@
+# 작업 중 만든 백업본 — 이제 git이 이력을 남기므로 저장소에는 올리지 않습니다
+index.html.backup-*
+
+# 배포 승인본 스냅샷 (수동으로 관리하는 폴더)
+deploy/
+
+# 삭제 대기 폴더 (바로 지우지 않고 옮겨만 둔 파일들)
+trash-can/
+
+# 도구가 만든 폴더
+.bkit/
+qa/
+node_modules/
+
+# 비밀값은 어떤 경우에도 커밋하지 않습니다
+.env
+.env.*
+
+# OS·편집기가 만드는 파일
+Thumbs.db
+desktop.ini
+.DS_Store
+.vscode/

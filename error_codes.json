@@ -1,0 +1,3771 @@
+[
+ {
+  "model": "DENSITY",
+  "entries": [
+   {
+    "code": "E-100",
+    "ko": "핸드피스포트 응답이 없습니다..",
+    "en": "",
+    "cause": "핸드피스메인보드UI통신이 되지 않을 경우 발생함.",
+    "action": "시리얼 선을 확인 한다.",
+    "detail": ""
+   },
+   {
+    "code": "E-102",
+    "ko": "메인,핸드피스, RF에 문제가 생겼을 경우.",
+    "en": "",
+    "cause": "Main Error : 1 –저수조 비었을 경우. Main Error : 2 – CAN압력센서 고압일 경우. Main Error : 4 – TANK압력센서고압일 경우. Main Error : 16 – Main-HP Communication error Main Error : 32 – HP연결상태에러. Main Error : 64–대극판연결상태 Main Error : 128–풋스위치연결상태 (에러가 복합적일 경우 코드가 더해져서 출력된다 ex: 1,2,16에러일 경우19로 표시) 에MAIN값을 입력하고, SAVE저장 시 메시지 내용을 확인 할 수 있다.\nMain Error : 256 – Main Memory read error Main Error : 512 – Main Memory write error Main Error : 1024 – CAN 온도센서1&2저온error Main Error : 2048 – TANK 온도센서1&2저온error Main Error : 4096 – CAN 온도센서1&2고온error Main Error : 8192 – TANK 온도센서1&2고온error Main Error : 16384–가스통 결합 요청error Main Error : 32768–가스통 교체error (에러가 복합적일 경우 코드가 더해져서 출력된다 ex: 1,2,16에러일 경우19로 표시) 에MAIN값을 입력하고, SAVE저장 시 메시지 내용을 확인 할 수 있다.\nHP Error : 1 – Memory read Error HP Error : 2 – Memory Write Error HP Error : 4 –TIP memory read error HP Error : 8 –TIP memory write error HP Error : 16 –온도센서error . 4개중1개라도 이상일 경우 에러. HP Error : 32 – High Temperature Error. HP Error : 64– Cooling system error. (에러가 복합적일 경우 코드가 더해져서 출력된다 ex: 1,2,16에러일 경우19로 표시)에HP값을 입력하고, SAVE저장 시 메시지 내용을 확인 할 수 있다.\nRF Error : 1 –온도 이상 RF Error : 2 – FAN이상 RF Error : 4 –자체 출력레벨 확인 이상 RF Error : 8 –자체 임피던스 확인 이상 RF Error : 16 – NE Pad접촉 이상 RF Error : 32– Main-RF Communication (에러가 복합적일 경우 코드가 더해져서 출력된다 ex: 1,2,16에러일 경우19로 표시) 에HP값을 입력하고, SAVE저장 시 메시지 내용을 확인 할 수 있다.",
+    "action": "Main보드 점검 / HP보드 점검 / RF보드 점검",
+    "detail": ""
+   },
+   {
+    "code": "E-103",
+    "ko": "냉각 시스템에 문제가 생겼습니다.",
+    "en": "",
+    "cause": "시술화면의TREAT시,핸드피스에서냉매가 출력되지 않아핸드피스온도가 올라갈경우팝업한다.",
+    "action": "냉매 시스템을 점검한다.",
+    "detail": ""
+   },
+   {
+    "code": "E-104",
+    "ko": "메인보드의 통신이 응답하지 않습니다.",
+    "en": "",
+    "cause": "메인보드와 통신이 응답하지 않을 경우메시지가팝업한다.",
+    "action": "통신 시스템을 확인 한다.",
+    "detail": ""
+   },
+   {
+    "code": "E-105",
+    "ko": "장비를 재 부팅 해 주세요.“",
+    "en": "",
+    "cause": "값2:사운드 파일/밝기 설정 화면/국가 설정(FixParameter/SERVICE.DAT)이 문제가 있을 때 발생함 값8:파워설정(FixParameter/POWER.DAT)이 문제가 있을 때 발생함",
+    "action": "2일 경우 해당 파일을 다시 설정함.(사운드,밝기 조절/국가 설정 시 해당 파일 생성 됨) 8일 경우파워 데이터 재 입력.",
+    "detail": ""
+   },
+   {
+    "code": "E-106",
+    "ko": "Main, HP, Tip데이터 에러＂",
+    "en": "",
+    "cause": "[값] : 1 : Read error,2:Write Error",
+    "action": "해당 모듈의 메모리를 변경 한다.",
+    "detail": ""
+   },
+   {
+    "code": "E-110",
+    "ko": "팁이 정의 되지 않았습니다..“",
+    "en": "",
+    "cause": "팁 데이터가 올바르게 발급 되지 않을 경우 발생",
+    "action": "팁 데이터를 확인.또는 국가정보 확인.",
+    "detail": ""
+   },
+   {
+    "code": "E-111",
+    "ko": "팁을 다시 연결해 주세요.온도센서가 불안정 합니다.“",
+    "en": "",
+    "cause": "팁의 온도센서가 불안정 할 경우 팝업.",
+    "action": "팁의 온도 센서 문제로 팁을 다시 장착 했을 때 반복적으로 발생 시,팁을 교체한다.",
+    "detail": ""
+   },
+   {
+    "code": "E-201",
+    "ko": "샷카운트를초기화 하겠습니까?.",
+    "en": "",
+    "cause": "샷카운트RESET버튼을 클릭 하였을 경우.",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "N-0",
+    "ko": "사운드가 연결되어 있지 않습니다. 장비를 재 부팅 해 주세요",
+    "en": "",
+    "cause": "장비 전원이 불안정 할 경우(전원을 빠르게ON <-> OFF반복)사운드 코덱이 정상 동작 하지 않을 수 있음.",
+    "action": "장비를 재부팅 하여,안정적으로 전원을 인가한다.",
+    "detail": ""
+   },
+   {
+    "code": "N-2",
+    "ko": "팁이 연결 되지 않았습니다.",
+    "en": "",
+    "cause": "시술화면의TREAT버튼 클릭 시,팁이 연결 되어 있지 않을 경우팝업한다.",
+    "action": "팁을 연결한다.",
+    "detail": ""
+   },
+   {
+    "code": "N-4",
+    "ko": "핸드피스가연결 되지 않았습니다.",
+    "en": "",
+    "cause": "시술화면의TREAT버튼 클릭 시,핸드피스가연결 되어 있지 않을 경우팝업한다.",
+    "action": "핸드피스를연결한다.",
+    "detail": ""
+   },
+   {
+    "code": "N-5",
+    "ko": "가스 캔이 연결 되지 않았습니다.",
+    "en": "",
+    "cause": "시술화면의TREAT버튼 클릭 시,가스 통이 연결 되어 있지 않을 경우팝업한다.",
+    "action": "가스 통을 연결한다.",
+    "detail": ""
+   },
+   {
+    "code": "N-6",
+    "ko": "가스를 모두 사용 하였습니다.",
+    "en": "",
+    "cause": "시술화면의TREAT상태 일 경우,가스를 모두 소진하였을 경우.",
+    "action": "가스 통을 교체 한다.",
+    "detail": ""
+   },
+   {
+    "code": "N-7",
+    "ko": "가스 압력이 높습니다.",
+    "en": "",
+    "cause": "가스 압력이 너무 높을 경우 발생함.",
+    "action": "가스 캔 제거 후 압력 제거 버튼을 눌러 압력을 제거한다.",
+    "detail": ""
+   },
+   {
+    "code": "N-9",
+    "ko": "핸드피스온도가 높습니다.“",
+    "en": "",
+    "cause": "핸드피스팁의 온도가60도 이상일때 나타남.",
+    "action": "시술을 잠시 멈추고30초 이후 다시 시술 한다.",
+    "detail": ""
+   },
+   {
+    "code": "N-10",
+    "ko": "장비 압력이 낮습니다.” “10분 정도 기다려 주세요.",
+    "en": "",
+    "cause": "가스 압력이 시술운영 압력보다 낮을 경우 발생 함.",
+    "action": "10분 대기 후 사용 할 수 있다.",
+    "detail": ""
+   },
+   {
+    "code": "N-11",
+    "ko": "이름을 입력 해 주세요.",
+    "en": "",
+    "cause": "환자 정보 입력 시 이름이 없이 저장 할 경우 팝업",
+    "action": "이름입력 후 저장을 다시 한다.",
+    "detail": ""
+   },
+   {
+    "code": "N-12",
+    "ko": "성별 을 입력 해 주세요.",
+    "en": "",
+    "cause": "환자 정보 입력 시 성별이 없이 저장 할 경우 팝업",
+    "action": "성별 입력 후 저장을 다시 한다.",
+    "detail": ""
+   },
+   {
+    "code": "N-13",
+    "ko": "생년월일 을 입력 해 주세요.",
+    "en": "",
+    "cause": "환자 정보 입력 시 생년월일 없이 저장 할 경우 팝업",
+    "action": "생년월일 입력 후 저장을 다시 한다.",
+    "detail": ""
+   },
+   {
+    "code": "N-14",
+    "ko": "스킨타입 을 입력 해 주세요.",
+    "en": "",
+    "cause": "환자 정보 입력 시 스킨타입 없이 저장 할 경우 팝업",
+    "action": "스킨타입 입력 후 저장을 다시 한다.",
+    "detail": ""
+   },
+   {
+    "code": "N-16",
+    "ko": "몸무게를 입력 해 주세요.",
+    "en": "",
+    "cause": "환자 정보 입력 시 몸무게 없이 저장 할 경우 팝업",
+    "action": "몸무게 입력 후 저장을 다시 한다.",
+    "detail": ""
+   },
+   {
+    "code": "N-17",
+    "ko": "동일 이름이 존재합니다 이름을 변경 해 주세요.",
+    "en": "",
+    "cause": "환자 정보 입력 시 동일 이름이 존재할 때 팝업",
+    "action": "이름을변경후다시 저장한다.",
+    "detail": ""
+   },
+   {
+    "code": "N-18",
+    "ko": "환자 정보가2000명이 초과 되었습니다.＂",
+    "en": "",
+    "cause": "저장공간 부족으로 저장할 공간이 없음.",
+    "action": "저장 장소를비운후다시 저장한다.",
+    "detail": ""
+   },
+   {
+    "code": "N-20",
+    "ko": "USB카피 성공＂",
+    "en": "",
+    "cause": "환자 정보 저장 성공",
+    "action": "환자 정보 저장 성공",
+    "detail": ""
+   },
+   {
+    "code": "N-21",
+    "ko": "USB카피 실패＂ / “USB카피 진행 중＂",
+    "en": "",
+    "cause": "환자 정보 및 로그 정보가 없어서 발생함.\n환자 정보 카피 진행 중일 경우 팝업 함.",
+    "action": "데이터 생성 후 다시 발급. / 환자 정보 카피 진행 중일 경우 팝업 함",
+    "detail": ""
+   },
+   {
+    "code": "N-23",
+    "ko": "환자 정보 모두 삭제 성공＂",
+    "en": "",
+    "cause": "환자 정보 삭제 시 모두 성공하였을 경우 팝업",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "N-24",
+    "ko": "환자 정보 모두 지우기 실패＂",
+    "en": "",
+    "cause": "환자 정보가 지워지지 않아 발생함.",
+    "action": "Usb연결을 확인 한다.",
+    "detail": ""
+   },
+   {
+    "code": "N-25",
+    "ko": "파일 없음＂",
+    "en": "",
+    "cause": "환자 정보 또는 로그 데이터가 없을 경우 발생.",
+    "action": "환자 정보 또는 로그 데이터가 없을 경우 발생",
+    "detail": ""
+   },
+   {
+    "code": "N-26",
+    "ko": "팁 정보 셋팅 중＂",
+    "en": "",
+    "cause": "팁 데이터가 올바르게 설정 되지 않아 발생함.",
+    "action": "장비 재부팅 후 사용 가능함.",
+    "detail": ""
+   },
+   {
+    "code": "N-211",
+    "ko": "모노모드를 사용 할 경우,리턴 패드가 장착되지 않을 경우 발생.",
+    "en": "",
+    "cause": "시술화면의TREAT버튼 클릭 시,모노모드를 사용 할 경우리턴 패드가 연결 되지 않을 경우 메시지가팝업한다.",
+    "action": "리턴패드를연결 한다.",
+    "detail": ""
+   },
+   {
+    "code": "W-205",
+    "ko": "모노모드를 사용 할 경우,리턴 패드 접촉에 이상이 생길 경우.",
+    "en": "",
+    "cause": "시술화면의TREAT시,모노모드를 사용 할 경우,리턴 패드 접촉에 이상이 생길 경우 메시지가팝업한다.",
+    "action": "리턴패드를확인 한다.",
+    "detail": ""
+   },
+   {
+    "code": "W-208",
+    "ko": "팁의 메모리를 모두 사용 하였습니다.팁을 교체하여 주세요.",
+    "en": "",
+    "cause": "시술화면의TREAT시,팁의 샷을 모두 다 소진 하였을 경우 메시지를팝업한다.",
+    "action": "팁을 교체 한다.",
+    "detail": ""
+   }
+  ]
+ },
+ {
+  "model": "DENSITY Noir",
+  "entries": [
+   {
+    "code": "E-100",
+    "ko": "핸드피스포트 응답이 없습니다..",
+    "en": "",
+    "cause": "핸드피스메인보드UI통신이 되지 않을 경우 발생함.",
+    "action": "시리얼 선을 확인 한다.",
+    "detail": ""
+   },
+   {
+    "code": "E-102",
+    "ko": "메인,핸드피스, RF에 문제가 생겼을 경우.",
+    "en": "",
+    "cause": "Main Error : 1 –저수조 비었을 경우. Main Error : 2 – CAN압력센서 고압일 경우. Main Error : 4 – TANK압력센서고압일 경우. Main Error : 16 – Main-HP Communication error Main Error : 32 – HP연결상태에러. Main Error : 64–대극판연결상태 Main Error : 128–풋스위치연결상태 (에러가 복합적일 경우 코드가 더해져서 출력된다 ex: 1,2,16에러일 경우19로 표시) 에MAIN값을 입력하고, SAVE저장 시 메시지 내용을 확인 할 수 있다.\nMain Error : 256 – Main Memory read error Main Error : 512 – Main Memory write error Main Error : 1024 – CAN 온도센서1&2저온error Main Error : 2048 – TANK 온도센서1&2저온error Main Error : 4096 – CAN 온도센서1&2고온error Main Error : 8192 – TANK 온도센서1&2고온error Main Error : 16384–가스통 결합 요청error Main Error : 32768–가스통 교체error (에러가 복합적일 경우 코드가 더해져서 출력된다 ex: 1,2,16에러일 경우19로 표시) 에MAIN값을 입력하고, SAVE저장 시 메시지 내용을 확인 할 수 있다.\nHP Error : 1 – Memory read Error HP Error : 2 – Memory Write Error HP Error : 4 –TIP memory read error HP Error : 8 –TIP memory write error HP Error : 16 –온도센서error . 4개중1개라도 이상일 경우 에러. HP Error : 32 – High Temperature Error. HP Error : 64– Cooling system error. (에러가 복합적일 경우 코드가 더해져서 출력된다 ex: 1,2,16에러일 경우19로 표시)에HP값을 입력하고, SAVE저장 시 메시지 내용을 확인 할 수 있다.\nRF Error : 1 –온도 이상 RF Error : 2 – FAN이상 RF Error : 4 –자체 출력레벨 확인 이상 RF Error : 8 –자체 임피던스 확인 이상 RF Error : 16 – NE Pad접촉 이상 RF Error : 32– Main-RF Communication (에러가 복합적일 경우 코드가 더해져서 출력된다 ex: 1,2,16에러일 경우19로 표시) 에HP값을 입력하고, SAVE저장 시 메시지 내용을 확인 할 수 있다.",
+    "action": "Main보드 점검 / HP보드 점검 / RF보드 점검",
+    "detail": ""
+   },
+   {
+    "code": "E-103",
+    "ko": "냉각 시스템에 문제가 생겼습니다.",
+    "en": "",
+    "cause": "TREAT후 쿨링 시스템 이상이 발생할 경우 동일 이상이 연속3회 이상 발생할 경우두번째 메시지 발생.",
+    "action": "냉매 시스템을 점검한다.",
+    "detail": ""
+   },
+   {
+    "code": "E-104",
+    "ko": "메인보드의 통신이 응답하지 않습니다.” 0X40: TREAT ACK가 없을 경우. 0x41:STANDBY ACK가 없을 경우. 0x52:샷 초기화에 대한ACK가 없을 경우. 0x78:파이프 상태에 대한ACK가 없을 경우.",
+    "en": "",
+    "cause": "메인보드와 통신이 응답하지 않을 경우메시지가팝업한다.",
+    "action": "통신 시스템을 확인 한다.",
+    "detail": ""
+   },
+   {
+    "code": "E-105",
+    "ko": "장비를 재 부팅 해 주세요.“",
+    "en": "",
+    "cause": "값2:사운드 파일/밝기 설정 화면/국가 설정(FixParameter/SERVICE.DAT)이 문제가 있을 때 발생함 값8:파워설정(FixParameter/POWER.DAT)이 문제가 있을 때 발생함",
+    "action": "2일 경우 해당 파일을 다시 설정함.(사운드,밝기 조절/국가 설정 시 해당 파일 생성 됨) 8일 경우파워 데이터 재 입력.",
+    "detail": ""
+   },
+   {
+    "code": "E-106",
+    "ko": "Main, HP, Tip데이터 에러＂",
+    "en": "",
+    "cause": "[값] : 1 : Read error,2:Write Error",
+    "action": "해당 모듈의 메모리를 변경 한다.",
+    "detail": ""
+   },
+   {
+    "code": "E-110",
+    "ko": "팁이 정의 되지 않았습니다..“",
+    "en": "",
+    "cause": "팁 데이터가 올바르게 발급 되지 않을 경우 발생",
+    "action": "팁 데이터를 확인.또는 국가정보 확인.",
+    "detail": ""
+   },
+   {
+    "code": "E-111",
+    "ko": "팁을 다시 연결해 주세요.온도센서가 불안정 합니다.“",
+    "en": "",
+    "cause": "팁의 온도센서가 불안정 할 경우 팝업.",
+    "action": "팁의 온도 센서 문제로 팁을 다시 장착 했을 때 반복적으로 발생 시,팁을 교체한다.",
+    "detail": ""
+   },
+   {
+    "code": "E-201",
+    "ko": "샷카운트를초기화 하겠습니까?.",
+    "en": "",
+    "cause": "샷카운트RESET버튼을 클릭 하였을 경우.",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-203",
+    "ko": "성공적으로 완료 되었다..",
+    "en": "",
+    "cause": "환자 정보 데이터 다운로드 시 성공적으로 저장 되었을 시 팝업.",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "N-0",
+    "ko": "사운드가 연결되어 있지 않습니다. 장비를 재 부팅 해 주세요",
+    "en": "",
+    "cause": "장비 전원이 불안정 할 경우(전원을 빠르게ON <-> OFF반복)사운드 코덱이 정상 동작 하지 않을 수 있음.",
+    "action": "장비를 재부팅 하여,안정적으로 전원을 인가한다.",
+    "detail": ""
+   },
+   {
+    "code": "N-2",
+    "ko": "팁이 연결 되지 않았습니다.",
+    "en": "",
+    "cause": "시술화면의TREAT버튼 클릭 시,팁이 연결 되어 있지 않을 경우팝업한다.",
+    "action": "팁을 연결한다.",
+    "detail": ""
+   },
+   {
+    "code": "N-4",
+    "ko": "핸드피스가연결 되지 않았습니다.",
+    "en": "",
+    "cause": "시술화면의TREAT버튼 클릭 시,핸드피스가연결 되어 있지 않을 경우팝업한다.\n시술화면의TREAT버튼 클릭 시,핸드피스가연결 되어 있지 않을 경우팝업한다.",
+    "action": "핸드피스를연결한다.",
+    "detail": ""
+   },
+   {
+    "code": "N-5",
+    "ko": "가스 캔이 연결 되지 않았습니다.",
+    "en": "",
+    "cause": "시술화면의TREAT버튼 클릭 시,가스 통이 연결 되어 있지 않을 경우팝업한다.",
+    "action": "가스 통을 연결한다.",
+    "detail": ""
+   },
+   {
+    "code": "N-6",
+    "ko": "가스를 모두 사용 하였습니다.",
+    "en": "",
+    "cause": "시술화면의TREAT상태 일 경우,가스를 모두 소진하였을 경우.",
+    "action": "가스 통을 교체 한다.",
+    "detail": ""
+   },
+   {
+    "code": "N-7",
+    "ko": "가스 압력이 높습니다.” ‘N-7’조건에 따라 메시지 내용 달라짐 -Tank압력 높을 때:Tank pressure is high -CAN압력이 높을 때:Gas can pressure is high",
+    "en": "",
+    "cause": "가스 압력이 너무 높을 경우 발생함.",
+    "action": "가스 캔 제거 후 압력 제거 버튼을 눌러 압력을 제거한다.",
+    "detail": ""
+   },
+   {
+    "code": "N-8",
+    "ko": "팁 연결이 제대로 되지 않을 경우.“",
+    "en": "",
+    "cause": "팁 연결이 제대로 되지 않을 경우.",
+    "action": "팁 탈착 후 올바르게 다시 연결 한다.",
+    "detail": ""
+   },
+   {
+    "code": "N-9",
+    "ko": "핸드피스온도가 높습니다.“",
+    "en": "",
+    "cause": "핸드피스팁의 온도가60도 이상일때 나타남.",
+    "action": "시술을 잠시 멈추고30초 이후 다시 시술 한다.",
+    "detail": ""
+   },
+   {
+    "code": "N-10",
+    "ko": "장비 압력이 낮습니다.” “2분/10분 정도 기다려 주세요.",
+    "en": "",
+    "cause": "가스 압력이 시술운영 압력보다 낮을 경우 발생 함.",
+    "action": "2분/10대기 후 사용 할 수 있다.",
+    "detail": ""
+   },
+   {
+    "code": "N-11",
+    "ko": "이름을 입력 해 주세요.",
+    "en": "",
+    "cause": "환자 정보 입력 시 이름이 없이 저장 할 경우 팝업",
+    "action": "이름입력 후 저장을 다시 한다.",
+    "detail": ""
+   },
+   {
+    "code": "N-12",
+    "ko": "성별 을 입력 해 주세요.",
+    "en": "",
+    "cause": "환자 정보 입력 시 성별이 없이 저장 할 경우 팝업",
+    "action": "성별 입력 후 저장을 다시 한다.",
+    "detail": ""
+   },
+   {
+    "code": "N-13",
+    "ko": "생년월일 을 입력 해 주세요.",
+    "en": "",
+    "cause": "환자 정보 입력 시 생년월일 없이 저장 할 경우 팝업",
+    "action": "생년월일 입력 후 저장을 다시 한다.",
+    "detail": ""
+   },
+   {
+    "code": "N-14",
+    "ko": "스킨타입 을 입력 해 주세요.",
+    "en": "",
+    "cause": "환자 정보 입력 시 스킨타입 없이 저장 할 경우 팝업",
+    "action": "스킨타입 입력 후 저장을 다시 한다.",
+    "detail": ""
+   },
+   {
+    "code": "N-15",
+    "ko": "키 을 입력 해 주세요.",
+    "en": "",
+    "cause": "환자 정보 입력 시 키 입력 없이 저장 할 경우 팝업",
+    "action": "키 입력 후 저장을 다시 한다.",
+    "detail": ""
+   },
+   {
+    "code": "N-16",
+    "ko": "몸무게를 입력 해 주세요.",
+    "en": "",
+    "cause": "환자 정보 입력 시 몸무게 없이 저장 할 경우 팝업",
+    "action": "몸무게 입력 후 저장을 다시 한다.",
+    "detail": ""
+   },
+   {
+    "code": "N-17",
+    "ko": "동일 이름이 존재합니다 이름을 변경 해 주세요.",
+    "en": "",
+    "cause": "환자 정보 입력 시 동일 이름이 존재할 때 팝업",
+    "action": "이름을변경후다시 저장한다.",
+    "detail": ""
+   },
+   {
+    "code": "N-18",
+    "ko": "환자 정보가2000명이 초과 되었습니다.＂",
+    "en": "",
+    "cause": "저장공간 부족으로 저장할 공간이 없음.",
+    "action": "저장 장소를비운후다시 저장한다.",
+    "detail": ""
+   },
+   {
+    "code": "N-20",
+    "ko": "USB카피 성공＂",
+    "en": "",
+    "cause": "환자 정보 저장 성공",
+    "action": "환자 정보 저장 성공",
+    "detail": ""
+   },
+   {
+    "code": "N-21",
+    "ko": "USB카피 실패＂ / “USB복사 실패.",
+    "en": "",
+    "cause": "환자 정보 및 로그 정보가 없어서 발생함.\nUSB복사가 실패 되었을 경우 팝업.\n쿨링 시스템에 문제가 생겨 쿨링이 분사 되지 않을 경우 동일 이상이 연속3회 이상 발생할 경우",
+    "action": "데이터 생성 후 다시 발급.",
+    "detail": ""
+   },
+   {
+    "code": "N-22",
+    "ko": "USB카피 진행 중＂",
+    "en": "",
+    "cause": "환자 정보 카피 진행 중일 경우 팝업 함.",
+    "action": "환자 정보 카피 진행 중일 경우 팝업 함",
+    "detail": ""
+   },
+   {
+    "code": "N-23",
+    "ko": "환자 정보 모두 삭제 성공＂",
+    "en": "",
+    "cause": "환자 정보 삭제 시 모두 성공하였을 경우 팝업",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "N-24",
+    "ko": "환자 정보 모두 지우기 실패＂",
+    "en": "",
+    "cause": "환자 정보가 지워지지 않아 발생함.",
+    "action": "Usb연결을 확인 한다.",
+    "detail": ""
+   },
+   {
+    "code": "N-25",
+    "ko": "파일 없음＂",
+    "en": "",
+    "cause": "환자 정보 또는 로그 데이터가 없을 경우 발생.",
+    "action": "환자 정보 또는 로그 데이터가 없을 경우 발생",
+    "detail": ""
+   },
+   {
+    "code": "N-26",
+    "ko": "팁 정보 셋팅 중＂",
+    "en": "",
+    "cause": "팁 데이터가 올바르게 설정 되지 않아 발생함.",
+    "action": "장비 재부팅 후 사용 가능함.",
+    "detail": ""
+   },
+   {
+    "code": "N-28",
+    "ko": "AUTO모드를 지원하지 않는 팁이다.",
+    "en": "",
+    "cause": "Classic – E, High – E TIP일 경우AUTO모드를 지원하지 않는다. 사용 하지 않음.",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "N-29",
+    "ko": "USB연결 상태를 확인 해 달라는 메시지.",
+    "en": "",
+    "cause": "USB가 연결 되지 않을 경우USB카피를 하고자 하였을 경우 팝업 .",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "N-211",
+    "ko": "모노모드를 사용 할 경우,리턴 패드가 장착되지 않을 경우 발생.",
+    "en": "",
+    "cause": "시술화면의TREAT버튼 클릭 시,모노모드를 사용 할 경우리턴 패드가 연결 되지 않을 경우 메시지가팝업한다.",
+    "action": "리턴패드를연결 한다.",
+    "detail": ""
+   },
+   {
+    "code": "N-214",
+    "ko": "날짜를 확인 해 주세요.",
+    "en": "",
+    "cause": "장비의 날짜가 셋팅 되지 않을 경우 발생 한다.",
+    "action": "셋팅화면에서날짜를 셋팅 해 준다.",
+    "detail": ""
+   },
+   {
+    "code": "N-217",
+    "ko": "장비 베터리를 교체 해 주세요.",
+    "en": "",
+    "cause": "UI보드의 베터리가 방전 되었을 경우 팝업.",
+    "action": "제조사로 문의한다.",
+    "detail": ""
+   },
+   {
+    "code": "N-219",
+    "ko": "쿨링 설정 값이 낮을 경우 사용자에게 알려줌.",
+    "en": "",
+    "cause": "High – F일 경우,추천 쿨링 보다 사용자가 설정할 쿨링이 낮을 경우 발생함.",
+    "action": "추천 쿨링으로 사용 함.",
+    "detail": ""
+   },
+   {
+    "code": "N-220",
+    "ko": "FootSwithch미장착시 팝업.",
+    "en": "",
+    "cause": "Classic – E, High – E TIP일 경우Foot스위치 미 장착 시TREAT클릭시풋스위치연결이 되어 있지 않을 경우 팝업 . 사용 하지 않음",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "N-223",
+    "ko": "냉매 액화 현상이 감지되었습니다. 잠시 기다린 뒤 시술을 진행하십시오.",
+    "en": "",
+    "cause": "액화 대응 팝업 메시지 추가. (매뉴얼 모드 적용되지 않음.) 원인:냉매 분출 속도가 기화 보다 빠르게 진행됨에 따라 액화 현상 발생. 대책:쿨링 시간 조절은 화상 위험이 있으므로,액화 시점에 안내 메시지를 팝업 함 ① 팝업 시점: Classic – F, High – F팁 일 때,쿨링 총 시간이 기준시간(shot & End Cooling합산)이상일 경우. ② TREAT버튼 클릭 시 발생함. - OK클릭: STANDBY -> TREAT전환됨. CANCEL클릭: STANDBY상태 유지 기준 시간 HFO기준시간: 192ms/1샷(shot & End Cooling합산) HFC기준시간: 158ms/1샷(shot & End Cooling합산) .",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "N-224",
+    "ko": "냉매 액화 현상이 감지되었습니다. 잠시 기다린 뒤 시술을 진행하십시오.",
+    "en": "",
+    "cause": "액화 대응 팝업 메시지 추가. (매뉴얼 모드 적용되지 않음.) 원인:냉매 분출 속도가 기화 보다 빠르게 진행됨에 따라 액화 현상 발생. 대책:쿨링 시간 조절은 화상 위험이 있으므로,액화 시점에 안내 메시지를 팝업 함 ① 팝업 시점:팝업 시점: Classic – F, High – F팁 일 때,쿨링 총 시간이192ms/1샷(shot & End Cooling합산)이고3.5레벨 이상 설정. (통합 메시지 적용)해외 향(6개국) & NOIR(21개국) ② TREAT버튼 클릭 시 발생함. - OK클릭: STANDBY -> TREAT전환됨. - CANCEL클릭: STANDBY상태 유지 .",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "N-300",
+    "ko": "시스템 점검 중….",
+    "en": "",
+    "cause": "노이즈나 기타 어떤 상황으로,메인보드,핸드피스보드가 재부팅 될 경우 메시지팝업하여장비 전체 시스템을검점한다.",
+    "action": "빈번히 발생 할 경우 제조사로 문의한다.",
+    "detail": ""
+   },
+   {
+    "code": "W-205",
+    "ko": "모노모드를 사용 할 경우,리턴 패드 접촉에 이상이 생길 경우.",
+    "en": "",
+    "cause": "시술화면의TREAT시,모노모드를 사용 할 경우,리턴 패드 접촉에 이상이 생길 경우 메시지가팝업한다.",
+    "action": "리턴패드를확인 한다.",
+    "detail": ""
+   },
+   {
+    "code": "W-208",
+    "ko": "팁의 메모리를 모두 사용 하였습니다.팁을 교체하여 주세요.",
+    "en": "",
+    "cause": "시술화면의TREAT시,팁의 샷을 모두 다 소진 하였을 경우 메시지를팝업한다.",
+    "action": "팁을 교체 한다.",
+    "detail": ""
+   }
+  ]
+ },
+ {
+  "model": "LINEARZ",
+  "entries": [
+   {
+    "code": "E-0",
+    "ko": "파일 내부 정보 읽기에 실패하였습니다.",
+    "en": "Failed to read information inside the file.",
+    "cause": "내부 sd card 정보 읽기에 실패했을 때 발생하는 팝업",
+    "action": "장치를 재 부팅 시키십시오 오류가 반복되는 경우 본사로 문의 하십시오. (Restart the system. If the problem recurs, please contact your service center.)",
+    "detail": ""
+   },
+   {
+    "code": "E-1",
+    "ko": "파일 내부 정보가 맞지 않습니다.",
+    "en": "Invalid Data.",
+    "cause": "내부 sd card 정보 읽은 후 유효성 검사가 맞지 않을 때 발생하는 팝업",
+    "action": "장치를 재 부팅 시키십시오 오류가 반복되는 경우 본사로 문의 하십시오 Restart the system. If the problem recurs, please contact your service center.",
+    "detail": ""
+   },
+   {
+    "code": "E-100",
+    "ko": "자체 시험 에러. 내부 통신이 실패하였습니다.",
+    "en": "IBIT Check Error. RS485 Comm .",
+    "cause": "Mainboard 내부의 통신이 정상적으로 수행되지 않을 때 (There is an internal communication error during self-diagnosis.)",
+    "action": "장치를 재 부팅 시키십시오 오류가 반복되는 경우 본사로 문의 하십시오. (Restart the system. If the problem recurs, please contact your service center.)",
+    "detail": ""
+   },
+   {
+    "code": "E-101",
+    "ko": "자체 시험 에러 AC 주파수가 맞지 않습니다",
+    "en": "IBIT Check Error. AC Frequency.",
+    "cause": "장비의 AC 공급전원의 주파수가 설정 값과 맞지 않을 때. (There is an error between set AC frequency and input AC frequency during self-diagnosis.)",
+    "action": "장치를 재 부팅 시키십시오 오류가 반복되는 경우 본사로 문의 하십시오. (Restart the system. If the problem recurs, please contact your service center.)",
+    "detail": ""
+   },
+   {
+    "code": "E-102",
+    "ko": "자체 시험 에러. RF 장비와 통신에 문제가 발생하였습니다.",
+    "en": "IBIT Check Error. Mainboard-RF GEN Comm .",
+    "cause": "본체 내부의 Mainboard와 RF Generator 간의 통신 이상 RF Generator Board 이상 (There is a communication problem between the mainboard and RF generator during self-diagnosis.)",
+    "action": "장치를 재 부팅 시키십시오 오류가 반복되는 경우 본사로 문의 하십시오. (Restart the system. If the problem recurs, please contact your service center.)",
+    "detail": ""
+   },
+   {
+    "code": "E-103",
+    "ko": "인터페이스 보드의 내부 RF 12V 가 정상적이지 않습니다.",
+    "en": "RF POWER ERROR 12V",
+    "cause": "Interface Board 내부 RF 공급용 전원 12V가 정상적이지 않을 때 팝업.",
+    "action": "장치를 재 부팅 시키십시오 오류가 반복되는 경우 본사로 문의 하십시오 Restart the system. If the problem recurs, please contact your service center.",
+    "detail": ""
+   },
+   {
+    "code": "E-104",
+    "ko": "인터페이스 보드의 내부 EVCC 공급전원 5V 가 정상적이지 않습니다.",
+    "en": "UI communication Power Error",
+    "cause": "Interface Board 내부 EVCC 공급용 전원 5V가 정상적이지 않을 때 팝업.",
+    "action": "장치를 재 부팅 시키십시오 오류가 반복되는 경우 본사로 문의 하십시오 Restart the system. If the problem recurs, please contact your service center.",
+    "detail": ""
+   },
+   {
+    "code": "E-105",
+    "ko": "인터페이스 보드의 내부 메인전원 3.3V 가 정상적이지 않습니다.",
+    "en": "IF POWER ERROR 3.3V",
+    "cause": "Interface Board 내부 메인전원 3.3V가 정상적이지 않을 때 팝업.",
+    "action": "장치를 재 부팅 시키십시오 오류가 반복되는 경우 본사로 문의 하십시오 Restart the system. If the problem recurs, please contact your service center.",
+    "detail": ""
+   },
+   {
+    "code": "E-106",
+    "ko": "인터페이스 보드의 내부 메인전원 5V 가 정상적이지 않습니다.",
+    "en": "IF POWER ERROR 5V",
+    "cause": "Interface Board 내부 메인전원 5V가 정상적이지 않을 때 팝업.",
+    "action": "장치를 재 부팅 시키십시오 오류가 반복되는 경우 본사로 문의 하십시오 Restart the system. If the problem recurs, please contact your service center.",
+    "detail": ""
+   },
+   {
+    "code": "E-107",
+    "ko": "인터페이스 보드의 내부 메인전원 12V 가 정상적이지 않습니다.",
+    "en": "IF POWER ERROR 12V",
+    "cause": "Interface Board 내부 메인전원 12V가 정상적이지 않을 때 팝업.",
+    "action": "장치를 재 부팅 시키십시오 오류가 반복되는 경우 본사로 문의 하십시오 Restart the system. If the problem recurs, please contact your service center.",
+    "detail": ""
+   },
+   {
+    "code": "E-108",
+    "ko": "인터페이스 보드의 내부 메인전원 36V 가 정상적이지 않습니다.",
+    "en": "IF POWER ERROR 36V",
+    "cause": "Interface Board 내부 메인전원 36V가 정상적이지 않을 때 팝업.",
+    "action": "장치를 재 부팅 시키십시오 오류가 반복되는 경우 본사로 문의 하십시오 Restart the system. If the problem recurs, please contact your service center.",
+    "detail": ""
+   },
+   {
+    "code": "E-109",
+    "ko": "FAN 이 동작하지 않습니다.",
+    "en": "FAN ERROR.",
+    "cause": "장비의 내부 FAN 속도가 저하되거나 동작하지 않을 시 팝업.",
+    "action": "장치를 재 부팅 시키십시오 오류가 반복되는 경우 본사로 문의 하십시오 Restart the system. If the problem recurs, please contact your service center.",
+    "detail": ""
+   },
+   {
+    "code": "E-110",
+    "ko": "RF 장비의 임피던스 에러.",
+    "en": "RF impedance ERROR.",
+    "cause": "RF 임피던스 검출시 정상적이지 않을 때 팝업.",
+    "action": "장치를 재 부팅 시키십시오 오류가 반복되는 경우 본사로 문의 하십시오 Restart the system. If the problem recurs, please contact your service center.",
+    "detail": ""
+   },
+   {
+    "code": "E-200",
+    "ko": "핸드피스의 샷 횟수 저장을 실패하였습니다.",
+    "en": "HP Real Shot recording error. Handpiece shot count cannot be saved.",
+    "cause": "handpiece Controller의 샷 횟수 저장 시 내부 메모리 기록 오류 There is a memory write error when storing the cartridge shot count of the handpiece controller.",
+    "action": "Treat를 다시 터치하신 후 시술을 진행하십시오 문제가 반복되는 경우 본사로 문의 하십시오. Touch the [Treat] button again and then proceed with the treatment. If the problem recurs, please contact your service center.",
+    "detail": ""
+   },
+   {
+    "code": "E-201",
+    "ko": "핸드피스의 샷 횟수 읽기를 실패하였습니다.",
+    "en": "HP Real Shot reading error. Handpiece shot count cannot be read.",
+    "cause": "handpiece Real Shot 읽기 오류",
+    "action": "다른 핸드피스로 교체해 주십시오 문제가 반복되는 경우 본사로 문의 하십시오. Replace the handpiece with another one. If the problem recurs, contact your service center.",
+    "detail": ""
+   },
+   {
+    "code": "E-202",
+    "ko": "핸드피스의 파라미터 정보 저장을 실패하였습니다.",
+    "en": "HP parameter cannot be saved.",
+    "cause": "handpiece Controller의 시술 파라미터 저장 시 내부 메모리 기록 오류 There is an internal memory write error when storing the treatment parameters of the handpiece controller.",
+    "action": "Treat를 다시 터치하신 후 시술을 진행하십시오 문제가 반복되는 경우 본사로 문의 하십시오. Touch the [Treat] button again and then proceed with the treatment. If the problem recurs, please contact your service center.",
+    "detail": ""
+   },
+   {
+    "code": "E-203",
+    "ko": "핸드피스의 파라미터 정보 읽기를 실패하였습니다.",
+    "en": "HP parameter cannot be read.",
+    "cause": "handpiece 는 삽입되었으나 파라미터 정보에 이상이 있을 때 시현",
+    "action": "다른 핸드피스로 교체해 주십시오 문제가 반복되는 경우 본사로 문의 하십시오. Replace the handpiece with another one. If the problem recurs, contact your service center.",
+    "detail": ""
+   },
+   {
+    "code": "E-204",
+    "ko": "핸드피스의 모터 모션 중 문제가 발생하였습니다.",
+    "en": "HP motor is not working properly.",
+    "cause": "handpiece 내부 Motor의 위치 감지가 정상적으로 이루어지지 않은 경우 시술 중 Motor 이동이 원활 하지 않은 경우 Notification of an abnormal state: When it fails to detect the location of the motor inside the handpiece and not moves properly.",
+    "action": "다른 핸드피스로 교체해 주십시오 문제가 반복되는 경우 본사로 문의 하십시오. Replace the handpiece with another one. If the problem recurs, contact your service center.",
+    "detail": ""
+   },
+   {
+    "code": "E-205",
+    "ko": "핸드피스가 홈 위치에 도달하지 못하였습니다.",
+    "en": "HP motor is not in the home position.",
+    "cause": "handpiece 내부 Motor가 일정 시간 이내 정 위치에 도달하지 못한 경우 이상 상태를 알림 Notification of an abnormal state: The motor inside the handpiece fails to reach the specified position within a certain time.",
+    "action": "다른 핸드피스로 교체해 주십시오 문제가 반복되는 경우 본사로 문의 하십시오. Replace the handpiece with another one. If the problem recurs, contact your service center.",
+    "detail": ""
+   },
+   {
+    "code": "E-206",
+    "ko": "RF 장비의 신호 제어에 문제가 발생하였습니다.",
+    "en": "A problem occurred in the RF signal controller.",
+    "cause": "시술 중 설정한 RF 출력 시간과 수신되는 handpiece Controller의 요구 신호와의 오차 발생(입력 신호 감지 오류) There is an error between the RF output time set during the treatment and the request signal reception time of the handpiece controller. (Input Signal Detection Error).",
+    "action": "Treat를 다시 터치하신 후 시술을 진행하십시오 문제가 반복되는 경우 본사로 문의 하십시오. Touch the [Treat] button again and then proceed with the treatment. If the problem recurs, please contact your service center.",
+    "detail": ""
+   },
+   {
+    "code": "E-207",
+    "ko": "depth 이동에 이상이 감지되었습니다.",
+    "en": "A problem on the Z axis motion has been detected.",
+    "cause": "Z축 모터 이동 시 이상감지 발생시",
+    "action": "핸드피스를 재삽입 해주십시오. 문제가 반복되는 경우 본사로 문의 하십시오. Remove the handpiece and reconnect it. If the problem recurs, please contact your service center.",
+    "detail": ""
+   },
+   {
+    "code": "E-208",
+    "ko": "Z axis is not in the home position. (depth 가 정위치 (home) 에 도달하지 못하였습니다.)",
+    "en": "",
+    "cause": "핸드피스 초기 전원 인가 시 Z축 모터 home 인식 불가시 발생",
+    "action": "핸드피스를 재삽입 해주십시오. 문제가 반복되는 경우 본사로 문의 하십시오. Remove the handpiece and reconnect it. If the problem recurs, please contact your service center.",
+    "detail": ""
+   },
+   {
+    "code": "E-209",
+    "ko": "핸드피스 통신 에러가 발생하였습니다.",
+    "en": "HP communication error has occurred.",
+    "cause": "Hp 에서 통신 장애 발생시 알림 팝업.",
+    "action": "핸드피스를 재삽입 해주십시오. 문제가 반복될 경우 본사로 문의 하십시오. Remove the handpiece and reconnect it. If the problem recurs, please contact your service center.",
+    "detail": ""
+   },
+   {
+    "code": "E-210",
+    "ko": "연결한 카트리지와의 연결이 실패하였습니다.",
+    "en": "Failed to connect the cartridge.",
+    "cause": "카트리지 연결 문제 발생",
+    "action": "카트리지를 재 삽입 또는 카트리지를 교체 해주시고 장비를 재부팅 시키십시오. 문제가 발생한 카트리지에 대해 본사로 문의 하십시오. Reinsert the cartridge or replace it to another one and restart the system. Please contact your Service center for the problematic cartridge.",
+    "detail": ""
+   },
+   {
+    "code": "E-211",
+    "ko": "카트리지 파라미터 정보를 저장 할 수 없습니다.",
+    "en": "Cartridge parameter cannot be saved.",
+    "cause": "handpiece Controller의 시술 파라미터 저장 시 카트리지 메모리 기록 오류",
+    "action": "Treat를 다시 터치하신 후 시술을 진행하십시오 문제가 반복되는 경우 본사로 문의 하십시오 Touch the [Treat] button again and then proceed with the treatment. If the problem recurs, please contact your service center.",
+    "detail": ""
+   },
+   {
+    "code": "E-212",
+    "ko": "카트리지의 샷 횟수 저장을 실패하였습니다.",
+    "en": "Cartridge shot count cannot be saved.",
+    "cause": "handpiece Controller의 카트리지 샷 횟수 저장 시 메모리 기록 오류 There is a memory write error when storing the cartridge shot count of the handpiece controller.",
+    "action": "Treat를 다시 터치하신 후 시술을 진행하십시오 문제가 반복되는 경우 본사로 문의 하십시오 Touch the [Treat] button again and then proceed with the treatment. If the problem recurs, please contact your service center.",
+    "detail": ""
+   },
+   {
+    "code": "E-213",
+    "ko": "카트리지의 샷 회수 읽기를 실패하였습니다",
+    "en": "Cartridge shot count cannot be read.",
+    "cause": "카트리지에 저장된 파라미터가 정상적이지 않은 경우 handpiece Controller가 이상 상태임을 알림",
+    "action": "다른 카트리지로 교체해 주십시오. Replace the cartridge with another one.",
+    "detail": ""
+   },
+   {
+    "code": "E-214",
+    "ko": "카트리지의 파라미터 기록에 실패하였습니다.",
+    "en": "Cartridge parameter cannot be recorded.",
+    "cause": "handpiece Controller의 시술 파라미터 저장 시 카트리지 메모리 기록 오류",
+    "action": "Treat를 다시 터치하신 후 시술을 진행하십시오 문제가 반복되는 경우 본사로 문의 하십시오 Touch the [Treat] button again and then proceed with the treatment. If the problem recurs, please contact your service center.",
+    "detail": ""
+   },
+   {
+    "code": "E-215",
+    "ko": "카트리지의 파라미터 정보 읽기를 실패하였습니다.",
+    "en": "Cartridge parameter cannot be read.",
+    "cause": "카트리지에 저장된 파라미터가 정상적이지 않은 경우 handpiece Controller가 이상 상태임을 알림",
+    "action": "다른 카트리지로 교체해 주십시오. Replace the cartridge with another one.",
+    "detail": ""
+   },
+   {
+    "code": "E-216",
+    "ko": "A problem occurred during the cartridge transducer motion. (카트리지( 트랜스듀서 )모션 중 진행에 문제가 발생하였습니다.)",
+    "en": "",
+    "cause": "TIP 모션 중 진행 에러",
+    "action": "카트리지를 재 삽입 또는 교체 해주십시오. Reinsert the cartridge or replace the cartridge with another one.",
+    "detail": ""
+   },
+   {
+    "code": "E-217",
+    "ko": "Cartridge transducer is not in the home position. (카트리지( 트랜스듀서 )가 정 위치(home)에 도달하지 못했습니다.)",
+    "en": "",
+    "cause": "카트리지 내부 트랜듀서가 일정 시간 이내 정 위치에 도달하지 못한 경우 이상 상태를 알림 Notification of an abnormal status: the transducer inside the cartridge fails to reach the specified position within a certain time.",
+    "action": "다른 카트리지로 교체해 주십시오 문제가 반복되는 경우 본사로 문의 하십시오. Replace the cartridge with another one. If the problem recurs, please contact your service center.",
+    "detail": ""
+   },
+   {
+    "code": "E-218",
+    "ko": "mode & depth 저장이 실패하였습니다.",
+    "en": "Failed to save mode & depth settings.",
+    "cause": "Mode 및 depth 선택후 ok 버튼 누를시 카트리지에 데이터 저장이 실패한 경우 발생.",
+    "action": "카트리지를 재삽입후 재시도 해주십시오. 문제가 반복되는 경우 본사로 문의 하십시오. Reinsert the cartridge. If the problem recurs, please contact your service center.",
+    "detail": ""
+   },
+   {
+    "code": "E-219",
+    "ko": "mode & depth 저장 중 depth 이동이 실패하였습니다.",
+    "en": "Failed to move the Z-axis while saving mode & depth of settings.",
+    "cause": "Mode 및 depth 선택후 ok 버튼 누를시 카트리지가 정상적으로 z축으로 이동 실패 시 발생.",
+    "action": "카트리지를 재삽입후 재시도 해주십시오. 문제가 반복되는 경우 본사로 문의 하십시오. Reinsert the cartridge. If the problem recurs, please contact your service center.",
+    "detail": ""
+   },
+   {
+    "code": "E-220",
+    "ko": "ui 통신 에러가 발생하였습니다.",
+    "en": "UI communication error has occurred.",
+    "cause": "Ui 통신 에러 발생시 알림 팝업.",
+    "action": "장비를 재부팅 해주십시오. 문제가 반복될 경우 본사로 문의 하십시오. Restart the system. If the problem recurs, please contact your service center.",
+    "detail": ""
+   },
+   {
+    "code": "E-221",
+    "ko": "RF 임피던스가 매칭되지 않습니다.",
+    "en": "Failed to match RF impedance.",
+    "cause": "RF 임피던스가 매칭되지 않을 때 알림 팝업.",
+    "action": "본사로 문의 하십시오. Please contact your service center.",
+    "detail": ""
+   },
+   {
+    "code": "E-222",
+    "ko": "증류수 교체 장치의 이상동작이 감지되었습니다. 장비를 실행할 수 없습니다.",
+    "en": "DWR system malfunction has been detected. DWR system cannot be operated.",
+    "cause": "증류수 교체 장치 동작 중에 이상 감지 시 발생하는 팝업.",
+    "action": "문제가 반복되는 경우 본사로 문의 하십시오 If the problem recurs, please contact your service center.",
+    "detail": ""
+   },
+   {
+    "code": "E-223",
+    "ko": "증류수 교체장치의 유속 이상을 감지하였습니다. 장비를 정지합니다.",
+    "en": "An abnormal flow rate in DWR system has been detected. Stopping DWR system operation.",
+    "cause": "증류수 교체 장치 동작 중에 유속 이상 증상 발생시 팝업.",
+    "action": "문제가 반복되는 경우 본사로 문의 하십시오 If the problem recurs, please contact your service center.",
+    "detail": ""
+   },
+   {
+    "code": "E-224",
+    "ko": "증류수 교체장치의 통신 정보가 올바르지 않습니다.",
+    "en": "DWR system communication error has occurred.",
+    "cause": "증류수 교체 장치의 통신 data 가 올바르지 않을 때 팝업.",
+    "action": "문제가 반복되는 경우 본사로 문의 하십시오 If the problem recurs, please contact your service center.",
+    "detail": ""
+   },
+   {
+    "code": "E-225",
+    "ko": "증류수 교체장치의 물 수위가 낮습니다. 물 보충이 필요합니다.",
+    "en": "The water level of DWR system is low. Please refill degassed water to the tank.",
+    "cause": "증류수 교체 장치를 동작시 물 수위가 낮을 때 발생하는 팝업.",
+    "action": "물을 보충 후 동작 시키십시오. Refill the degassed/ deaerated water to the water tank and restart the DWR system.",
+    "detail": ""
+   },
+   {
+    "code": "E-226",
+    "ko": "증류수 교체장치의 물 수위가 높습니다. 물 수위를 낮춰주세요.",
+    "en": "The water level of DWR system is High. Please lower the water level.",
+    "cause": "증류수 교체 장치를 동작시 물 수위가 최대 기준보다 높을 때 발생하는 팝업.",
+    "action": "물을 일정 수위 이하로 낮춰주십시오.",
+    "detail": ""
+   },
+   {
+    "code": "E-227",
+    "ko": "카트리지를 재삽입 해주십시오.",
+    "en": "Please reinsert the cartridge.",
+    "cause": "핸드피스 또는 카트리지 오류 발생 후 조치 없이 Treat 시도 시 발생하는 팝업",
+    "action": "카트리지를 재삽입 해보십시오. 동일 증상 발생시 핸드피스를 재삽입 해보십시오. 두가지 방법시도 후에도 동일 증상 발생시 본사로 문의 하십시오.",
+    "detail": ""
+   },
+   {
+    "code": "E-228",
+    "ko": "RF 장비 통신 실패",
+    "en": "RF Communication Error",
+    "cause": "Treat 시도 중 RF 장비와의 통신 실패시 발생하는 팝업",
+    "action": "장비를 재부팅 해주십시오. 문제가 반복될 경우 본사로 문의 하십시오. Restart the system. If the problem recurs, please contact your service center.",
+    "detail": ""
+   },
+   {
+    "code": "E-229",
+    "ko": "카트리지 접촉 에러 감지",
+    "en": "Cartridge Contact error.",
+    "cause": "카트리지 삽입 시 카트리지와 핸드피스 간 접점연결에서 불량 발생시 발생하는 팝업",
+    "action": "카트리지의 핸드피스와 접촉하는 접촉 단자에 이물질이 없는지 확인하십시오. 마른 수건으로 표면을 정리 후 재 삽입해주십시오. 재 삽입시에도 동일증상 발생시 본사로 문의 하십시오.",
+    "detail": ""
+   },
+   {
+    "code": "E-231",
+    "ko": "Cartridge Contact error( RF Line contact). (카트리지 접점 에러 감지(RF 라인 접점))",
+    "en": "",
+    "cause": "카트리지 삽입 시 C값 측정에서 기준값 이하로 측정 될경우 발생하는 팝업",
+    "action": "카트리지와 핸드피스간 결합이 올바른지 확인하십시오. 그리고 핸드피스와 장비간 결합상태가 올바른지 확인 후 재삽입해주십시오 . 재 삽입시에도 동일증상 발생시 본사로 문의 하십시오.",
+    "detail": ""
+   },
+   {
+    "code": "I-200",
+    "ko": "핸드피스 데이터를 불러오는 중입니다. 잠시만 기다려 주십시오.",
+    "en": "Please wait while loading the HP data.",
+    "cause": "연결된 Handpiece 의 데이터를 불러올 때 시현",
+    "action": "통신이 끝날 때까지 기다려 주십시오. Wait until the communication is completed.",
+    "detail": ""
+   },
+   {
+    "code": "I-201",
+    "ko": "핸드피스가 연결되었습니다.",
+    "en": "Handpiece is connected.",
+    "cause": "The handpiece is properly connected.",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "I-202",
+    "ko": "카트리지 데이터를 읽는 중입니다. 잠시만 기다려 주십시오.",
+    "en": "Please wait while loading the cartridge data.",
+    "cause": "초기 Cartridge 삽입 시 데이터를 불러올 때 시현 Data is being loaded upon initial cartridge insertion.",
+    "action": "로딩이 완료될 때까지 기다려 주십시오 .. Wait until loading is completed.",
+    "detail": ""
+   },
+   {
+    "code": "I-203",
+    "ko": "카트리지가 정상적으로 인식되었습니다.",
+    "en": "Cartridge is connected.",
+    "cause": "카트리지가 정상적으로 인식됨 The cartridge is recognized normally.",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "I-204",
+    "ko": "신규 카트리지가 연결되었습니다. 사용하려면 Confirm 을 누르십시오.",
+    "en": "New cartridge is connected. Please press ‘Confirm’ to continue.",
+    "cause": "신규 카트리지를 삽입하였을 때 알림",
+    "action": "Confirm 버튼을 터치해 주십시오 Press the ‘Confirm’ button",
+    "detail": ""
+   },
+   {
+    "code": "I-205",
+    "ko": "샷 회수가 설정된 제한 횟수에 도달 했습니다.",
+    "en": "Shot count has reached its set limit.",
+    "cause": "설정된 카운트 샷 완료시 동작하는 팝업창 .",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "I-206",
+    "ko": "카트리지의 잔여 샷이 2000샷 남았습니다.",
+    "en": "2000 shots remaining.",
+    "cause": "현재 삽입 된 카트리지의 잔여 샷이 2000샷 임을 알림 2,000 shots are left in the current cartridge.",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "I-207",
+    "ko": "mode & depth 설정이 완료 되었습니다.",
+    "en": "Cartridge Mode & Depth are set.",
+    "cause": "정상적으로 설정 적용 시 발생 문구.",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "I-208",
+    "ko": "핸드피스 모터를 냉각하는 중입니다. 2분 30초 남았습니다.",
+    "en": "HP motor is cooling down. 2 min 30 seconds remaining.",
+    "cause": "핸드피스 온도를 낮추기 위해 강제 5분간 강제 냉각을 수행하는 경우 현재의 상태를 알리고 남은 시간을 시현함",
+    "action": "5분(강제 냉각 중)간 대기 Wait for 5 mins (Forced Cooling)",
+    "detail": ""
+   },
+   {
+    "code": "I-209",
+    "ko": "대기 모드로 전환합니다. 계속하려면 확인을 누르십시오.",
+    "en": "Switching to Standby Mode. Press 'OK' to continue.",
+    "cause": "장비가 대기 시간 감지 기능이 활성화 된 경우 설정된 시간 동안 사용자의 입력(Action)이 없는 경우 핸드피스는 절전, 차단 모드로 진입하게 되며 이를 사용자에게 알림. 사용을 위해서 “OK”를 터치하는 경우 약 3~4초의 핸드피스 복귀 과정을 거친 후 시술 가능",
+    "action": "“OK” 터치 약 3~4초 후 사용 가능 Available for use 3~4 sec after pressing \"OK\"",
+    "detail": ""
+   },
+   {
+    "code": "I-211",
+    "ko": "Press 'OK' to start DWR system. (증류수 교체 장치를 시작하려면 OK를 누르세요.) *참고: DWR : Deaerated /Degassed Water Replacement",
+    "en": "",
+    "cause": "증류수 교체 장치 시작 아이콘 클릭시 발생하는 팝업",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "I-212",
+    "ko": "증류수 교체 장치를 정지하려면 OK를 누르세요.",
+    "en": "Press 'OK' to stop DWR system",
+    "cause": "동작 중 활성화 아이콘을 한 번 더 터치 시 발생",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "W-200",
+    "ko": "카트리지의 사용 회수가 초과되었습니다.",
+    "en": "The number of shots for this cartridge has been exceeded.",
+    "cause": "카트리지의 사용 횟수가 초과하였음을 알림",
+    "action": "다른 카트리지로 교체해 주십시오. Replace the cartridge with another one.",
+    "detail": ""
+   },
+   {
+    "code": "W-201",
+    "ko": "알수없는 카트리지가 연결되었습니다. 다른 카트리지를 사용 바랍니다.",
+    "en": "Unknown cartridge is inserted. Please use proper cartridge.",
+    "cause": "카트리지의 구분 코드 정보가 정상적이지 않을 때 시현 The cartridge identification code is not correct.",
+    "action": "다른 카트리지로 교체해 주십시오 문제가 반복되는 경우 본사로 문의 하십시오 Replace the cartridge with another one. If the problem recurs, please contact your service center.",
+    "detail": ""
+   },
+   {
+    "code": "W-202",
+    "ko": "설정하신 에너지가 높아 홍반이나 화상이 발생할 수 있습니다. 그래도 진행하시겠습니까?",
+    "en": "High Energy ( ) may cause red mark or burn . Do you still wish to proceed?",
+    "cause": "현재 설정된 시술 에너지가 제안하는 값보다 높은 경우 사용의 위험성을 사용자에게 알리고 입력을 대기",
+    "action": "파라미터 확정 후 지정 (카트리지 별 상이)",
+    "detail": ""
+   },
+   {
+    "code": "W-203",
+    "ko": "시술 간격이 좁아 홍반이나 화상이 발생할 수 있습니다. 그래도 진행하시겠습니까?",
+    "en": "Narrow spacing may cause the redness or skin burn. Do you still wish to proceed?",
+    "cause": "현재 설정된 시술 간격이 시술 제안하는 값보다 낮은 경우 사용의 위험성을 사용자에게 알리고 입력을 대기",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "W-204",
+    "ko": "카트리지 온도가 높습니다(40도). 카트리지 오류가 발생할 수 있습니다. 그래도 진행하시겠습니까?",
+    "en": "Cartridge temperature is high( 40 degrees). It may cause cartridge error . Do you still wish to proceed?",
+    "cause": "“Treat”를 터치하였을 때, 또는 시술 중 현재 삽입된 카트리지 내부 온도가 첫 번째 온도 설정 값(40도)을 초과하였음을 알리고 사용자의 진행 여부 입력을 대기",
+    "action": "사용자 선택에 의한 운영 “OK” 터치 시 시술 진행 가능 “CANCEL” 터치 시 다른 카트리지로 교체 후 시술 진행 When pressed \"OK\", able to proceed with the treatment. When pressed \"CANCEL\", change to other cartridge to continue treatment.",
+    "detail": ""
+   },
+   {
+    "code": "W-205",
+    "ko": "카트리지 온도가 너무 높습니다(43도). 이 카트리지가 식는 동안 다른 카트리지를 사용하십시오.",
+    "en": "Cartridge temperature is too high( 43 degrees). Please use another cartridge while this cartridge cools down.",
+    "cause": "카트리지 피부 접촉 표면이 43도를 초과하였을 때, 탈기수 교체를 알리고 카트리지를 교체하도록 진행 (현재 삽입된 카트리지 사용 불가)",
+    "action": "“OK” 터치 시 Treat모드à Standby 모드로 변경 카트리지 삽입 When pressed \"OK\", switching from Treat mode to Standby mode. Replace with another cartridge to continue treatment.",
+    "detail": ""
+   },
+   {
+    "code": "W-206",
+    "ko": "핸드피스 모터 온도가 높습니다(80도). 핸드피스 오류가 발생할 수 있습니다. 그래도 진행하시겠습니까?",
+    "en": "HP motor temperature is high( 80 degrees). It may cause handpiece error. Do you still wish to proceed?",
+    "cause": "“Treat”를 터치하였을 때, 또는 시술 중 현재 삽입된 핸드피스 모터의 내부 온도가 첫 번째 온도 설정 값(80도)을 초과하였음을 알리고 사용자의 진행 여부를 확인함",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "W-207",
+    "ko": "핸드피스 모터 온도가 너무 높습니다(83도). 모터 냉각을 시작하시겠습니까?",
+    "en": "Hp motor temperature is too high( 83 degrees) Do you w ant to start HP motor cooling?",
+    "cause": "“Treat”를 터치하였을 때, 또는 시술 중 현재 삽입된 핸드피스 모터의 내부 온도가 두 번째 온도 설정 값(83도)을 초과하였음을 알리고 사용이 제약된다. 또한, 핸드피스의 전원을 차단하여 강제 냉각을 수행할 것인지의 여부를 확인함",
+    "action": "1. “OK” 터치 : 핸드피스의 전원을 차단하여 약 5분간 강제 냉각을 수행한다. 5분이 지나면 핸드피스는 재 시동되고 모터가 냉각되어 사용 가능 상태로 복귀한다. 2. “CANCEL” 터치 : 핸드피스의 전원은 차단되지 않고 사용이 제약됨으로써 자연 냉각을 수행한다. 온도가 사용 제약 온도 이하로 낮아지면 다시 사용이 가능하다. 1. When pressed \"OK \" : Forced cooling by shutting down handpiece for 5 minutes. After 5 minutes, handpiece restarts and the HP motor is cooled down to be available for use again. 2. When pressed \"CANCEL \" : The handpiece will not shut down but limits its use for natural cool down. When the temperature falls below the limit, the handpiece is available for use again.",
+    "detail": ""
+   },
+   {
+    "code": "W-208",
+    "ko": "증류수 교체장치의 물 온도가 높습니다. 온도를 낮춘 후 동작 시키십시오.",
+    "en": "Water temperature of DWR system is too high. Please cool down to start DWR system.",
+    "cause": "증류수 교체 장치 내 물탱크 온도가 설정된 온도 보다 초과 될 경우 발생하는 팝업.",
+    "action": "",
+    "detail": ""
+   }
+  ]
+ },
+ {
+  "model": "Cellec",
+  "entries": [
+   {
+    "code": "E-0",
+    "ko": "통신 포트를 열 수 없습니다.",
+    "en": "Can not open com port ...",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-11",
+    "ko": "핸드피스가 포트에서 분리되었습니다.",
+    "en": "The hand-piece is taken out from the port",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-12",
+    "ko": "냉각수가 감지되지 않습니다. 보조 전원 키를 끄고 방전한 뒤 다시 켜십시오.",
+    "en": "No cooling water is recognized, Turn off the 2nd power key, discharge and then turn on again.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-13",
+    "ko": "냉각수가 부족합니다. 냉각수를 보충하십시오.",
+    "en": "Insufficient cooling water. Please fill more cooling water.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-14",
+    "ko": "펌프 모터가 작동하지 않습니다. 보조 전원 키를 끄고 방전한 뒤 다시 켜십시오.",
+    "en": "No operation of pumping motor. Turn off the 2nd power key, discharge and then turn on again.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-15",
+    "ko": "랙 팬 모터가 회전하지 않습니다. 보조 전원 키를 끄고 방전한 뒤 다시 켜십시오.",
+    "en": "No circul ation of fan motor in the rack. Turn off the 2 nd power key, discharge and then turn on again.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-16",
+    "ko": "좌측 핸드피스 램프가 꺼졌습니다.",
+    "en": "The lamp of Left hand-piece is off.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-17",
+    "ko": "우측 핸드피스 램프가 꺼졌습니다.",
+    "en": "The lamp of Right hand-piece is off.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-18",
+    "ko": "냉각부 팬 모터가 회전하지 않습니다. 보조 전원 키를 끄고 방전한 뒤 다시 켜십시오.",
+    "en": "No circulati on of fan motor in the cooling. Turn off the 2nd power key, discharge and then turn on again.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-19",
+    "ko": "냉각부 컴프레서가 작동하지 않습니다. 보조 전원 키를 끄고 방전한 뒤 다시 켜십시오.",
+    "en": "No operatio n of compressor in the cooling. Turn off the 2nd power key, discharge and then turn on again.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-21",
+    "ko": "시스템 전원 점검 중 오류가 발생했습니다. 보조 전원 키를 끄고 방전한 뒤 다시 켜십시오.",
+    "en": "Power source of system checking error occur. Turn off the 2nd power key, discharge and then turn on again.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-22",
+    "ko": "냉각 장치 점검 중 오류가 발생했습니다. 보조 전원 키를 끄고 방전한 뒤 다시 켜십시오.",
+    "en": "Cooling device checking e rror occur . Turn off the 2nd power key, discharge and then turn on again",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-23",
+    "ko": "냉각수 점검 중 오류가 발생했습니다. 보조 전원 키를 끄고 방전한 뒤 다시 켜십시오.",
+    "en": "Cooling water checking occur . Turn off the 2nd power key, discharge and then turn on again.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-24",
+    "ko": "핸드피스 점검 중 오류가 발생했습니다. 보조 전원 키를 끄고 방전한 뒤 다시 켜십시오.",
+    "en": "H and Piece checking error occur. Turn off the 2nd power key, discharge and then turn on again.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-25",
+    "ko": "시스템 상태 점검 중 오류가 발생했습니다. 보조 전원 키를 끄고 방전한 뒤 다시 켜십시오.",
+    "en": "System condition checking error occur . Turn off the 2nd power key, discharge and then turn on again.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-30",
+    "ko": "좌측 핸드피스의 사용 수명이 거의 끝났습니다. 새 핸드피스를 준비하십시오.",
+    "en": "Hand-P iece lifetime is almost ended. Please, Buy the new hand-piece. (LEFT)",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-31",
+    "ko": "우측 핸드피스의 사용 수명이 거의 끝났습니다. 새 핸드피스를 준비하십시오.",
+    "en": "Hand-Piece lifetime is almost ended. Please, Buy the new hand-piece. (RIGHT)",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-32",
+    "ko": "좌측 램프의 수명이 다했습니다.",
+    "en": "The Lifetime of lamp is out.(LEFT)",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-33",
+    "ko": "우측 램프의 수명이 다했습니다.",
+    "en": "The Lifetime of lamp is out.(RIGHT)",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-34",
+    "ko": "핸드피스 캘리브레이션이 완료되었습니다.",
+    "en": "Success H/P Calibration!!",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-35",
+    "ko": "핸드피스 캘리브레이션에 실패했습니다.",
+    "en": "H/P Calibration Failed!!",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-36",
+    "ko": "좌측 핸드피스 데이터 통신에 실패했습니다.",
+    "en": "H/P Data Communication Failed [LEFT]",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-37",
+    "ko": "우측 핸드피스 데이터 통신에 실패했습니다.",
+    "en": "H/P Data Communication Failed [RIGHT]",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-38",
+    "ko": "업데이트 파일을 찾을 수 없습니다.",
+    "en": "Can not find Update File !!",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-39",
+    "ko": "핸드피스 램프가 꺼졌습니다. 보조 전원 키를 끄고 방전한 뒤 다시 켜십시오.",
+    "en": "The lamp of hand-piece is of f. Turn off the 2nd power key, discharge and then turn on again.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-51",
+    "ko": "핸드피스 램프가 켜지지 않았습니다. 다시 시도하십시오.",
+    "en": "Hand- Piece didn't turn on the lamp. Please, Try again.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-100",
+    "ko": "대기 시간이 초과되어 응답을 받지 못했습니다.",
+    "en": "It cannot rec eive a response message , Because waiting time is over.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-101",
+    "ko": "비상 정지 스위치가 눌렸습니다. 문제를 해결한 뒤 스위치를 해제하십시오.",
+    "en": "The emergency key was pres sed. After solving the problem, Please release the emerge ncy key",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-300",
+    "ko": "현재 핸드피스로는 선택한 시술 부위를 시술할 수 없습니다.",
+    "en": "The current hand-piece c annot treat , selected treatement area.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-332",
+    "ko": "핸드피스가 포트에서 분리되었습니다. 잠시 기다려 주십시오.",
+    "en": "Hand-pi ece is taken out from the port, Please, wait a minute.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-333",
+    "ko": "핸드피스에 이상이 있을 수 있습니다. 잠시 기다려 주십시오.",
+    "en": "This handpiece might be in trouble, Please wait a minute",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-334",
+    "ko": "핸드피스에 이상이 있을 수 있습니다. 잠시 기다려 주십시오.",
+    "en": "This handpiece might be in trouble, Please wait a minut e",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-350",
+    "ko": "현재 발광 중인 핸드피스가 없습니다. 핸드피스의 발광 상태를 확인하십시오.",
+    "en": "Currently , there is no t the emitted hand-piece. Please, Confirm the emission of the hand-piece.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-428",
+    "ko": "이 RFID 카드는 사용 기한이 만료되었습니다.",
+    "en": "This RFID Card has expired.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-429",
+    "ko": "사용할 수 없는 RFID 카드입니다.",
+    "en": "This RFID Card is not acceptable",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "N-501",
+    "ko": "임시 저장과 영구 저장 중 어느 방식으로 저장하시겠습니까?",
+    "en": "Do you want to save Temporari l y or Permanently",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "P-400",
+    "ko": "시스템을 초기화하는 중입니다.",
+    "en": "It is progressing s ystem initialization.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "P-401",
+    "ko": "핸드피스를 전환하는 중입니다. 잠시 기다려 주십시오. (좌측 → 우측)",
+    "en": "It is changing the hand-piece. Please, wait a minute. [LEFT->RIGHT]",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "P-402",
+    "ko": "핸드피스를 전환하는 중입니다. 잠시 기다려 주십시오. (우측 → 좌측)",
+    "en": "It is changing the hand-piece. Please, wait a minute.[LEFT<-RIGHT]",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "P-403",
+    "ko": "램프를 켜는 중입니다.",
+    "en": "It i s progressing to turn the lamp on process.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "P-404",
+    "ko": "핸드피스를 전환하는 중입니다. 피부 재생 시술에는 수온 12도 이상을 권장합니다.",
+    "en": "Handpiece is in change. Above 12 degree of water temperature is recommended for Skin Rejuvenation.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "P-405",
+    "ko": "핸드피스를 전환하는 중입니다. 제모 시술에는 수온 8도 이하를 권장합니다.",
+    "en": "Handpiece is in change. Belo w 8 degree of water temperature is recommended for Hair Removal.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "P-406",
+    "ko": "핸드피스를 전환하는 중입니다. 제모 시술에는 수온 8도 이하를 권장합니다.",
+    "en": "Handpiece is in change. Belo w 8 degree of water temperature is recommended for Hair Removal.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "P-407",
+    "ko": "핸드피스를 전환하는 중입니다. 피부 재생 시술에는 수온 12도 이상을 권장합니다.",
+    "en": "Handpiece is in change. Above 12 degree of water temperature is recommended for Skin Rejuvenation.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "P-410",
+    "ko": "핸드피스 캘리브레이션을 진행하는 중입니다.",
+    "en": "I t is processing the hand-piece calibration.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "P-421",
+    "ko": "테스트가 완료되었습니다.",
+    "en": "Test Is Finished!!",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "P-422",
+    "ko": "대기 중입니다. 램프 점등 과정을 진행하십시오.",
+    "en": "Waiting Please, turn the lamp on process.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "P-423",
+    "ko": "RFID가 중지되었습니다.",
+    "en": "RFID STOP!!!",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "P-424",
+    "ko": "다음 단계는 마스터 모드 또는 대리점 모드에서 진행됩니다.",
+    "en": "Next in the Master Mode or Agency Mode",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "P-425",
+    "ko": "RFID 키 번호를 입력하십시오.",
+    "en": "Insert RFID Key Number Please",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "W-201",
+    "ko": "좌측 핸드피스 램프가 꺼져 있습니다. 확인 버튼을 누르면 램프를 켭니다.",
+    "en": "The lamp of Left hand-piece is of f. Click Ok Button To Turn On The Lamp",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "W-202",
+    "ko": "우측 핸드피스 램프가 꺼져 있습니다. 확인 버튼을 누르면 램프를 켭니다.",
+    "en": "The lamp of Right hand-piece is off. Click Ok Button To Turn On The Lamp",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "W-213",
+    "ko": "핸드피스를 우측으로 전환하시겠습니까? 피부 재생 시술에는 수온 12도 이상을 권장합니다.",
+    "en": "Do you wan t to change handpiece to RIGHT? Above 12 degree of water temperature is recommended for Skin Rejuvenation.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "W-214",
+    "ko": "핸드피스를 좌측으로 전환하시겠습니까? 피부 재생 시술에는 수온 12도 이상을 권장합니다.",
+    "en": "Do you wa nt to change handpiece to LEFT? Above 12 degree of water temperature is recommended for Skin Rejuvenation.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "W-215",
+    "ko": "핸드피스를 우측으로 전환하시겠습니까? 제모 시술에는 수온 8도 이하를 권장합니다.",
+    "en": "Do you wan t to change handpiece to RIGHT? Below 8 degree of water temperature is recommended for Hair Removal.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "W-216",
+    "ko": "핸드피스를 좌측으로 전환하시겠습니까? 제모 시술에는 수온 8도 이하를 권장합니다.",
+    "en": "Do you wa nt to change handpiece to LEFT? Below 8 degree of water temperatur e is recommended for Hair Removal.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "W-301",
+    "ko": "보조 키가 켜져 있는지 확인하십시오.",
+    "en": "The status of Sub-Key confirm whether it is ON",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "W-310",
+    "ko": "5초 후 시스템이 자동으로 종료됩니다. 이후 뒷면의 주 전원 스위치를 끄십시오.",
+    "en": "T his system will be turned off a fter 5 seconds automatically. And Turn off the main switch of the back.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "W-311",
+    "ko": "장비 사용을 종료하시겠습니까? 예를 누른 뒤 뒷면의 주 전원 스위치를 끄십시오.",
+    "en": "Do you w ant to finish using instrument? After pressing YES button Please turn off. the main Switch of the back.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "W-321",
+    "ko": "USB 드라이브를 찾을 수 없습니다.",
+    "en": "Can not found usb drive!!",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "W-322",
+    "ko": "업데이트 파일을 찾을 수 없습니다.",
+    "en": "Can not found update File!!",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "W-430",
+    "ko": "새로 만들기 버튼을 누르십시오.",
+    "en": "Please, press the New Button",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "W-431",
+    "ko": "입력 가능한 글자 수를 초과했습니다.",
+    "en": "The number of letters ha s exceeded letters.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "W-432",
+    "ko": "입력 가능한 줄 수를 초과했습니다.",
+    "en": "The maximum number of input lines has exceeded.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   }
+  ]
+ },
+ {
+  "model": "AQUAcel",
+  "entries": [
+   {
+    "code": "E-0",
+    "ko": "통신 포트를 열 수 없습니다.",
+    "en": "Can not open com port",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-11",
+    "ko": "핸드피스가 포트에서 분리되었습니다.",
+    "en": "The hand-piece is taken out from the port .",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-12",
+    "ko": "냉각수가 감지되지 않습니다. 보조 전원 키를 끄고 방전한 뒤 다시 켜십시오.",
+    "en": "No cooling water is recognized, Turn off the 2nd power key, discharge and then turn on again.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-13",
+    "ko": "냉각수가 부족합니다. 냉각수를 보충하십시오.",
+    "en": "Insufficient cooling water. Please fill more cooling water.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-14",
+    "ko": "펌프 모터가 작동하지 않습니다. 보조 전원 키를 끄고 방전한 뒤 다시 켜십시오.",
+    "en": "No operation of pumping motor. Turn off the 2nd power key, discharge and then turn on again.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-15",
+    "ko": "랙 팬 모터가 회전하지 않습니다. 보조 전원 키를 끄고 방전한 뒤 다시 켜십시오.",
+    "en": "No circulation of fan motor in the rack. Turn off the 2nd power key, discharge and then turn on again.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-16",
+    "ko": "좌측 핸드피스 램프가 꺼졌습니다.",
+    "en": "The lamp of Left hand-piece is off.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-18",
+    "ko": "냉각부 팬 모터가 회전하지 않습니다. 보조 전원 키를 끄고 방전한 뒤 다시 켜십시오.",
+    "en": "No circulation of fan motor in the cooling. Turn off the 2nd power key, discharge and then turn on again.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-19",
+    "ko": "냉각부 컴프레서가 작동하지 않습니다. 보조 전원 키를 끄고 방전한 뒤 다시 켜십시오.",
+    "en": "No operation of compressor in the cooling. Turn off the 2nd power key, discharge and then turn on again.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-21",
+    "ko": "시스템 전원 점검 중 오류가 발생했습니다. 보조 전원 키를 끄고 방전한 뒤 다시 켜십시오.",
+    "en": "Power source of system checking error occur. Turn off the 2nd power key, discharge and then turn on again.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-22",
+    "ko": "냉각 장치 점검 중 오류가 발생했습니다. 보조 전원 키를 끄고 방전한 뒤 다시 켜십시오.",
+    "en": "Cooling device checking error occur s . Turn off the 2nd power key, discharge and then turn on again",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-23",
+    "ko": "냉각수 점검 중 오류가 발생했습니다. 보조 전원 키를 끄고 방전한 뒤 다시 켜십시오.",
+    "en": "Cooling water checking occur s . Turn off the 2nd power key, discharge and then turn on again.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-24",
+    "ko": "핸드피스 점검 중 오류가 발생했습니다. 보조 전원 키를 끄고 방전한 뒤 다시 켜십시오.",
+    "en": "Hand Piece checking error occur. Turn off the 2nd power key, discharge and then turn on again.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-25",
+    "ko": "시스템 상태 점검 중 오류가 발생했습니다. 보조 전원 키를 끄고 방전한 뒤 다시 켜십시오.",
+    "en": "System condition checking error occurs . Turn off the 2nd power key, discharge and then turn on again.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-30",
+    "ko": "핸드피스의 사용 수명이 거의 끝났습니다. 새 핸드피스를 준비하십시오.",
+    "en": "Hand-Piece lifetime is almost ended. Please, Buy the new hand-piece.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-32",
+    "ko": "램프의 수명이 다했습니다.",
+    "en": "The Lifetime of lamp is out.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-100",
+    "ko": "대기 시간이 초과되어 응답을 받지 못했습니다.",
+    "en": "It cannot receive a response message, Because waiting time is over.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-350",
+    "ko": "현재 발광 중인 핸드피스가 없습니다. 핸드피스의 발광 상태를 확인하십시오.",
+    "en": "Currently, there is not the emitted hand-piece . Please, Confirm the emission of the hand-piece.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "P-400",
+    "ko": "시스템을 초기화하는 중입니다.",
+    "en": "It is progressing system initialization.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "P-403",
+    "ko": "램프를 켜는 중입니다.",
+    "en": "It is progressing to turn the lamp on process.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "P-409",
+    "ko": "해당 파장(nm)의 필터를 장착하십시오.",
+    "en": "Please install + nm +filter",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "P-411",
+    "ko": "적합한 필터가 아닙니다. 그래도 사용하시겠습니까?",
+    "en": "It is not proper filter. Do you still want to use .",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "P-413",
+    "ko": "캘리브레이션 오류입니다. 입력값이 올바르지 않습니다. (허용 범위 -100 ~ 70)",
+    "en": "Calibration Error. Wrong Value. (-100 ~ 70)",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "P-414",
+    "ko": "선택한 모드에서는 사용할 수 없습니다.",
+    "en": "Cannot be used at selected mode.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "P-415",
+    "ko": "메모리 기능을 선택하십시오.",
+    "en": "Please select memory function",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "P-416",
+    "ko": "이미 저장된 데이터가 있습니다. 저장하시겠습니까?",
+    "en": "Data already exits. Do you want to save?",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "P-421",
+    "ko": "테스트가 완료되었습니다.",
+    "en": "Test Is Finished!!",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "W-310",
+    "ko": "5초 후 시스템이 자동으로 종료됩니다. 이후 뒷면의 주 전원 스위치를 끄십시오.",
+    "en": "This system will be turned off after 5 seconds automatically. And Turn off the main switch of the back.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "W-321",
+    "ko": "USB 드라이브를 찾을 수 없습니다.",
+    "en": "Can not found usb drive!!",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "W-322",
+    "ko": "업데이트 파일을 찾을 수 없습니다.",
+    "en": "Can not found update File!!",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "W-324",
+    "ko": "연속 냉각 모드를 켜시겠습니까?",
+    "en": "Do you want to turn on the Continue Cooling Mode?",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "W-326",
+    "ko": "센서에 이상이 있어 장비를 사용할 수 없습니다.",
+    "en": "The sensor is defective. You can not operate the device .",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "W-327",
+    "ko": "냉각수를 모두 사용했습니다.",
+    "en": "You use up all the Cooling Water.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "W-328",
+    "ko": "냉각수를 보충해 주십시오.",
+    "en": "Can you refill the Cooling Water? Please refill your device .",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   }
+  ]
+ },
+ {
+  "model": "POTENZA",
+  "entries": [
+   {
+    "code": "E-100",
+    "ko": "통신 포트가 응답하지 않습니다.",
+    "en": "Communication port is not responding",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-101",
+    "ko": "입력 전원의 주파수(Hz)가 올바르지 않습니다.",
+    "en": "Incorrect AC Power Hz",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-102",
+    "ko": "오류가 발생했습니다.",
+    "en": "Error",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-103",
+    "ko": "인식할 수 없는 팁입니다.",
+    "en": "Unidentified Tip",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-104",
+    "ko": "메인보드가 응답하지 않습니다.",
+    "en": "Mainboard is not responding",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-105",
+    "ko": "불러오기에 실패했습니다. 장비를 재부팅하십시오.",
+    "en": "Load fail . Reboot the device",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-106",
+    "ko": "데이터 오류입니다. 관리자에게 문의하십시오.",
+    "en": "Data error . Contact the administrator.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-107",
+    "ko": "해당 모드에서는 이 팁을 사용할 수 없습니다.",
+    "en": "In that mode, This tip is not available",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-108",
+    "ko": "핸드피스 연결에 실패했습니다. 올바른 핸드피스를 연결하십시오.",
+    "en": "Handpiece connection failure Connect proper handpiece",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "N-201",
+    "ko": "샷 카운트를 초기화하시겠습니까?",
+    "en": "Reset shot count?",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "N-202",
+    "ko": "현재 설정을 기본값으로 지정하시겠습니까? 기존 설정을 현재 값으로 덮어씁니다.",
+    "en": "Set this parameter as default? Overwrite existing settings and replace with current parameters?",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "N-205",
+    "ko": "리턴 패드가 감지되지 않습니다. 환자에게 리턴 패드를 부착하십시오.",
+    "en": "No return pad detected. Connect return pad to patient",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "N-206",
+    "ko": "높은 에너지는 부작용을 유발할 수 있습니다. 계속 진행하시겠습니까?",
+    "en": "High energy may cause side effect. Do you still want to proceed?",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "N-208",
+    "ko": "팁의 사용 수명이 다했습니다. 팁을 교체하십시오.",
+    "en": "The life time of the tip is over. Please replace the tip.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "N-209",
+    "ko": "이미 사용한 팁이 연결되었습니다.",
+    "en": "A used tip connected.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   }
+  ]
+ },
+ {
+  "model": "TRI-BEAM",
+  "entries": [
+   {
+    "code": "E-30",
+    "ko": "대기 시간이 초과되어 응답을 받지 못했습니다.",
+    "en": "Can't receive a response message, Because the waiting time is over.",
+    "cause": "Main board 로부터 응답 대기 시간이 초과",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-31",
+    "ko": "대기 시간이 초과되어 응답을 받지 못했습니다. (Ready 상태)",
+    "en": "Can't receive a response message, Because the waiting time is over.(Ready)",
+    "cause": "Main board 로부터 Ready 응답 대기 시간이 초과",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-32",
+    "ko": "대기 시간이 초과되어 응답을 받지 못했습니다. (Standby 상태)",
+    "en": "Can't receive a response message, Because the waiting time is over.(Standby)",
+    "cause": "Main board 로부터 Standby 응답 대기 시간이 초과",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-61",
+    "ko": "장비를 점검하는 중입니다.",
+    "en": "Machine Under inspection",
+    "cause": "장비 부팅 후 Lamp OFF 되었을 경우 , Lamp ON 시도 메시지 팝업 . 최대 3 번 Lamp ON Retry 후 Lamp ON 하지 못 할 경우 E63 메시지 팝업함 .",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-62",
+    "ko": "냉각수 온도가 높습니다. 전원을 끄지 마시고 약 10분간 기다려 주십시오.",
+    "en": "The temperature of cooling water is high. Please wait about 10 minutes without turning off the machine.",
+    "cause": "냉각수의 온도가 높습니다 . 전원을 끄지 마시고 약 10 분간 기다려 주세요 .",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-63",
+    "ko": "램프 시머링에 실패했습니다.",
+    "en": "Lamp Simmering Failed",
+    "cause": "램프를 켜지 못하였을 경우 발생",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-64",
+    "ko": "고전압 시머 전원과 메인보드 간 통신에 실패했습니다.",
+    "en": "High Voltage Simmer Power and Main board communication failed.",
+    "cause": "Main board 와 Simmer Power 간에 통신 불량",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-65",
+    "ko": "시머 전압 출력이 허용 범위를 초과했습니다.",
+    "en": "Simmer Voltage Output over limit",
+    "cause": "OVP, OCP Error",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-66",
+    "ko": "고전압 시머 전원이 과열되었습니다.",
+    "en": "High Voltage Simmer Power Overheated.",
+    "cause": "Simmer Power 내부 소자의 온도가 90 도 이상 일때",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-67",
+    "ko": "물 순환에 오류가 발생했습니다.",
+    "en": "Water Cycle Error.",
+    "cause": "물 순환 정상적으로 안 될 때 발생",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-68",
+    "ko": "수위를 확인해 주십시오.",
+    "en": "Please, Check the water level.",
+    "cause": "물 높이가 낮을 때 발생",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-69",
+    "ko": "냉각 시스템이 작동하지 않습니다. 서비스 센터로 문의해 주십시오.",
+    "en": "The cooling system is not working, please contact After Sales Service",
+    "cause": "Cooling System 고장으로 점검이 필요하다 .",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-70",
+    "ko": "접촉 오류가 발생했습니다.",
+    "en": "Contact error !!",
+    "cause": "Firmware 로 부터 들어온 통신 신호가 통신규약에 맞지 않을 때 발생",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-73",
+    "ko": "도어가 열려 있습니다.",
+    "en": "The door is open.",
+    "cause": "시술 실 Door open",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-75",
+    "ko": "시머 전원의 온도가 너무 높습니다. 잠시 기다려 주십시오.",
+    "en": "The temperature of Simmer power is too high. Please Wait…",
+    "cause": "Simmer power 온도가 너무 높을 경우 발생 .",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-77",
+    "ko": "KTP가 정상적으로 동작하지 않습니다. Ready 버튼을 다시 눌러 주십시오.",
+    "en": "KTP is not promptly working. Please press Ready button again.",
+    "cause": "KTP 의 Motor 가 정상적으로 동작하지 않을 때 발생",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-78",
+    "ko": "셔터 오류가 발생했습니다.",
+    "en": "Shutter Error!",
+    "cause": "Shutter 동작 이상 .- <Bright Shutter 없음 .>",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-79",
+    "ko": "디텍터 오류가 발생했습니다.",
+    "en": "Detector Error.",
+    "cause": "Calibration Board 및 센서 이상일 경우 팝업 .< Bright Calibration 적용 X>",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-80",
+    "ko": "에너지가 허용 범위를 벗어났습니다. 서비스 센터로 문의해 주십시오. 시술 모드로 이동하시겠습니까?",
+    "en": "Energy is out of range, please contact our customer services. Do you want to move into the treatment mode?",
+    "cause": "Calibration 측정 완료 시 측정된 값이 설정된 값의 20% 미만 또는 초과 시 발생 < Bright Calibration 적용 X>",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-81",
+    "ko": "람다가 정상적으로 동작하지 않습니다. Ready 버튼을 다시 눌러 주십시오.",
+    "en": "Ramda is not promptly working. Please press Ready button again.",
+    "cause": "람다 모터 및 센서 이상일 경우 팝업 .",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-82",
+    "ko": "물이 부족합니다. 장비에 물을 채워 주십시오.",
+    "en": "The lack of water. Please fill in the water on the equipment.",
+    "cause": "장비 물 없음 시 팝업 .",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-83",
+    "ko": "수위 센서에 오류가 발생했습니다.",
+    "en": "Water level sensor Error.",
+    "cause": "물 수위 센서 이상 시 팝업 .",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-84",
+    "ko": "플래시 메모리 점검이 필요합니다.",
+    "en": "Flash memory needs to be checked.",
+    "cause": "Flash Memory 훼손으로 인한 데이터 Write 실패 시 나타나는 메시지 .",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-87",
+    "ko": "물 온도가 너무 낮습니다.",
+    "en": "Water temperature is too low",
+    "cause": "장비 온도가 낮을 경우 발생 .( 기준 설정 온도 보다 15 도가 낮거나 영하 -1 이하 일 때 )",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-88",
+    "ko": "200만 샷에 도달했습니다. 정기 점검을 권장합니다. 자세한 사항은 서비스 담당자에게 문의해 주십시오.",
+    "en": "At 2,000,000 shots, maintenance inspection is recommended. please contact your service engineer for details..’",
+    "cause": "‘2,000,000 샷에서 유지 관리 검사가 권장됩니다 . 자세한 내용은 서비스 엔지니어에게 문의하십시오 .",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "M-40",
+    "ko": "USB 드라이브를 찾을 수 없습니다.",
+    "en": "Can not found the USB drive!!",
+    "cause": "Usb 드라이버를 찾을수가 없습니다 .",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "M-41",
+    "ko": "업데이트 파일을 찾을 수 없습니다.",
+    "en": "Can not found the Update File!!",
+    "cause": "Update File 을 찾을 수가 없습니다 .",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "M-43",
+    "ko": "파라미터 데이터를 저장하시겠습니까?",
+    "en": "Do you want to save the parameter data?",
+    "cause": "Parameter 를 저장하시겠습니까 ?",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "M-45",
+    "ko": "최적의 시술 결과를 위해 물 온도가 적정 수준에 도달해야 합니다. 15분간 기다려 주십시오.",
+    "en": "For the best treatment result, water temperature needs to reach in proper degree. Please wait for 15 minutes after turning the device on and start irradiating.",
+    "cause": "설정 물 온도 보다 현재 물 온도가 높음 ( 최상의 치료 결과에 대한 , 물 온도가 적정 수준에 도달해야 합니다 . 이 장치를 켠 후 15 분 동안 기다렸다 시작하십시오 )",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "M-46",
+    "ko": "완료되었습니다.",
+    "en": "Success!",
+    "cause": "완료 .",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "M-47",
+    "ko": "완료되었습니다. (오프셋)",
+    "en": "Success(Offset)!",
+    "cause": "완료 ( Offset)",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "M-55",
+    "ko": "허용 범위를 벗어난 값입니다. (10 ~ 1000)",
+    "en": "Out of rang value(10 ~ 1000)",
+    "cause": "10 ~ 1000 을 벗어난 값을 입력 했다",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "M-56",
+    "ko": "정기 점검을 받으셨습니까?",
+    "en": "Have you had regular maintenance?",
+    "cause": "점검을 완료하셨습니까 ?",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "P-41",
+    "ko": "풋스위치가 분리되었습니다.",
+    "en": "Out of the FootSwitch .",
+    "cause": "FootSwitch 가 빠져있다 .",
+    "action": "",
+    "detail": ""
+   }
+  ]
+ },
+ {
+  "model": "Edge One",
+  "entries": [
+   {
+    "code": "M-0001",
+    "ko": "풋스위치가 분리되었습니다.",
+    "en": "Out of the Footswitch",
+    "cause": "Footswitch 가 제거 되었을 경우",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "M-0002",
+    "ko": "도어가 열려 있습니다.",
+    "en": "The door is open.",
+    "cause": "버튼 없음 Ready 진입 시 체크 Inter Lock 단자가 연결 될 때까지 장비 동작 불가 함",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "M-0003",
+    "ko": "물 순환 오류가 발생했습니다.",
+    "en": "Water Error.",
+    "cause": "물 순환이 안될 경우 ( 현재 운영하지 안음 )",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "M-0004",
+    "ko": "셔터 오류가 발생했습니다.",
+    "en": "Shutter Error.",
+    "cause": "Standby/Ready 상태에 따른 Shutter Limit 센서 체크가 안될 경우",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "M-0005",
+    "ko": "파라미터를 저장하시겠습니까?",
+    "en": "Do you want to save parameter?",
+    "cause": "Parameter 저장 시 표시",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "M-0006",
+    "ko": "핸드피스에서 팁이 분리되었습니다.",
+    "en": "TIP disappeared from the handpiece .",
+    "cause": "버튼 사용 안됨 ,. TIP 연결 시 자동 해제",
+    "action": "",
+    "detail": ""
+   }
+  ]
+ },
+ {
+  "model": "ULTRA LIFT",
+  "entries": [
+   {
+    "code": "#1",
+    "ko": "자체 점검 중 장비 내부 통신 오류 발생",
+    "en": "Built In Test( IBIT) Check Error. RS485 Comm.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#2",
+    "ko": "자체 점검 중 장비 내부 RTC(시간 정보) 오류 발생",
+    "en": "Built In Test( IBIT) Check Error. Real Time Clock.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#3",
+    "ko": "자체 점검 중 설정된 AC 주파수와 입력 AC 주파수간에 오류 발생",
+    "en": "Built In Test( IBIT) Check Error. AC Frequency.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#4",
+    "ko": "자체 점검 중 카트리지의 홈 센서 인식 오류",
+    "en": "Built In Test( IBIT) Check Error. Cartridge sensor is not in the home position.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#5",
+    "ko": "자체 점검 중 핸드피스의 홈 센서 인식 오류",
+    "en": "Built In Test( IBIT) Check Error. Handpiece motor is not in the home position",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#6",
+    "ko": "자체 점검 중 핸드피스의 모터 이동 감지 오류",
+    "en": "Built In Test( IBIT) Check Error. Handpiece motor is not working properly.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#7",
+    "ko": "자체 점검 중 핸드피스의 내부 파라미터 정보가 유효하지 않음 (& 파라미터 불러오기 실패)",
+    "en": "Built In Test( IBIT) Check Error. Handpiece parameter is not proper.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#8",
+    "ko": "자체 점검 중 카트리지의 내부 파라미터 정보가 유효하지 않음 (& 파라미터 불러오기 실패)",
+    "en": "Built In Test( IBIT) Check Error. Cartridge parameter is not proper, please reconnect again.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#9",
+    "ko": "자체 점검 중 핸드피스와 통신 오류",
+    "en": "Built In Test( IBIT) Check Error. There is communication problem between the handpiece and main board.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#10",
+    "ko": "자체 점검 중 핸드피스의 샷 카운트 기록 실패",
+    "en": "Built In Test( IBIT) Check Error. Handpiece shot count cannot be saved.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#11",
+    "ko": "자체 점검 중 카트리지의 샷 카운트 기록 실패",
+    "en": "Built In Test( IBIT) Check Error. Cartridge shot count cannot be saved.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#12",
+    "ko": "자체 점검 중 핸드피스의 파라미터 기록 실패",
+    "en": "Built In Test( IBIT) Check Error. Handpiece parameter cannot be saved.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#13",
+    "ko": "자체 점검 중 카트리지의 파라미터 기록 실패",
+    "en": "Built In Test( IBIT) Check Error. Cartridge parameter cannot be saved.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#14",
+    "ko": "자체 점검 중 RF Generator와의 통신 오류 발생",
+    "en": "Built In Test( IBIT) Check Error. There is communication problem between the main board and RF GEN.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#15",
+    "ko": "자체 점검 중 핸드피스 프로그램 정보가 구형인 경우 오류 발생",
+    "en": "Built In Test( IBIT) Check Error. HandPiece Software Version.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#16",
+    "ko": "자체 점검 중 UI Image 버전 정보가 없거나 구형인 경우 오류 발생",
+    "en": "Built In Test( IBIT) Check Error. UI Image Version.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#17",
+    "ko": "자체 점검 중 핸드피스의 진단 결과 응답이 지연되는 경우 오류 발생",
+    "en": "Built In Test( IBIT) Check Error. Hand Piece result response is delayed.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#18",
+    "ko": "에러 로그 시현 메뉴에서 로그 정보가 비어 있음 (카트리지가 삽입되어 있지 않음) (삽입된 카트리지에 로그 정보가 없음)",
+    "en": "LOG Information Empty.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#19",
+    "ko": "에러 로그 시현 메뉴에서 Hand piece와의 통신 오류 발생",
+    "en": "Hand Piece Communication Error.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#20",
+    "ko": "에러 로그 시현 메뉴에서 로그 데이터 초기화 오류 발생 (카트리지 메모리 기록 오류) (통신 이상)",
+    "en": "Handpiece LOG Data Init. Error.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#21",
+    "ko": "“ Treat ” 를 터치하였을 때 현재 삽입된 카트리지 내부 온도가 첫 번째 온도 설정 값을 초과하였을 때 시현",
+    "en": "A cartridge temperature is high ( 40 degrees) . It may cause cartridge error. Do you still wish to proceed?",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#22",
+    "ko": "“ Treat ” 를 터치하였을 때 현재 삽입된 카트리지의 내부 온도가 두 번째 온도 설정 값을 초과하였을 때 시현. (현재 삽입된 카트리지 사용 불가)",
+    "en": "A cartridge temperature is too high ( 43 degrees) . Please use another cartridge while the temperature decreases.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#23",
+    "ko": "“ Treat ” 를 터치하였을 때, 또는 시술 중 현재 삽입된 핸드피스 모터의 내부 온도가 첫 번째 온 도 설정 값(80도)을 초과하였음을 알리고 사용자의 진행 여부를 확인함",
+    "en": "A motor temperature is high( 80 degrees) . It may cause handpiece error. Do you still wish to proceed?",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#24",
+    "ko": "“ Treat ” 를 터치하였을 때, 또는 시술 중 현재 삽입된 핸드피스 모터의 내부 온도가 두 번째 온도 설정 값(83도)을 초과하였음을 알리고 사용이 제약된다. 또한, 핸드피스의 전원을 차단하여 강제 냉각을 수행할 것인지의 여부를 확인함",
+    "en": "A motor temperature is too high( 84 degrees) Do you want to start motor cooling?",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#25",
+    "ko": "핸드피스 온도를 낮추기 위해 강제 5분간 강제 냉각을 수행하는 경우 현재의 상태를 알리고 남은 시간을 시현함",
+    "en": "The motor is cooling down. Remain time is 2 min. 30 seconds.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#26",
+    "ko": "장비가 대기 시간 감지 기능이 활성화 된 경우 설정된 시간 동안 사용자의 입력(Action)이 없는 경우 핸드피스는 절전, 차단 모드로 진입하게 되며 이를 사용자에게 알림. 사용을 위해서 “ OK ” 를 터치하는 경우 약 3~4초의 핸드피스 복귀 과정을 거친 후 시술 가능",
+    "en": "It has been in standby mode since it has not been used for a long time. Press 'OK' to continue.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "U-0001",
+    "ko": "현재 삽입된 카트리지가 1.5mm 카트리지임을 알림",
+    "en": "The Tip is for the H 1 . 5 cartridge.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "U-0002",
+    "ko": "현재 삽입된 카트리지가 3.0mm 카트리지임을 알림",
+    "en": "The Tip is for the H 3.0 cartridge.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "U-0003",
+    "ko": "현재 삽입된 카트리지가 4.5mm 카트리지임을 알림",
+    "en": "The Tip is for the H 4.5 cartridge.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "U-0004",
+    "ko": "현재 삽입된 카트리지가 6.0mm 카트리지임을 알림",
+    "en": "The Tip is for the H 6.0 cartridge.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   }
+  ]
+ },
+ {
+  "model": "ULTRAcel Q+",
+  "entries": [
+   {
+    "code": "#1",
+    "ko": "초기 Hand piece 삽입 시 데이터를 불러올 때 시현",
+    "en": "Handpiece data loading.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#2",
+    "ko": "잠시만 기다려 주십시오.",
+    "en": "Please wait a second.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#3",
+    "ko": "초기 Cartridge 삽입 시 데이터를 불러올 때 시현",
+    "en": "Tip data loading.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#4",
+    "ko": "잠시만 기다려 주십시오.",
+    "en": "Please wait a second.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#5",
+    "ko": "Hand Piece가 삽입되어 있지 않을 때 시현",
+    "en": "Handpiece None.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#6",
+    "ko": "Hand piece가 정상적으로 인식됨",
+    "en": "Handpiece Check OK.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#7",
+    "ko": "Hand piece 내부 데이터 파라미터가 정상적일 때 시현",
+    "en": "Handpiece parameter is OK.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#8",
+    "ko": "Hand piece는 삽입되었으나 파라미터 정보에 이상이 있을 때 시현",
+    "en": "Handpiece parameter is NG.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#9",
+    "ko": "카트리지 삽입 안 됨",
+    "en": "Cartridge None.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#10",
+    "ko": "카트리지가 정상적으로 인식됨",
+    "en": "Cartridge Check OK.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#11",
+    "ko": "카트리지의 파라미터가 정상적일 때 시현",
+    "en": "Cartridge parameter is OK.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#12",
+    "ko": "카트리지의 파라미터에 이상이 있을 때 시현",
+    "en": "Cartridge parameter is NG.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#13",
+    "ko": "Hand piece 최대 제한 샷을 초과하였을 때 시현",
+    "en": "Handpiece Limit Shot is Over.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#14",
+    "ko": "카트리지 최대 제한 샷을 초과하였을 때 시현",
+    "en": "Catridge Limit Shot is Over.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#15",
+    "ko": "Treat 터치 시 각 장치간 데이터 통신을 수행 중일 때 시현",
+    "en": "Ready data loading.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#16",
+    "ko": "신규 카트리지를 삽입하였을 때 알림",
+    "en": "Please wait a second.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#17",
+    "ko": "카트리지의 사용 횟수가 초과하여 사용할 수 없는 상태임을 알림",
+    "en": "Tip shot counter exceeded limitation.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#18",
+    "ko": "시술 준비 상태에서 Standby 터치 후 정상적으로 해제를 수행했을 때 시현",
+    "en": "Please Connect Right Tip.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#19",
+    "ko": "시술 준비 상태에서 Standby 터치 후 정상적으로 해제를 수행하지 않은 경우 시현",
+    "en": "Cartridge is New.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#20",
+    "ko": "카트리지 사용이 종료되었습니다.",
+    "en": "Cartridge is End.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#21",
+    "ko": "(장비 내부 통신 이상)",
+    "en": "Cartridge is Unknown.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#22",
+    "ko": "Treat 터치 후 정상적으로 시술 준비 상태에 진입함을 알림",
+    "en": "Standby Success.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#23",
+    "ko": "Treat 터치 후 정상적으로 시술 준비 상태에 진입하지 못한 경우 시현",
+    "en": "Standby Fail.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#24",
+    "ko": "준비가 완료되었습니다.",
+    "en": "Ready Success.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#25",
+    "ko": "(장비 내부 통신 이상)",
+    "en": "Ready Fail.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#26",
+    "ko": "카트리지 내부 트랜듀서가 일정 시간 이내 정 위치에 도달하지 못한 경우 이상 상태를 알림",
+    "en": "Tip Home Error.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#27",
+    "ko": "Hand piece 내부 Motor가 일정 시간 이내 정 위치에 도달하지 못한 경우 이상 상태를 알림",
+    "en": "Motor Home Error.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#28",
+    "ko": "Hand piece 내부 Motor의 위치 감지가 정상적으로 이루어지지 않은 경우",
+    "en": "Motion 1 Error.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#29",
+    "ko": "Hand Piece에 저장된 파라미터가 정상적이지 않은 경우 Hand piece Controller가 이상 상태임을 알림",
+    "en": "Handpiece Parameter Error.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#30",
+    "ko": "카트리지에 저장된 파라미터가 정상적이지 않은 경우 Hand piece Controller가 이상 상태임을 알림",
+    "en": "Cartridge Parameter Error.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#31",
+    "ko": "Hand piece Controller와 Main Board간의 통신 이상",
+    "en": "Communication Ack Error.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#32",
+    "ko": "핸드피스가 연결되어 있지 않습니다.",
+    "en": "Handpiece None.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#33",
+    "ko": "Hand piece Controller의 샷 횟수 저장 시 내부 메모리 기록 오류",
+    "en": "Handpiece Shot Write Error.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#34",
+    "ko": "Hand piece Controller의 카트리지 샷 횟수 저장 시 메모리 기록 오류",
+    "en": "Cartridge Shot Write Error.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#35",
+    "ko": "Hand piece Controller의 시술 파라미터 저장 시 내부 메모리 기록 오류",
+    "en": "Handpiece Parameter Write Error.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#36",
+    "ko": "Hand piece Controller의 시술 파라미터 저장 시 카트리지 메모리 기록 오류",
+    "en": "Cartridge Parameter Write Error.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#37",
+    "ko": "Main Board와 RF Generator간의 통신 오류",
+    "en": "RF Generator Board Ack Error.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#38",
+    "ko": "시술 중 설정한 RF 출력 시간과 수신되는 Hand piece Controller의 요구 신호와의 오차 발생(입력 신호 감지 오류)",
+    "en": "RF On Time Check Error.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#39",
+    "ko": "시간이 초과되었습니다.",
+    "en": "Time Over",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#40",
+    "ko": "Hand piece를 삽입한 경우 내부 데이터 통신 중임을 알림",
+    "en": "System Checking.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#41",
+    "ko": "알 수 없는 통신 코드 수신 시",
+    "en": "Message Code is Unknown.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#42",
+    "ko": "현재 삽입된 카트리지가 1.5mm 카트리지임을 알림",
+    "en": "[U-CODE: 0001]",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#43",
+    "ko": "1.5mm 카트리지용 팁입니다.",
+    "en": "The Tip is for the H 1.5 cartridge.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#44",
+    "ko": "현재 삽입된 카트리지가 3.0mm 카트리지임을 알림",
+    "en": "[U-CODE: 0002]",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#45",
+    "ko": "3.0mm 카트리지용 팁입니다.",
+    "en": "The Tip is for the H 3.0 cartridge.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#46",
+    "ko": "현재 삽입된 카트리지가 4.5mm 카트리지임을 알림",
+    "en": "[U-CODE: 0003]",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#47",
+    "ko": "4.5mm 카트리지용 팁입니다.",
+    "en": "The Tip is for the H 4.5 cartridge.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#48",
+    "ko": "현재 삽입된 카트리지가 6.0mm 카트리지임을 알림",
+    "en": "[U-CODE: 0004]",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#49",
+    "ko": "6.0mm 카트리지용 팁입니다.",
+    "en": "The Tip is for the H 6.0 cartridge.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#50",
+    "ko": "자체 점검 중 장비 내부 통신 오류 발생",
+    "en": "Built In Test(IBIT) Check Error.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#51",
+    "ko": "자체 점검 항목: 내부 통신(RS485)",
+    "en": "RS485 Comm.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#52",
+    "ko": "자체 점검 중 장비 내부 RTC(시간 정보) 오류 발생",
+    "en": "Built In Test(IBIT) Check Error.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#53",
+    "ko": "자체 점검 항목: 실시간 시계(RTC)",
+    "en": "Real Time Clock.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#54",
+    "ko": "자체 점검 중 설정된 AC 주파수와 입력 AC 주파수간에 오류 발생",
+    "en": "Built In Test(IBIT) Check Error.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#55",
+    "ko": "자체 점검 항목: 입력 전원 주파수",
+    "en": "AC Frequency.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#56",
+    "ko": "자체 점검 중 Hand piece Controller와의 통신 오류 발생 (Hand piece가 삽입되어 있지 않은 경우 발생하지 않음)",
+    "en": "Built In Test(IBIT) Check Error.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#57",
+    "ko": "자체 점검 항목: 핸드피스 통신",
+    "en": "HandPiece Communication.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#58",
+    "ko": "자체 점검 중 RF Generator와의 통신 오류 발생",
+    "en": "Built In Test(IBIT) Check Error.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#59",
+    "ko": "자체 점검 항목: RF 제너레이터",
+    "en": "RF Generator.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#60",
+    "ko": "자체 점검 중 핸드피스 프로그램 정보가 구형인 경우 오류 발생",
+    "en": "Built In Test(IBIT) Check Error.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#61",
+    "ko": "자체 점검 항목: 핸드피스 소프트웨어 버전",
+    "en": "HandPiece Software Version.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#62",
+    "ko": "자체 점검 중 UI Image 버전 정보가 없거나 구형인 경우 오류 발생",
+    "en": "Built In Test(IBIT) Check Error.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#63",
+    "ko": "자체 점검 항목: UI 이미지 버전",
+    "en": "UI Image Version.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#64",
+    "ko": "에러 로그 시현 메뉴에서 로그 정보가 비어 있음",
+    "en": "LOG Information Empty.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#65",
+    "ko": "에러 로그 시현 메뉴에서 Hand piece와의 통신 오류 발생",
+    "en": "Hand Piece Communication Error.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#66",
+    "ko": "에러 로그 시현 메뉴에서 로그 데이터 초기화 오류 발생",
+    "en": "Handpiece LOG Data Init. Error.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   }
+  ]
+ },
+ {
+  "model": "INTRAcel PRO",
+  "entries": [
+   {
+    "code": "E-0",
+    "ko": "통신 포트를 열 수 없습니다.",
+    "en": "Unable to open communication port.",
+    "cause": "베어본 PC 의 통신 port 가 열리지 않았다",
+    "action": "본사로 문의하십시오 .",
+    "detail": ""
+   },
+   {
+    "code": "E-8",
+    "ko": "핸드피스가 제대로 연결되어 있지 않습니다.",
+    "en": "The Hand-Piece is not promptly attached.",
+    "cause": "Hand Piece 가 연결 되어 있지 않다 .",
+    "action": "장비에 Hand Piece 를 연결해 주세요",
+    "detail": ""
+   },
+   {
+    "code": "M-17",
+    "ko": "모노폴라 모드를 시작하시겠습니까?",
+    "en": "Do you want to start the Monopolar?",
+    "cause": "모노롤라로 변경 하시겠습니까 ?",
+    "action": "모노폴라로 변경로 변경 하시려면 OK 버튼을 아니면 , Cancel 버튼을 눌러 주세요",
+    "detail": ""
+   },
+   {
+    "code": "M-18",
+    "ko": "바이폴라 모드를 시작하시겠습니까?",
+    "en": "Do you want to start the Bipolar?",
+    "cause": "바이롤라로 변경 하시겠습니까 ?",
+    "action": "바이폴라로 변경로 변경 하시려면 OK 버튼을 아니면 , Cancel 버튼을 눌러 주세요",
+    "detail": ""
+   },
+   {
+    "code": "M-19",
+    "ko": "모노폴라 모드입니다. 대극판이 제대로 부착되어 있는지 확인해 주십시오.",
+    "en": "T his is Monopolar mode. Check if the return pad is promptly attached.",
+    "cause": "return pad가 연결 되었는지 확인 요청",
+    "action": "return pad 가 연결이 되어 있는 확인 후 맞으면 OK 버튼을 아니면 , Cancel 버튼을 눌러 주세요",
+    "detail": ""
+   },
+   {
+    "code": "M-59",
+    "ko": "허용 범위를 벗어났습니다.",
+    "en": "Out of Range!",
+    "cause": "임피던스 측정 허용 범위를 벗어남 .",
+    "action": "피부에 접촉이 정상적으로 되어 있는지 확인 후 출력 하세요 .",
+    "detail": ""
+   },
+   {
+    "code": "M-61",
+    "ko": "파라미터 데이터를 저장하시겠습니까?",
+    "en": "Do you want to save the parameter data?",
+    "cause": "Parameter 를 저장 확인 .",
+    "action": "저장하려는 Parameter 가 맞는 지 확인 후 맞으면 OK 버튼을 아니면 , Cancel 버튼을 눌러 주세요",
+    "detail": ""
+   },
+   {
+    "code": "M-63",
+    "ko": "핸드피스 압력이 한도를 초과했습니다.",
+    "en": "Handpiece pressure is over the limit.",
+    "cause": "Hand Piece 의 사용 가능 한 횟수를 넘음 .",
+    "action": "새로운 Hand Piece 를 연결 해주세요 .",
+    "detail": ""
+   },
+   {
+    "code": "P-40",
+    "ko": "시스템을 초기화하는 중입니다.",
+    "en": "System initializing in progress.",
+    "cause": "System Checking 진행 .",
+    "action": "시술 선택 화면이 나올 때 까지 대기 해주세요",
+    "detail": ""
+   }
+  ]
+ },
+ {
+  "model": "INTRAgen",
+  "entries": [
+   {
+    "code": "#1",
+    "ko": "팁 데이터를 불러오는 중입니다. 잠시만 기다려 주십시오.",
+    "en": "Tip data loading please wait a second",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#2",
+    "ko": "새로운 팁입니다. 확인해 주십시오.",
+    "en": "Tip is new. Please confirm",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#3",
+    "ko": "RF 카드 확인이 완료되었습니다. 사용할 수 있습니다.",
+    "en": "RF card confirmation process completed. RF card is available to use.",
+    "cause": "TIP STATUS -> Use Card normal card",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#4",
+    "ko": "RF 카드의 샷이 모두 소진되어 더 이상 사용할 수 없습니다.",
+    "en": "Shot of R F card has been terminated. R F card is not available to use anymore.",
+    "cause": "TIP STATUS -> End Card card use done",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#5",
+    "ko": "사용할 수 없는 카드입니다. 카드를 다시 확인해 주십시오.",
+    "en": "Invalid Card inserted. Please Check the card again.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#6",
+    "ko": "대기 상태입니다.",
+    "en": "Stand by",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#7",
+    "ko": "사용 준비가 되었습니다.",
+    "en": "Ready to use",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#8",
+    "ko": "핸드피스 샷 횟수가 한도를 초과했습니다.",
+    "en": "Hand pi e ce shot counter exceeded limitation.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#9",
+    "ko": "RF 카드 샷 횟수가 한도를 초과했습니다.",
+    "en": "RF card shot counter exceeded limitation.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#10",
+    "ko": "핸드피스와 RF 카드의 샷 횟수가 모두 한도를 초과했습니다.",
+    "en": "Hand pi e ce shot counter and RF card shot exceeded limitation.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#11",
+    "ko": "1번 데이터 저장이 완료되었습니다.",
+    "en": "No.1 data saving complete.",
+    "cause": "Saving data no. 1 success on IntraGen Mode (User Mode)",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#12",
+    "ko": "2번 데이터 저장이 완료되었습니다.",
+    "en": "No.2 data saving complete.",
+    "cause": "Saving data no. 2 success on IntraGen Mode (User Mode)",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#13",
+    "ko": "3번 데이터 저장이 완료되었습니다.",
+    "en": "No.3 data saving complete.",
+    "cause": "Saving data no. 3 success on IntraGen Mode (User Mode)",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#14",
+    "ko": "4번 데이터 저장이 완료되었습니다.",
+    "en": "No.4 data saving complete.",
+    "cause": "Saving data no. 4 success on IntraGen Mode (User Mode)",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#15",
+    "ko": "1번 데이터 불러오기가 완료되었습니다.",
+    "en": "No.1 data reading complete",
+    "cause": "Reading data no. 1 on IntraGen Mode (User Mode)",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#16",
+    "ko": "2번 데이터 불러오기가 완료되었습니다.",
+    "en": "No.2 data reading complete",
+    "cause": "Reading data no. 2 on IntraGen Mode (User Mode)",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#17",
+    "ko": "3번 데이터 불러오기가 완료되었습니다.",
+    "en": "No.3 data reading complete",
+    "cause": "Reading data no. 3 on IntraGen Mode (User Mode)",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#18",
+    "ko": "4번 데이터 불러오기가 완료되었습니다.",
+    "en": "No.4 data reading complete",
+    "cause": "Reading data no. 4 on IntraGen Mode (User Mode)",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#19",
+    "ko": "풋스위치가 선택되었습니다.",
+    "en": "Foot switch has been chosen",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#20",
+    "ko": "핸드스위치가 선택되었습니다.",
+    "en": "Hand switch has been chosen",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#21",
+    "ko": "새 RF 카드가 정상적으로 발급되었습니다.",
+    "en": "New RF card has been issued perfectly.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#22",
+    "ko": "RF 카드 샷 횟수가 한도를 초과했습니다.",
+    "en": "RF card shot counter exceeded limitation.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#23",
+    "ko": "RF 카드를 확인하는 중 오류가 발생했습니다.",
+    "en": "While Confirmation RF card occur error",
+    "cause": "R e-enter the card",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#24",
+    "ko": "연결에 실패했습니다. 팁을 연결해 주십시오.",
+    "en": "Connection Failed. Please Connect the Tip!",
+    "cause": "R e-insert the tip T ip didn’t set yet H and-piece ’ s tip reader defected No tip inserted but +,- button pressed.",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#25",
+    "ko": "등록되지 않은 팁입니다. 팁을 등록해 주십시오.",
+    "en": "Unregister e d Tip! Register Tip.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#26",
+    "ko": "핸드피스 설정이 올바르지 않습니다. 설정을 수정해 주십시오.",
+    "en": "Incorrect Han d piece Setting! Please correct Hand piece setting.",
+    "cause": "W rong hand-piece value setting",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#27",
+    "ko": "연결에 실패했습니다. 풋스위치를 확인해 주십시오.",
+    "en": "Connection is Failed! Please check a Foot switch.",
+    "cause": "No foot switch detec t ed",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#28",
+    "ko": "팁 데이터가 올바르지 않습니다. 정상적인 팁을 사용해 주십시오.",
+    "en": "Invalid Data Tip Please input valid tip",
+    "cause": "Wrong tip value setting",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#29",
+    "ko": "연결에 실패했습니다. 대극판을 확인해 주십시오.",
+    "en": "Connection Failed! Please check a negative plate.",
+    "cause": "N o negative plate or loosen connection",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#30",
+    "ko": "팁의 파라미터 데이터가 올바르지 않습니다. 팁을 다시 삽입해 주십시오.",
+    "en": "Invalid the Tip Parameter data! Try again insert the current Tip.",
+    "cause": "W rong parameter value",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#31",
+    "ko": "사용 시간이 유효하지 않습니다. 팁을 교체해 주십시오.",
+    "en": "Running time invalid. Please Change the Tip!",
+    "cause": "T ip had been use more than 24 hour.",
+    "action": "",
+    "detail": ""
+   }
+  ]
+ },
+ {
+  "model": "AcGen",
+  "entries": [
+   {
+    "code": "#1",
+    "ko": "RF Card Tag 시 인식을 위한 문구 표시",
+    "en": "Tip data loading. Please wait a second",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#2",
+    "ko": "핸드피스 연결이 불안정 할 때 표시",
+    "en": "HP connection Failed! Please Connect Handpiece .",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#3",
+    "ko": "대극판 연결이 불안정 할 때 표시",
+    "en": "Connection Failed! Please check a Monopolar patch connection on the back.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#4",
+    "ko": "FootSwitch 연결이 불안정 할 때 표시",
+    "en": "Foot switch Connection is Failed! Please check a Foot switch.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#5",
+    "ko": "RF Card 데이터에 이상이 있을 경우 표시",
+    "en": "Please change to registered tip Register Tip",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#6",
+    "ko": "시술 모드에서 READY 상태 일 경우 표시",
+    "en": "Ready to use",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#7",
+    "ko": "시술 모드에서 STANDBY 상태 일 경우 표시",
+    "en": "Stand by",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#8",
+    "ko": "RF Card 인식이 안 됐을 경우",
+    "en": "Connection Failed. Please Connect the Tip!",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#9",
+    "ko": "RF Card 인식이 완료 되었으며 , 사용이 가능한 상태라고 표시",
+    "en": "RF card confirmation process completed. RF card is avaliable to use.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#10",
+    "ko": "Cut Mode User Data 1 읽기 성공 시 표시",
+    "en": "No.1 data reading is completed.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#11",
+    "ko": "Cut Mode User Data 2 읽기 성공 시 표시",
+    "en": "No.2 data reading is completed.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#12",
+    "ko": "Cut Mode User Data 3 읽기 성공 시 표시",
+    "en": "No.3 data reading is completed.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#13",
+    "ko": "Cut Mode User Data 4 읽기 성공 시 표시",
+    "en": "No.4 data reading is completed.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#14",
+    "ko": "Cut Mode User Data 저장 시 표시",
+    "en": "User parameter data saving is completed.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#15",
+    "ko": "사용 완료 된 RF Card 일 때 표시",
+    "en": "Shot of RF card has terminated. RF card is not avaliable to use anymore.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#16",
+    "ko": "RF Card 가 없을 경우 표시",
+    "en": "No tip detected. Please Connect the Tip!",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#17",
+    "ko": "신규 RF Card Confirm 완료 시 표시",
+    "en": "New RF card confirmed.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#18",
+    "ko": "신규 RF Card 인식 시 표시",
+    "en": "Tip is new. Please Confirm.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#19",
+    "ko": "RF Card 읽기 실패 시 표시",
+    "en": "RF card reading failed. Please re-insert RF card.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#20",
+    "ko": "핸드피스 장비 삽입 시 표시 ( 시술화면에서 적용 )",
+    "en": "The Hand-Piece is insert success.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#21",
+    "ko": "대극판 장비 삽입 시 표시 ( 시술화면에서 적용 )",
+    "en": "The Plate is Insert success.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#22",
+    "ko": "FootSwitch 삽입 시 표시 ( 시술화면에서 적용 )",
+    "en": "The FootSwitch is Insert success.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#23",
+    "ko": "전압 자동 조절 데이터 확인 시 표시 (Test Card 에서만 표시 됨 )",
+    "en": "Impedance Auto Voltage Display. [Setting Volt]: [DA]: [Calibration Volt]: [DA]:",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#24",
+    "ko": "핸드피스 와 RF CARD Shot counter 초과시 표시",
+    "en": "Hand-Piece and Tip Card No more shots remainging",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#25",
+    "ko": "핸드피스 Shot counter 초과 시 표시",
+    "en": "Hand-Piece No more shots remainging",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#26",
+    "ko": "RF CARD Shot counter 초과 시 표시",
+    "en": "Tip Card No more shots remainging",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#27",
+    "ko": "RF CARD Shot counter 초과로 인한 발급 표시",
+    "en": "RF card shot counter exceeded limitation",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#28",
+    "ko": "핸드피스 Kind 가 안 맞을 경우 표시",
+    "en": "Not proper HP kind! Please Connect Right Tip.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#29",
+    "ko": "RF CARD Kind 가 안 맞을 경우 표시",
+    "en": "Not proper Tip kind! Please Connect Right Tip.",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "#30",
+    "ko": "설정된 임피던스 값 보다 높을 경우 표시 됨",
+    "en": "Out Of Range!",
+    "cause": "",
+    "action": "",
+    "detail": ""
+   }
+  ]
+ }
+]
