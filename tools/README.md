@@ -30,7 +30,11 @@ cd tools && npm install pptxgenjs
 node tools/ppt-build.js "필드이슈 대시보드_소개.pptx"
 ```
 
-`tools/shots/` 의 화면 캡처 4장을 슬라이드에 넣습니다.
+`tools/shots/` 의 화면 캡처를 슬라이드에 넣습니다.
+
+**`c-master.png`은 저장소에 없습니다.** Master Version 화면 캡처는 실제 양산 버전 번호가
+그대로 보여서 공개 저장소에 올리지 않습니다. 없으면 그 슬라이드의 이미지 자리만 비워 생성되며,
+필요하면 대시보드에서 직접 캡처해 `tools/shots/c-master.png`로 두면 됩니다.
 캡처를 새로 뜨려면 미리보기를 띄운 상태에서 헤드리스 크롬으로 찍습니다.
 
 ```bash

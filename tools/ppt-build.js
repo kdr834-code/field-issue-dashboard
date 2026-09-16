@@ -3,6 +3,7 @@
    - 색은 대시보드가 실제로 쓰는 값을 그대로 씁니다 (발표자료와 실물이 이어져 보이도록) */
 const pptxgen = require("pptxgenjs");
 const path = require("path");
+const fs = require("fs");
 
 const SHOT = path.join(__dirname, "shots");
 
@@ -64,6 +65,25 @@ function card(s, x, y, w, h, fill) {
   s.addShape(pres.ShapeType.roundRect, {
     x, y, w, h, rectRadius: 0.06,
     fill: { color: fill || TINT }, line: { color: fill ? fill : LINE, width: 1 },
+  });
+}
+
+/* 화면 캡처를 넣습니다.
+   Master Version 캡처처럼 저장소에 올리지 않는 이미지가 있어서,
+   파일이 없으면 슬라이드를 깨뜨리지 않고 자리만 표시합니다. */
+function shot(s, file, o) {
+  const p = path.join(SHOT, file);
+  if (fs.existsSync(p)) {
+    s.addImage({ path: p, x: o.x, y: o.y, w: o.w, h: o.h, shadow: shadow() });
+    return;
+  }
+  s.addShape(pres.ShapeType.roundRect, {
+    x: o.x, y: o.y, w: o.w, h: o.h, rectRadius: 0.04,
+    fill: { color: "F5F6F9" }, line: { color: LINE, width: 1 },
+  });
+  s.addText("화면 캡처 없음 · " + file, {
+    x: o.x, y: o.y, w: o.w, h: o.h, isTextBox: true, margin: 0,
+    fontFace: F, fontSize: 12, color: SOFT, align: "center", valign: "middle",
   });
 }
 
@@ -228,10 +248,7 @@ function foot(s, text) {
   const s = pres.addSlide();
   head(s, "해결책", "원본은 그대로 두고, 읽는 창을 새로 만들었습니다");
 
-  s.addImage({
-    path: path.join(SHOT, "c-detail.png"),
-    x: 4.62, y: 1.72, w: 8.16, h: 5.1, shadow: shadow(),
-  });
+  shot(s, "c-detail.png", { x: 4.62, y: 1.72, w: 8.16, h: 5.1 });
 
   const pts = [
     ["실시간 연동", "팀즈에 입력하면 몇 분 안에 반영됩니다. 따로 옮기지 않습니다."],
@@ -307,10 +324,7 @@ function foot(s, text) {
   const s = pres.addSlide();
   head(s, "한 걸음 더", "쌓인 일감이 아니라, 지금 봐야 할 신호만");
 
-  s.addImage({
-    path: path.join(SHOT, "c-repeat.png"),
-    x: M, y: 1.74, w: 8.0, h: 3.6, shadow: shadow(),
-  });
+  shot(s, "c-repeat.png", { x: M, y: 1.74, w: 8.0, h: 3.6 });
 
   card(s, 8.86, 1.74, 3.85, 3.6);
   s.addText("감지 조건", {
@@ -354,10 +368,7 @@ function foot(s, text) {
   const s = pres.addSlide();
   head(s, "한 걸음 더", "계산기가 아니라 판정기입니다");
 
-  s.addImage({
-    path: path.join(SHOT, "c-tools.png"),
-    x: 4.72, y: 1.74, w: 8.0, h: 5.0, shadow: shadow(),
-  });
+  shot(s, "c-tools.png", { x: 4.72, y: 1.74, w: 8.0, h: 5.0 });
 
   const tools = [
     ["편차 · 공차", "규격 안에 드는지, 한계에 얼마나 가까운지"],
@@ -392,7 +403,59 @@ function foot(s, text) {
 }
 
 // ══════════════════════════════════════════════════════════════════════
-// 8. 신뢰 · 보안 원칙
+// 8. Master Version (양산)
+// ══════════════════════════════════════════════════════════════════════
+{
+  const s = pres.addSlide();
+  head(s, "한 걸음 더", "PDF 한 장이면 전 모델 버전이 정리됩니다");
+
+  shot(s, "c-master.png", { x: M, y: 1.72, w: 7.62, h: 4.76 });
+
+  card(s, 8.46, 1.72, 4.25, 4.76);
+
+  s.addText("올리면 끝나는 과정", {
+    x: 8.78, y: 1.98, w: 3.6, h: 0.32, isTextBox: true, margin: 0,
+    fontFace: F, fontSize: 13.5, bold: true, color: NAVY,
+  });
+
+  const steps = [
+    ["OQC가 배포한 릴리즈 PDF를 그대로 올립니다"],
+    ["모델 · 향지 · 버전을 자동으로 읽어 표로 정리합니다"],
+    ["SharePoint에 저장돼 모두가 같은 최신본을 봅니다"],
+  ];
+  steps.forEach((t, i) => {
+    const y = 2.52 + i * 1.02;
+    s.addShape(pres.ShapeType.roundRect, {
+      x: 8.78, y, w: 0.32, h: 0.32, rectRadius: 0.08,
+      fill: { color: NAVY }, line: { color: NAVY },
+    });
+    s.addText(String(i + 1), {
+      x: 8.78, y, w: 0.32, h: 0.32, isTextBox: true, margin: 0,
+      fontFace: F, fontSize: 12, bold: true, color: WHITE,
+      align: "center", valign: "middle",
+    });
+    s.addText(t[0], {
+      x: 9.24, y: y - 0.04, w: 3.16, h: 0.86, isTextBox: true, margin: 0,
+      fontFace: F, fontSize: 12, color: INK, lineSpacing: 19,
+    });
+  });
+
+  s.addText("올리는 사람은 담당자 한 명입니다. 여러 명이 올리면 어느 것이 최신인지 알 수 없게 되기 때문입니다.", {
+    x: 8.78, y: 5.6, w: 3.62, h: 0.76, isTextBox: true, margin: 0,
+    fontFace: F, fontSize: 11, color: SOFT, lineSpacing: 18,
+  });
+
+  s.addText("메일에서 PDF를 찾아 열던 일을, 모델명·향지 검색 한 번으로 바꿨습니다. 인식 정확도는 98.3%입니다.", {
+    x: M, y: 6.66, w: CW, h: 0.4, isTextBox: true, margin: 0,
+    fontFace: F, fontSize: 12.5, color: SOFT,
+  });
+
+  foot(s, "화면은 실제 릴리즈 PDF 기준");
+  s.addNotes("OQC가 메일로 배포하는 릴리즈 PDF를 그대로 올리면 모델별 양산 버전이 정리됩니다. 사람이 옮겨 적지 않습니다. 담당자가 한 번 올리면 팀 전체가 같은 최신본을 봅니다.");
+}
+
+// ══════════════════════════════════════════════════════════════════════
+// 9. 신뢰 · 보안 원칙
 // ══════════════════════════════════════════════════════════════════════
 {
   const s = pres.addSlide();
@@ -432,7 +495,7 @@ function foot(s, text) {
 }
 
 // ══════════════════════════════════════════════════════════════════════
-// 9. 성공 기준 — 큰 숫자
+// 10. 성공 기준 — 큰 숫자
 // ══════════════════════════════════════════════════════════════════════
 {
   const s = pres.addSlide();
@@ -486,7 +549,7 @@ function foot(s, text) {
 }
 
 // ══════════════════════════════════════════════════════════════════════
-// 10. 기술 스택
+// 11. 기술 스택
 // ══════════════════════════════════════════════════════════════════════
 {
   const s = pres.addSlide();
@@ -544,7 +607,7 @@ function foot(s, text) {
 }
 
 // ══════════════════════════════════════════════════════════════════════
-// 11. 마무리
+// 12. 마무리
 // ══════════════════════════════════════════════════════════════════════
 {
   const s = pres.addSlide();
