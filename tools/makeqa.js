@@ -115,20 +115,37 @@ async function loadDashboard() {
   buildWeekTabs();
   renderWeeklyView();
   renderRepeatView();
+  // 상단 '자동 최신화' 표시도 실제 화면과 같게 갱신합니다.
+  lastLoadedAt = Date.now();
+  updateLiveChip();
+  el.liveChip.classList.add("visible");
   clearMessage();
 }
 `;
 
-// 원래 loadDashboard 정의를 통째로 교체
+/* 원래 loadDashboard 정의를 통째로 교체합니다.
+   끝 지점을 뒤따르는 주석으로 찾으면 그 주석만 고쳐도 깨지므로,
+   중괄호 짝을 세어 함수가 실제로 끝나는 자리를 찾습니다. */
 const startMarker = "async function loadDashboard() {";
 const startIdx = html.indexOf(startMarker);
-const endMarker = "\n}\n\n// 5분마다";
-const endIdx = html.indexOf(endMarker, startIdx);
-if (startIdx === -1 || endIdx === -1) {
-  console.error("loadDashboard 블록을 찾지 못했습니다.");
+if (startIdx === -1) {
+  console.error("loadDashboard 정의를 찾지 못했습니다. 함수 이름이 바뀌었을 수 있습니다.");
   process.exit(1);
 }
-html = html.slice(0, startIdx) + mockBootstrap.trim() + html.slice(endIdx + endMarker.length - "\n// 5분마다".length);
+let depth = 0, endIdx = -1;
+for (let i = startIdx + startMarker.length - 1; i < html.length; i++) {
+  const c = html[i];
+  if (c === "{") depth++;
+  else if (c === "}") {
+    depth--;
+    if (depth === 0) { endIdx = i + 1; break; }
+  }
+}
+if (endIdx === -1) {
+  console.error("loadDashboard의 끝 중괄호를 찾지 못했습니다.");
+  process.exit(1);
+}
+html = html.slice(0, startIdx) + mockBootstrap.trim() + html.slice(endIdx);
 
 /* 2-2) Master Version - SharePoint 저장/불러오기는 로그인이 필요하므로
    미리보기에서는 브라우저 메모리에만 담아 파싱·표시 경로만 확인합니다. */

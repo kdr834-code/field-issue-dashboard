@@ -91,6 +91,28 @@
   .user-chip { display: none; align-items: center; gap: 8px; font-size: 13px; color: var(--ink-soft); padding: 6px 14px; background: var(--navy-tint); border-radius: 999px; }
   .user-chip.visible { display: flex; }
 
+  /* 자동 최신화 안내.
+     처음 쓰는 사람은 '새로고침을 눌러야만 최신이 되나?' 하고 오해합니다.
+     저절로 갱신된다는 사실과 마지막으로 반영된 시점을 늘 보이게 둡니다. */
+  .live-chip { display: none; align-items: center; gap: 9px; padding: 6px 14px 6px 11px;
+    background: #e9f5ee; border: 1px solid #c6e3d2; border-radius: 999px; line-height: 1.2; }
+  .live-chip.visible { display: flex; }
+  .live-chip .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--status-open);
+    flex-shrink: 0; animation: livePulse 2.6s ease-out infinite; }
+  @keyframes livePulse {
+    0%   { box-shadow: 0 0 0 0 rgba(21,122,69,.45); }
+    70%  { box-shadow: 0 0 0 7px rgba(21,122,69,0); }
+    100% { box-shadow: 0 0 0 0 rgba(21,122,69,0); }
+  }
+  @media (prefers-reduced-motion: reduce) { .live-chip .dot { animation: none; } }
+  .live-chip .nm { display: block; font-size: 12px; font-weight: 700; color: #0f6b3a; }
+  .live-chip .ago { display: block; font-size: 10.5px; font-weight: 500; color: #4b7a60; margin-top: 2px; }
+  /* 불러오는 중에는 색을 바꿔, 지금 갱신되고 있다는 것이 보이게 합니다. */
+  .live-chip.loading { background: var(--navy-tint); border-color: #c3d2e8; }
+  .live-chip.loading .dot { background: var(--navy); animation: none; }
+  .live-chip.loading .nm { color: var(--navy); }
+  .live-chip.loading .ago { color: #4a5c7d; }
+
   button {
     font-family: inherit; font-size: 13.5px; font-weight: 600; padding: 9px 16px; border-radius: 8px;
     border: 1px solid transparent; cursor: pointer; transition: background .15s ease, opacity .15s ease, border-color .15s ease;
@@ -986,6 +1008,11 @@
     .sidebar-footer { display: none; }
 
     .app-topbar { padding: 14px 16px; flex-wrap: wrap; gap: 10px; }
+    /* 좁은 화면에서는 자리를 아끼되, 자동 갱신 안내 자체는 그대로 둡니다.
+       이 문구를 처음 보는 사람이 가장 헷갈려하는 부분이기 때문입니다. */
+    .live-chip { padding: 5px 12px 5px 10px; gap: 7px; }
+    .live-chip .nm { font-size: 11.5px; }
+    .live-chip .ago { font-size: 10px; }
     .title-block h1 { font-size: 16px; }
     .title-block p { font-size: 11px; }
     .header-right { flex-wrap: wrap; gap: 8px; width: 100%; justify-content: flex-start; }
@@ -1114,7 +1141,11 @@
         <div class="title-block"><h1>필드이슈 대시보드</h1><p>필드이슈 접수현황 실시간 연동</p></div>
         <div class="header-right">
           <span id="userChip" class="user-chip"></span>
-          <button id="refreshBtn" class="btn-secondary">새로고침</button>
+          <span id="liveChip" class="live-chip" title="이 화면은 5분마다 저절로 최신 데이터를 불러옵니다. 지금 바로 확인하려면 새로고침을 누르세요.">
+            <span class="dot"></span>
+            <span><span class="nm">자동 최신화</span><span class="ago" id="liveAgo">5분마다 자동 갱신</span></span>
+          </span>
+          <button id="refreshBtn" class="btn-secondary" title="지금 바로 최신 데이터를 불러옵니다. 누르지 않아도 5분마다 자동으로 갱신됩니다.">새로고침</button>
           <button id="logoutBtn" class="btn-secondary">로그아웃</button>
         </div>
       </div>
@@ -1788,6 +1819,8 @@ const el = {
   loginBtn: document.getElementById("loginBtn"),
   logoutBtn: document.getElementById("logoutBtn"),
   refreshBtn: document.getElementById("refreshBtn"),
+  liveChip: document.getElementById("liveChip"),
+  liveAgo: document.getElementById("liveAgo"),
   userChip: document.getElementById("userChip"),
   statusMessage: document.getElementById("statusMessage"),
   loggedOutView: document.getElementById("loggedOutView"),
@@ -1798,6 +1831,32 @@ const el = {
   countLineDetail: document.getElementById("countLine_detail"),
 };
 function showMessage(text, type) { el.statusMessage.textContent = text; el.statusMessage.className = type; }
+
+/* ---- 자동 최신화 표시 --------------------------------------------------
+   새로고침 버튼만 있으면 '눌러야만 최신이 되는 화면'으로 보입니다.
+   실제로는 저절로 갱신되므로, 그 사실과 마지막 반영 시점을 함께 보여줍니다. */
+const AUTO_REFRESH_MS = 5 * 60 * 1000;                 // 아래 자동 새로고침 타이머와 같은 값을 씁니다
+const AUTO_REFRESH_MIN = Math.round(AUTO_REFRESH_MS / 60000);
+let lastLoadedAt = null;
+
+function liveAgoText() {
+  if (!lastLoadedAt) return AUTO_REFRESH_MIN + "분마다 자동 갱신";
+  const min = Math.floor((Date.now() - lastLoadedAt) / 60000);
+  if (min < 1) return "방금 반영됨 · " + AUTO_REFRESH_MIN + "분마다";
+  return min + "분 전 반영 · " + AUTO_REFRESH_MIN + "분마다";
+}
+function updateLiveChip(state) {
+  if (!el.liveChip) return;
+  if (state === "loading") {
+    el.liveChip.classList.add("loading");
+    el.liveAgo.textContent = "불러오는 중…";
+    return;
+  }
+  el.liveChip.classList.remove("loading");
+  el.liveAgo.textContent = liveAgoText();
+}
+// 화면을 켜 둔 채로 두어도 경과 시간이 맞게 보이도록 주기적으로 문구만 새로 씁니다.
+setInterval(() => { if (!el.liveChip.classList.contains("loading")) updateLiveChip(); }, 20000);
 function clearMessage() { el.statusMessage.className = ""; el.statusMessage.textContent = ""; }
 
 /* =========================================================================
@@ -1891,6 +1950,7 @@ async function afterLogin() {
   el.loginBtn.style.display = "none";
   el.logoutBtn.style.display = "inline-block";
   el.refreshBtn.style.display = "inline-block";
+  el.liveChip.classList.add("visible");
   el.userChip.textContent = `${account.name || account.username}`;
   el.userChip.classList.add("visible");
   el.loggedOutView.style.display = "none";
@@ -5141,6 +5201,7 @@ async function loadDashboard() {
   try {
     clearMessage();
     el.refreshBtn.disabled = true;
+    updateLiveChip("loading");
     showMessage("데이터를 불러오는 중입니다...", "info");
 
     const token = await getAccessToken();
@@ -5185,21 +5246,24 @@ async function loadDashboard() {
     buildWeekTabs();
     renderWeeklyView();
     renderRepeatView();
+    lastLoadedAt = Date.now();
     clearMessage();
   } catch (err) {
     console.error(err);
     showMessage(`데이터를 불러오지 못했습니다: ${err.message}`, "error");
   } finally {
     el.refreshBtn.disabled = false;
+    updateLiveChip();          // 실패했을 때도 마지막으로 성공한 시점을 그대로 보여줍니다
   }
 }
 
-// 5분마다 자동으로 새 데이터를 확인합니다. (선택해둔 필터/연도는 그대로 유지됩니다)
+// 일정 주기로 자동으로 새 데이터를 확인합니다. (선택해둔 필터/연도는 그대로 유지됩니다)
 // 단, 수정 창을 열어둔 동안에는 입력 중인 내용이 사라지지 않도록 건너뜁니다.
+// 주기는 상단 '자동 최신화' 표시에 그대로 적히므로 AUTO_REFRESH_MS 하나만 고치면 됩니다.
 setInterval(() => {
   if (editEl.backdrop.classList.contains("open")) return;
   if (msalInstance.getAllAccounts().length > 0) loadDashboard();
-}, 300000);
+}, AUTO_REFRESH_MS);
 
 /* =========================================================================
    15) 초기화
