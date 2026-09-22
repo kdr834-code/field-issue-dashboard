@@ -385,6 +385,21 @@
   .bar-split .bar-item.open { grid-column: 1 / -1; }
   @media (max-width: 760px) { .bar-split { grid-template-columns: 1fr; } }
 
+  /* 항목이 많은 그래프는 상위 몇 개만 펼쳐 둡니다.
+     카드마다 높이가 제각각이면 화면이 들쭉날쭉해 보이고, 꼬리 쪽 항목은
+     1~2건짜리라 한눈에 볼 때는 오히려 방해가 됩니다.
+     대신 '몇 개가 몇 건 숨어 있는지'를 버튼에 적어, 접힌 사실을 놓치지 않게 합니다. */
+  .bar-item.bar-extra { display: none; }
+  .bars-open .bar-item.bar-extra { display: block; }
+  .bar-more { display: flex; align-items: center; gap: 9px; width: 100%; margin-top: 9px;
+    padding: 9px 13px; border: 1px dashed #c1d0e6; border-radius: 9px; background: var(--navy-tint);
+    color: var(--navy); font: inherit; font-size: 12.5px; font-weight: 700; cursor: pointer;
+    transition: background .15s ease, border-color .15s ease; }
+  .bar-more:hover { background: #e1eaf7; border-color: var(--navy); }
+  .bar-more .chev { font-size: 10px; line-height: 1; }
+  .bar-more .sum { margin-left: auto; font-size: 11.5px; font-weight: 600; color: var(--ink-soft); }
+  .bar-split .bar-more { grid-column: 1 / -1; }
+
   .cb-item { border-bottom: 1px solid var(--line); }
   .cb-item:last-child { border-bottom: none; }
   .cb-row { display: grid; grid-template-columns: 14px 86px 1fr; align-items: center; gap: 12px;
@@ -2736,20 +2751,27 @@ function renderDetailPanel(containerEl, items) {
 
 
 // label별로 묶인 항목들[[label, items[]], ...]을 받아 클릭-펼침 막대그래프를 그립니다.
-function renderGroupedBars(container, groupedEntries, colorFn) {
+/* 한 그래프에서 처음에 펼쳐 보여줄 항목 수.
+   더 보여준다고 더 잘 보이지 않습니다. 상위 몇 개가 전체 그림을 결정합니다. */
+const BAR_SHOW_DEFAULT = 6;
+
+function renderGroupedBars(container, groupedEntries, colorFn, showCount) {
   container.innerHTML = "";
+  container.classList.remove("bars-open");
   if (groupedEntries.length === 0) {
     container.innerHTML = `<div class="empty-state" style="padding:20px;">데이터가 없습니다.</div>`;
     return;
   }
+  const shown = showCount || BAR_SHOW_DEFAULT;
+  const hasMore = groupedEntries.length > shown;
   const max = Math.max(1, ...groupedEntries.map(([, arr]) => arr.length));
-  groupedEntries.forEach(([label, arr]) => {
+  groupedEntries.forEach(([label, arr], idx) => {
     const count = arr.length;
     const pct = Math.round((count / max) * 100);
     const grad = colorFn(label);
 
     const wrap = document.createElement("div");
-    wrap.className = "bar-item";
+    wrap.className = "bar-item" + (hasMore && idx >= shown ? " bar-extra" : "");
 
     const row = document.createElement("button");
     row.type = "button";
@@ -2788,6 +2810,30 @@ function renderGroupedBars(container, groupedEntries, colorFn) {
     wrap.appendChild(detail);
     container.appendChild(wrap);
   });
+
+  if (!hasMore) return;
+
+  /* 접힌 항목이 '몇 개'이고 '몇 건'인지 버튼에 적습니다.
+     개수만 적으면 꼬리가 얼마나 무거운지 알 수 없어, 펼칠지 말지 판단할 수 없습니다. */
+  const rest = groupedEntries.slice(shown);
+  const restCount = rest.reduce((a, [, arr]) => a + arr.length, 0);
+  const totalCount = groupedEntries.reduce((a, [, arr]) => a + arr.length, 0);
+  const restPct = Math.round((restCount / totalCount) * 100);
+
+  const more = document.createElement("button");
+  more.type = "button";
+  more.className = "bar-more";
+  const closedText = "나머지 <b>" + rest.length + "개</b> 더 보기";
+  more.innerHTML = '<span class="chev">▼</span><span class="txt">' + closedText + "</span>" +
+    '<span class="sum">' + restCount.toLocaleString("ko-KR") + "건 · 전체의 " + restPct + "%</span>";
+
+  more.addEventListener("click", () => {
+    const open = container.classList.toggle("bars-open");
+    more.querySelector(".chev").textContent = open ? "▲" : "▼";
+    more.querySelector(".txt").innerHTML = open ? "접기" : closedText;
+    more.querySelector(".sum").style.display = open ? "none" : "";
+  });
+  container.appendChild(more);
 }
 
 /* ---- 애니메이션 -----------------------------------------------------------
@@ -2857,8 +2903,10 @@ function rankedShade(hex, index, total) {
   return `rgba(${r}, ${g}, ${b}, ${alpha.toFixed(3)})`;
 }
 
-function renderBarList(container, items, internalName, accentKey, limit, splitTwoColumns) {
-  limit = limit || 12;
+/* limit = 그래프가 다루는 최대 항목 수 (그 밖은 꼬리가 너무 길어 의미가 없습니다)
+   showCount = 처음에 펼쳐 보여줄 항목 수. 나머지는 '더 보기'로 접힙니다. */
+function renderBarList(container, items, internalName, accentKey, limit, splitTwoColumns, showCount) {
+  limit = limit || 20;
   // 항목이 많은 그래프는 좌우 두 줄로 나눠 그립니다.
   container.classList.toggle("bar-split", !!splitTwoColumns);
   const accent = CHART_ACCENTS[accentKey] || CHART_ACCENTS.defectType;
@@ -2870,7 +2918,7 @@ function renderBarList(container, items, internalName, accentKey, limit, splitTw
   });
   const entries = Object.entries(groups).sort((a, b) => b[1].length - a[1].length).slice(0, limit);
   const order = new Map(entries.map(([label], i) => [label, i]));
-  renderGroupedBars(container, entries, (label) => rankedShade(accent, order.get(label) || 0, entries.length));
+  renderGroupedBars(container, entries, (label) => rankedShade(accent, order.get(label) || 0, entries.length), showCount);
 }
 /* 월별 접수 추이 - 꺾은선 그래프
    점을 클릭하면 아래에 그 달의 실제 목록이 펼쳐집니다(기존 막대그래프와 동일한 동작).
@@ -3007,7 +3055,7 @@ function renderMonthlyTrend(container, monthEntries, accentColor) {
 /* 에러코드별 건수.
    한 건에 코드가 둘 이상 적혀 있으면 각 코드에 모두 집계합니다.
    (그래서 코드별 건수의 합은 전체 건수보다 클 수 있습니다) */
-function renderErrorCodeBars(container, items, limit) {
+function renderErrorCodeBars(container, items, limit, showCount) {
   const groups = {};
   items.forEach((it) => {
     (it.fields[ERROR_CODE_FIELD] || []).forEach((code) => {
@@ -3024,7 +3072,7 @@ function renderErrorCodeBars(container, items, limit) {
   }
   const accent = CHART_ACCENTS.errorCode;
   const order = new Map(entries.map(([label], i) => [label, i]));
-  renderGroupedBars(container, entries, (label) => rankedShade(accent, order.get(label) || 0, entries.length));
+  renderGroupedBars(container, entries, (label) => rankedShade(accent, order.get(label) || 0, entries.length), showCount);
 }
 
 function renderBarListFixedOrder(container, groupedEntries, fgColor) {
@@ -3291,8 +3339,8 @@ function renderAnalysisFiltered() {
   renderStatusDonut(document.getElementById("donut_analysis"), filtered);
   renderBarList(document.getElementById("bar_defectType_analysis"), filtered, FIELD.defectType1, "defectType");
   renderBarList(document.getElementById("bar_defectType2_analysis"), filtered, FIELD.defectType2, "cause");
-  renderBarList(document.getElementById("bar_product_analysis"), filtered, FIELD.product, "product", 15);
-  renderErrorCodeBars(document.getElementById("bar_errorCode_analysis"), filtered, 12);
+  renderBarList(document.getElementById("bar_product_analysis"), filtered, FIELD.product, "product", 24);
+  renderErrorCodeBars(document.getElementById("bar_errorCode_analysis"), filtered, 24);
 }
 
 /* =========================================================================
@@ -3373,9 +3421,9 @@ function renderYearlyCharts() {
   const yearItems = allItems.filter((it) =>
     String(it.fields[FIELD.receivedDate] || "").startsWith(selectedYear) && yearlyOccMatch(it));
   renderKpiCards(document.getElementById("kpiRow_yearly"), document.getElementById("kpiDetail_yearly"), yearItems);
-  renderBarList(document.getElementById("bar_product_yearly"), yearItems, FIELD.product, "product", 16, true);
-  renderBarList(document.getElementById("bar_productGroup_yearly"), yearItems, FIELD.productGroup, "productGroup", 10);
-  renderBarList(document.getElementById("bar_occurrence_yearly"), yearItems, FIELD.occurrence, "occurrence", 10);
+  renderBarList(document.getElementById("bar_product_yearly"), yearItems, FIELD.product, "product", 24, true, 8);
+  renderBarList(document.getElementById("bar_productGroup_yearly"), yearItems, FIELD.productGroup, "productGroup", 24);
+  renderBarList(document.getElementById("bar_occurrence_yearly"), yearItems, FIELD.occurrence, "occurrence", 24);
 
   const monthGroups = {};
   for (let m = 1; m <= 12; m++) monthGroups[String(m).padStart(2, "0")] = [];
@@ -3806,10 +3854,10 @@ function renderWeeklyView() {
     '<div class="wk-card close"><div class="wk-label">완료 CLOSE</div><div class="wk-value">' + byStatus.close + (byStatus.hold ? '<span style="font-size:14px;color:#c2610a;"> +Hold ' + byStatus.hold + '</span>' : '') + '</div><div class="wk-sub">' + (items.length ? Math.round(byStatus.close / items.length * 100) : 0) + '% · 이 주 접수분 기준</div></div>' +
     '<div class="wk-card delta"><div class="wk-label">발생기간 6개월이내</div><div class="wk-value">' + fresh + '</div><div class="wk-sub">납품 후 얼마 안 돼 발생한 건</div></div>';
 
-  renderBarList(document.getElementById("bar_product_weekly"), items, FIELD.product, "product", 12);
-  renderBarList(document.getElementById("bar_defectType_weekly"), items, FIELD.defectType1, "defectType", 10);
-  renderBarList(document.getElementById("bar_occurrence_weekly"), items, FIELD.occurrence, "occurrence", 6);
-  renderBarList(document.getElementById("bar_country_weekly"), items, FIELD.country, "productGroup", 10);
+  renderBarList(document.getElementById("bar_product_weekly"), items, FIELD.product, "product", 24);
+  renderBarList(document.getElementById("bar_defectType_weekly"), items, FIELD.defectType1, "defectType", 24);
+  renderBarList(document.getElementById("bar_occurrence_weekly"), items, FIELD.occurrence, "occurrence", 24);
+  renderBarList(document.getElementById("bar_country_weekly"), items, FIELD.country, "productGroup", 24);
 
   document.getElementById("weeklyListNote").textContent = L.range + " 접수 " + items.length + "건";
   const sorted = items.slice().sort((a, b) =>
