@@ -4,105 +4,137 @@
   "entries": [
    {
     "code": "E-100",
-    "ko": "핸드피스포트 응답이 없습니다..",
+    "ko": "핸드피스 포트 응답이 없습니다.",
     "en": "",
-    "cause": "핸드피스메인보드UI통신이 되지 않을 경우 발생함.",
+    "cause": "핸드피스 메인보드 UI 통신이 되지 않을 경우 발생함.",
     "action": "시리얼 선을 확인 한다.",
     "detail": ""
    },
    {
     "code": "E-102",
-    "ko": "메인,핸드피스, RF에 문제가 생겼을 경우.",
+    "ko": "메인 ,핸드피스, RF에 문제가 생겼을 경우.",
     "en": "",
-    "cause": "Main Error : 1 –저수조 비었을 경우. Main Error : 2 – CAN압력센서 고압일 경우. Main Error : 4 – TANK압력센서고압일 경우. Main Error : 16 – Main-HP Communication error Main Error : 32 – HP연결상태에러. Main Error : 64–대극판연결상태 Main Error : 128–풋스위치연결상태 (에러가 복합적일 경우 코드가 더해져서 출력된다 ex: 1,2,16에러일 경우19로 표시) 에MAIN값을 입력하고, SAVE저장 시 메시지 내용을 확인 할 수 있다.\nMain Error : 256 – Main Memory read error Main Error : 512 – Main Memory write error Main Error : 1024 – CAN 온도센서1&2저온error Main Error : 2048 – TANK 온도센서1&2저온error Main Error : 4096 – CAN 온도센서1&2고온error Main Error : 8192 – TANK 온도센서1&2고온error Main Error : 16384–가스통 결합 요청error Main Error : 32768–가스통 교체error (에러가 복합적일 경우 코드가 더해져서 출력된다 ex: 1,2,16에러일 경우19로 표시) 에MAIN값을 입력하고, SAVE저장 시 메시지 내용을 확인 할 수 있다.\nHP Error : 1 – Memory read Error HP Error : 2 – Memory Write Error HP Error : 4 –TIP memory read error HP Error : 8 –TIP memory write error HP Error : 16 –온도센서error . 4개중1개라도 이상일 경우 에러. HP Error : 32 – High Temperature Error. HP Error : 64– Cooling system error. (에러가 복합적일 경우 코드가 더해져서 출력된다 ex: 1,2,16에러일 경우19로 표시)에HP값을 입력하고, SAVE저장 시 메시지 내용을 확인 할 수 있다.\nRF Error : 1 –온도 이상 RF Error : 2 – FAN이상 RF Error : 4 –자체 출력레벨 확인 이상 RF Error : 8 –자체 임피던스 확인 이상 RF Error : 16 – NE Pad접촉 이상 RF Error : 32– Main-RF Communication (에러가 복합적일 경우 코드가 더해져서 출력된다 ex: 1,2,16에러일 경우19로 표시) 에HP값을 입력하고, SAVE저장 시 메시지 내용을 확인 할 수 있다.",
-    "action": "Main보드 점검 / HP보드 점검 / RF보드 점검",
+    "cause": "Main Error : 1 – 저수조 비었을 경우. Main Error : 2 – CAN 압력센서 고압일 경우. Main Error : 4 – TANK 압력센서 고압일 경우. Main Error : 16 – Main-HP Communication error Main Error : 32 – HP연결상태 에러. Main Error : 64– 대극판 연결상태 Main Error : 128– 풋스위치 연결상태 (에러가 복합적일 경우 코드가 더해져서 출력된다 ex: 1,2,16 에러일 경우 19로 표시) 에 MAIN 값을 입력하고, SAVE 저장 시 메시지 내용을 확인 할 수 있다.\nMain Error : 256 – Main Memory read error Main Error : 512 – Main Memory write error Main Error : 1024 – CAN 온도센서1&2저온 error Main Error : 2048 – TANK 온도센서1&2 저온error Main Error : 4096 – CAN 온도센서1&2 고온 error Main Error : 8192 – TANK 온도센서1&2고온error Main Error : 16384– 가스통 결합 요청 error Main Error : 32768– 가스통 교체 error (에러가 복합적일 경우 코드가 더해져서 출력된다 ex: 1,2,16 에러일 경우 19로 표시) 에 MAIN 값을 입력하고, SAVE 저장 시 메시지 내용을 확인 할 수 있다.\nHP Error : 1 – Memory read Error HP Error : 2 – Memory Write Error HP Error : 4 – TIP memory read error HP Error : 8 – TIP memory write error HP Error : 16 – 온도센서 error . 4개중 1개라도 이상일 경우 에러. HP Error : 32 – High Temperature Error. HP Error : 64– Cooling system error. (에러가 복합적일 경우 코드가 더해져서 출력된다 ex: 1,2,16 에러일 경우 19로 표시) 에 HP 값을 입력하고, SAVE 저장 시 메시지 내용을 확인 할 수 있다.\nRF Error : 1 – 온도 이상 RF Error : 2 – FAN 이상 RF Error : 4 – 자체 출력레벨 확인 이상 RF Error : 8 – 자체 임피던스 확인 이상 RF Error : 16 – NE Pad 접촉 이상 RF Error : 32– Main-RF Communication (에러가 복합적일 경우 코드가 더해져서 출력된다 ex: 1,2,16 에러일 경우 19로 표시) 에 HP 값을 입력하고, SAVE 저장 시 메시지 내용을 확인 할 수 있다.",
+    "action": "Main 보드 점검\nHP 보드 점검\nRF 보드 점검",
     "detail": ""
    },
    {
     "code": "E-103",
     "ko": "냉각 시스템에 문제가 생겼습니다.",
     "en": "",
-    "cause": "시술화면의TREAT시,핸드피스에서냉매가 출력되지 않아핸드피스온도가 올라갈경우팝업한다.",
+    "cause": "TREAT 후 쿨링 시스템 이상이 발생할 경우 동일 이상이 연속 3회 이상 발생할 경우 두번째 메시지 발생.",
     "action": "냉매 시스템을 점검한다.",
     "detail": ""
    },
    {
     "code": "E-104",
-    "ko": "메인보드의 통신이 응답하지 않습니다.",
+    "ko": "메인보드의 통신이 응답하지 않습니다. 0X40: TREAT ACK 가 없을 경우. 0x41:STANDBY ACK가 없을 경우. 0x52: 샷 초기화에 대한 ACK가 없을 경우. 0x78:파이프 상태에 대한 ACK가 없을 경우.",
     "en": "",
-    "cause": "메인보드와 통신이 응답하지 않을 경우메시지가팝업한다.",
+    "cause": "메인보드와 통신이 응답하지 않을 경우 메시지가 팝업한다.",
     "action": "통신 시스템을 확인 한다.",
     "detail": ""
    },
    {
     "code": "E-105",
-    "ko": "장비를 재 부팅 해 주세요.“",
+    "ko": "장비를 재 부팅 해 주세요.",
     "en": "",
-    "cause": "값2:사운드 파일/밝기 설정 화면/국가 설정(FixParameter/SERVICE.DAT)이 문제가 있을 때 발생함 값8:파워설정(FixParameter/POWER.DAT)이 문제가 있을 때 발생함",
-    "action": "2일 경우 해당 파일을 다시 설정함.(사운드,밝기 조절/국가 설정 시 해당 파일 생성 됨) 8일 경우파워 데이터 재 입력.",
+    "cause": "값 2: 사운드 파일/ 밝기 설정 화면/국가 설정 (FixParameter/SERVICE.DAT)이 문제가 있을 때 발생함 값 8: 파워설정 (FixParameter/POWER.DAT)이 문제가 있을 때 발생함",
+    "action": "2 일 경우 해당 파일을 다시 설정함.(사운드 , 밝기 조절 /국가 설정 시 해당 파일 생성 됨) 8 일 경우파워 데이터 재 입력.",
     "detail": ""
    },
    {
     "code": "E-106",
-    "ko": "Main, HP, Tip데이터 에러＂",
+    "ko": "Main, HP, Tip 데이터 에러",
     "en": "",
-    "cause": "[값] : 1 : Read error,2:Write Error",
+    "cause": "[값] : 1 : Read error, 2: Write Error",
     "action": "해당 모듈의 메모리를 변경 한다.",
     "detail": ""
    },
    {
     "code": "E-110",
-    "ko": "팁이 정의 되지 않았습니다..“",
+    "ko": "팁이 정의 되지 않았습니다.",
     "en": "",
     "cause": "팁 데이터가 올바르게 발급 되지 않을 경우 발생",
-    "action": "팁 데이터를 확인.또는 국가정보 확인.",
+    "action": "팁 데이터를 확인 . 또는 국가정보 확인.",
     "detail": ""
    },
    {
     "code": "E-111",
-    "ko": "팁을 다시 연결해 주세요.온도센서가 불안정 합니다.“",
+    "ko": "팁을 다시 연결해 주세요. 온도센서가 불안정 합니다.",
     "en": "",
     "cause": "팁의 온도센서가 불안정 할 경우 팝업.",
-    "action": "팁의 온도 센서 문제로 팁을 다시 장착 했을 때 반복적으로 발생 시,팁을 교체한다.",
+    "action": "팁의 온도 센서 문제로 팁을 다시 장착 했을 때 반복적으로 발생 시, 팁을 교체한다.",
     "detail": ""
    },
    {
     "code": "E-201",
-    "ko": "샷카운트를초기화 하겠습니까?.",
+    "ko": "샷카운트를 초기화 하겠습니까?.",
     "en": "",
-    "cause": "샷카운트RESET버튼을 클릭 하였을 경우.",
+    "cause": "샷카운트 RESET 버튼을 클릭 하였을 경우.",
     "action": "",
+    "detail": ""
+   },
+   {
+    "code": "E-203",
+    "ko": "성공적으로 완료 되었다.",
+    "en": "",
+    "cause": "환자 정보 데이터 다운로드 시 성공적으로 저장 되었을 시 팝업.",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "W-205",
+    "ko": "모노 모드를 사용 할 경우, 리턴 패드 접촉에 이상이 생길 경우.",
+    "en": "",
+    "cause": "시술화면의 TREAT 시, 모노 모드를 사용 할 경우, 리턴 패드 접촉에 이상이 생길 경우 메시지가 팝업한다.",
+    "action": "리턴패드를 확인 한다.",
+    "detail": ""
+   },
+   {
+    "code": "W-208",
+    "ko": "팁의 메모리를 모두 사용 하였습니다. 팁을 교체하여 주세요.",
+    "en": "",
+    "cause": "시술화면의 TREAT 시, 팁의 샷을 모두 다 소진 하였을 경우 메시지를 팝업한다.",
+    "action": "팁을 교체 한다.",
     "detail": ""
    },
    {
     "code": "N-0",
     "ko": "사운드가 연결되어 있지 않습니다. 장비를 재 부팅 해 주세요",
     "en": "",
-    "cause": "장비 전원이 불안정 할 경우(전원을 빠르게ON <-> OFF반복)사운드 코덱이 정상 동작 하지 않을 수 있음.",
-    "action": "장비를 재부팅 하여,안정적으로 전원을 인가한다.",
+    "cause": "장비 전원이 불안정 할 경우 (전원을 빠르게 ON <-> OFF 반복) 사운드 코덱이 정상 동작 하지 않을 수 있음.",
+    "action": "장비를 재부팅 하여, 안정적으로 전원을 인가한다.",
     "detail": ""
    },
    {
     "code": "N-2",
     "ko": "팁이 연결 되지 않았습니다.",
     "en": "",
-    "cause": "시술화면의TREAT버튼 클릭 시,팁이 연결 되어 있지 않을 경우팝업한다.",
+    "cause": "시술화면의 TREAT 버튼 클릭 시, 팁이 연결 되어 있지 않을 경우 팝업한다.",
     "action": "팁을 연결한다.",
     "detail": ""
    },
    {
-    "code": "N-4",
-    "ko": "핸드피스가연결 되지 않았습니다.",
+    "code": "N-3",
+    "ko": "[구형 DCD] N-3 조건에 따라 메시지 내용 달라짐 TANK 온도 저온 :Check the tank temperature. CAN 온도 저온: Check the can temperature. TANK 온도 고온 :Tank temperature is high. CAN 온도 고온: Can temperature is high.\n[신형 DCD] DCD MEMORY READ ERROR.\n[신형 DCD] DCD MEMORY WRITE ERROR.\n[신형 DCD] DCD PUMP ERROR.\n[신형 DCD] DCD SOL ERROR.",
     "en": "",
-    "cause": "시술화면의TREAT버튼 클릭 시,핸드피스가연결 되어 있지 않을 경우팝업한다.",
-    "action": "핸드피스를연결한다.",
+    "cause": "[신형 DCD] DCD FLAHS 메모리 데이터를 읽지 못할 경우. 현재 사용하지 않음. 차후 확장성을 위해 기능만 살려 둠\n[신형 DCD] DCD flash 메모리 데이터를 쓰지 못할 경우. 현재 사용하지 않음. 차후 확장성을 위해 기능만 살려 둠\n[신형 DCD] -펌프 전원 이상 또는 펌프 모터 고장으로 인한 에러\n[신형 DCD] - 저수조에 연결된 솔밸브에 전원이 정상적으로 인가되지 않았거나, 솔밸브 자체 불량으로 인해 발생할 수 있다.",
+    "action": "[신형 DCD] 재 부팅 후 반복적으로 문제가 발생 할 경우 DCD 보드를 교체 한다.\n[신형 DCD] 재부팅 이후 반복적으로 발생할 경우 DCD 펌프를 교체 한다.\n[신형 DCD] 장비를 재부팅한 후 정상 동작 여부를 확인합니다. 재부팅 이후에도 동일 증상이 반복적으로 발생할 경우, 솔밸브를 교체합니다.",
+    "detail": ""
+   },
+   {
+    "code": "N-4",
+    "ko": "핸드피스가 연결 되지 않았습니다.",
+    "en": "",
+    "cause": "시술화면의 TREAT 버튼 클릭 시, 핸드피스가 연결 되어 있지 않을 경우 팝업한다.",
+    "action": "핸드피스를 연결한다.",
     "detail": ""
    },
    {
     "code": "N-5",
     "ko": "가스 캔이 연결 되지 않았습니다.",
     "en": "",
-    "cause": "시술화면의TREAT버튼 클릭 시,가스 통이 연결 되어 있지 않을 경우팝업한다.",
+    "cause": "시술화면의 TREAT 버튼 클릭 시, 가스 통이 연결 되어 있지 않을 경우 팝업한다.",
     "action": "가스 통을 연결한다.",
     "detail": ""
    },
@@ -110,32 +142,40 @@
     "code": "N-6",
     "ko": "가스를 모두 사용 하였습니다.",
     "en": "",
-    "cause": "시술화면의TREAT상태 일 경우,가스를 모두 소진하였을 경우.",
+    "cause": "시술화면의 TREAT 상태 일 경우, 가스를 모두 소진하였을 경우.",
     "action": "가스 통을 교체 한다.",
     "detail": ""
    },
    {
     "code": "N-7",
-    "ko": "가스 압력이 높습니다.",
+    "ko": "가스 압력이 높습니다. N-7 조건에 따라 메시지 내용 달라짐 -Tank 압력 높을 때:Tank pressure is high -CAN 압력이 높을 때:Gas can pressure is high",
     "en": "",
     "cause": "가스 압력이 너무 높을 경우 발생함.",
     "action": "가스 캔 제거 후 압력 제거 버튼을 눌러 압력을 제거한다.",
     "detail": ""
    },
    {
-    "code": "N-9",
-    "ko": "핸드피스온도가 높습니다.“",
+    "code": "N-8",
+    "ko": "팁 연결이 제대로 되지 않을 경우.",
     "en": "",
-    "cause": "핸드피스팁의 온도가60도 이상일때 나타남.",
-    "action": "시술을 잠시 멈추고30초 이후 다시 시술 한다.",
+    "cause": "팁 연결이 제대로 되지 않을 경우.",
+    "action": "팁 탈착 후 올바르게 다시 연결 한다.",
+    "detail": ""
+   },
+   {
+    "code": "N-9",
+    "ko": "핸드피스 온도가 높습니다.",
+    "en": "",
+    "cause": "핸드피스 팁의 온도가 60도 이상일때 나타남.",
+    "action": "핸드피스 팁의 온도가 떨어질 때 까지 잠시 기다린다.",
     "detail": ""
    },
    {
     "code": "N-10",
-    "ko": "장비 압력이 낮습니다.” “10분 정도 기다려 주세요.",
+    "ko": "장비 압력이 낮습니다. 2분/10분 정도 기다려 주세요.",
     "en": "",
     "cause": "가스 압력이 시술운영 압력보다 낮을 경우 발생 함.",
-    "action": "10분 대기 후 사용 할 수 있다.",
+    "action": "2분/10 대기 후 사용 할 수 있다. 신형 DCD 일 경우 구형 DCD 일 경우",
     "detail": ""
    },
    {
@@ -171,6 +211,14 @@
     "detail": ""
    },
    {
+    "code": "N-15",
+    "ko": "키 을 입력 해 주세요.",
+    "en": "",
+    "cause": "환자 정보 입력 시 키 입력 없이 저장 할 경우 팝업",
+    "action": "키 입력 후 저장을 다시 한다.",
+    "detail": ""
+   },
+   {
     "code": "N-16",
     "ko": "몸무게를 입력 해 주세요.",
     "en": "",
@@ -183,20 +231,20 @@
     "ko": "동일 이름이 존재합니다 이름을 변경 해 주세요.",
     "en": "",
     "cause": "환자 정보 입력 시 동일 이름이 존재할 때 팝업",
-    "action": "이름을변경후다시 저장한다.",
+    "action": "이름을 변경후 다시 저장한다.",
     "detail": ""
    },
    {
     "code": "N-18",
-    "ko": "환자 정보가2000명이 초과 되었습니다.＂",
+    "ko": "환자 정보가 2000명이 초과 되었습니다.",
     "en": "",
     "cause": "저장공간 부족으로 저장할 공간이 없음.",
-    "action": "저장 장소를비운후다시 저장한다.",
+    "action": "저장 장소를 비운후 다시 저장한다.",
     "detail": ""
    },
    {
     "code": "N-20",
-    "ko": "USB카피 성공＂",
+    "ko": "USB 카피 성공",
     "en": "",
     "cause": "환자 정보 저장 성공",
     "action": "환자 정보 저장 성공",
@@ -204,15 +252,23 @@
    },
    {
     "code": "N-21",
-    "ko": "USB카피 실패＂ / “USB카피 진행 중＂",
+    "ko": "USB 카피 실패\nUSB 복사 실패.",
     "en": "",
-    "cause": "환자 정보 및 로그 정보가 없어서 발생함.\n환자 정보 카피 진행 중일 경우 팝업 함.",
-    "action": "데이터 생성 후 다시 발급. / 환자 정보 카피 진행 중일 경우 팝업 함",
+    "cause": "환자 정보 및 로그 정보가 없어서 발생함.\nUSB 복사가 실패 되었을 경우 팝업.",
+    "action": "데이터 생성 후 다시 발급.",
+    "detail": ""
+   },
+   {
+    "code": "N-22",
+    "ko": "USB 카피 진행 중",
+    "en": "",
+    "cause": "환자 정보 카피 진행 중일 경우 팝업 함.",
+    "action": "환자 정보 카피 진행 중일 경우 팝업 함",
     "detail": ""
    },
    {
     "code": "N-23",
-    "ko": "환자 정보 모두 삭제 성공＂",
+    "ko": "환자 정보 모두 삭제 성공",
     "en": "",
     "cause": "환자 정보 삭제 시 모두 성공하였을 경우 팝업",
     "action": "",
@@ -220,15 +276,15 @@
    },
    {
     "code": "N-24",
-    "ko": "환자 정보 모두 지우기 실패＂",
+    "ko": "환자 정보 모두 지우기 실패",
     "en": "",
     "cause": "환자 정보가 지워지지 않아 발생함.",
-    "action": "Usb연결을 확인 한다.",
+    "action": "Usb 연결을 확인 한다.",
     "detail": ""
    },
    {
     "code": "N-25",
-    "ko": "파일 없음＂",
+    "ko": "파일 없음",
     "en": "",
     "cause": "환자 정보 또는 로그 데이터가 없을 경우 발생.",
     "action": "환자 정보 또는 로그 데이터가 없을 경우 발생",
@@ -236,34 +292,106 @@
    },
    {
     "code": "N-26",
-    "ko": "팁 정보 셋팅 중＂",
+    "ko": "팁 정보 셋팅 중",
     "en": "",
     "cause": "팁 데이터가 올바르게 설정 되지 않아 발생함.",
     "action": "장비 재부팅 후 사용 가능함.",
     "detail": ""
    },
    {
+    "code": "N-28",
+    "ko": "AUTO 모드를 지원하지 않는 팁이다.",
+    "en": "",
+    "cause": "Classic – E, High – E TIP 일 경우 AUTO 모드를 지원하지 않는다. 사용 하지 않음.",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "N-29",
+    "ko": "USB 연결 상태를 확인 해 달라는 메시지.",
+    "en": "",
+    "cause": "USB가 연결 되지 않을 경우 USB 카피를 하고자 하였을 경우 팝업 .",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "N-115",
+    "ko": "",
+    "en": "",
+    "cause": "Cooling Pipe Check 에러가 발생할 경우, 쿨링 시스템 정상화를 위해 Circulation Recovery 동작을 수행한다.복구 동작 진행 중에는 1차 팝업을 표시하며, 복구 후에도 에러가 지속될 경우 2차 팝업을 표시한다. 1차 팝업: 복 구 진행 안내.2차 팝업",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "N-121",
+    "ko": "",
+    "en": "",
+    "cause": "Cooling Pipe Check 에러가 발생할 경우, 쿨링 시스템 정상화를 위해 Circulation Recovery 동작을 수행한다.복구 동작 진행 중에는 1차 팝업을 표시하며, 복구 후에도 에러가 지속될 경우 2차 팝업을 표시한다. 1차 팝업: 복 구 진행 안내.2차 팝업",
+    "action": "",
+    "detail": ""
+   },
+   {
     "code": "N-211",
-    "ko": "모노모드를 사용 할 경우,리턴 패드가 장착되지 않을 경우 발생.",
+    "ko": "모노 모드를 사용 할 경우, 리턴 패드가 장착되지 않을 경우 발생.",
     "en": "",
-    "cause": "시술화면의TREAT버튼 클릭 시,모노모드를 사용 할 경우리턴 패드가 연결 되지 않을 경우 메시지가팝업한다.",
-    "action": "리턴패드를연결 한다.",
+    "cause": "시술화면의 TREAT 버튼 클릭 시, 모노 모드를 사용 할 경우 리턴 패드가 연결 되지 않을 경우 메시지가 팝업한다.",
+    "action": "리턴패드를 연결 한다.",
     "detail": ""
    },
    {
-    "code": "W-205",
-    "ko": "모노모드를 사용 할 경우,리턴 패드 접촉에 이상이 생길 경우.",
+    "code": "N-214",
+    "ko": "날짜를 확인 해 주세요.",
     "en": "",
-    "cause": "시술화면의TREAT시,모노모드를 사용 할 경우,리턴 패드 접촉에 이상이 생길 경우 메시지가팝업한다.",
-    "action": "리턴패드를확인 한다.",
+    "cause": "장비의 날짜가 셋팅 되지 않을 경우 발생 한다.",
+    "action": "셋팅화면에서 날짜를 셋팅 해 준다.",
     "detail": ""
    },
    {
-    "code": "W-208",
-    "ko": "팁의 메모리를 모두 사용 하였습니다.팁을 교체하여 주세요.",
+    "code": "N-217",
+    "ko": "장비 베터리를 교체 해 주세요.",
     "en": "",
-    "cause": "시술화면의TREAT시,팁의 샷을 모두 다 소진 하였을 경우 메시지를팝업한다.",
-    "action": "팁을 교체 한다.",
+    "cause": "UI 보드의 베터리가 방전 되었을 경우 팝업.",
+    "action": "제조사로 문의한다.",
+    "detail": ""
+   },
+   {
+    "code": "N-219",
+    "ko": "쿨링 설정 값이 낮을 경우 사용자에게 알려줌.",
+    "en": "",
+    "cause": "High – F 일 경우, 추천 쿨링 보다 사용자가 설정할 쿨링이 낮을 경우 발생함.",
+    "action": "추천 쿨링으로 사용 함.",
+    "detail": ""
+   },
+   {
+    "code": "N-220",
+    "ko": "FootSwithch 미장착 시 팝업.",
+    "en": "",
+    "cause": "Classic – E, High – E TIP 일 경우 Foot 스위치 미 장착 시 TREAT 클릭 시 풋스위치 연결이 되어 있지 않을 경우 팝업 . 사용 하지 않음",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "N-223",
+    "ko": "",
+    "en": "",
+    "cause": "액화 대응 팝업 메시지 추가. (매뉴얼 모드 적용되지 않음.) 원인: 냉매 분출 속도가 기화 보다 빠르게 진행됨에 따라 액화 현상 발생. 대책: 쿨링 시간 조절은 화상 위험이 있으므로, 액화 시점에 안내 메시지를 팝업 함 ① 팝업 시점: Classic – F, High – F 팁 일 때, 쿨링 총 시간이 기준시간(shot & End Cooling 합산) 이상일 경우. ② TREAT 버튼 클릭 시 발생함. - OK 클릭: STANDBY -> TREAT 전환됨. CANCEL 클릭: STANDBY 상태 유지 기준 시간 HFO 기준시간: 192ms/1샷 (shot & End Cooling 합산) HFC 기준시간: 158ms/1샷 (shot & End Cooling 합산) .",
+    "action": "",
+    "detail": "HFO 기준시간: 192ms/1샷 (shot & End Cooling 합산) HFC 기준시간: 158ms/1샷 (shot & End Cooling 합산) ."
+   },
+   {
+    "code": "N-224",
+    "ko": "",
+    "en": "",
+    "cause": "액화 대응 팝업 메시지 추가. (매뉴얼 모드 적용되지 않음.) 원인: 냉매 분출 속도가 기화 보다 빠르게 진행됨에 따라 액화 현상 발생. 대책: 쿨링 시간 조절은 화상 위험이 있으므로, 액화 시점에 안내 메시지를 팝업 함 ① 팝업 시점: 팝업 시점: Classic – F, High – F 팁 일 때, 쿨링 총 시간이 192ms/1샷 (shot & End Cooling 합산) 이고 3.5 레벨 이상 설정. (통합 메시지 적용) 해외 향(6개국) & NOIR(21개국) ② TREAT 버튼 클릭 시 발생함. - OK 클릭: STANDBY -> TREAT 전환됨. - CANCEL 클릭: STANDBY 상태 유지 .",
+    "action": "",
+    "detail": ""
+   },
+   {
+    "code": "N-300",
+    "ko": "시스템 점검 중….",
+    "en": "",
+    "cause": "노이즈나 기타 어떤 상황으로, 메인보드, 핸드피스 보드가 재부팅 될 경우 메시지 팝업하여 장비 전체 시스템을 검점 한다.",
+    "action": "빈번히 발생 할 경우 제조사로 문의한다.",
     "detail": ""
    }
   ]
