@@ -45,7 +45,7 @@
    {
     "code": "E-106",
     "ko": "Main, HP, Tip 데이터 에러",
-    "en": "Tip Data error.[2] / Main Data error.[l] / HP Data error.[l] / Main Data error.[2] / Tip Data error.[l] / HP Data error.[2]",
+    "en": "HP Data error.[2] / HP Data error.[l] / Main Data error.[2] / Main Data error.[l] / Tip Data error.[2] / Tip Data error.[l]",
     "cause": "[값] : 1 : Read error, 2: Write Error",
     "action": "해당 모듈의 메모리를 변경 한다.",
     "detail": ""
@@ -117,7 +117,7 @@
    {
     "code": "N-3",
     "ko": "[구형 DCD] N-3 조건에 따라 메시지 내용 달라짐 TANK 온도 저온 :Check the tank temperature. CAN 온도 저온: Check the can temperature. TANK 온도 고온 :Tank temperature is high. CAN 온도 고온: Can temperature is high.\n[신형 DCD] DCD MEMORY READ ERROR.\n[신형 DCD] DCD MEMORY WRITE ERROR.\n[신형 DCD] DCD PUMP ERROR.\n[신형 DCD] DCD SOL ERROR.",
-    "en": "DCD MEMORY READ ERROR. / DCD PUMP ERROR / DCD MEMORY WRITE ERROR. / DCD SOL ERROR / Check the tank temperature.",
+    "en": "Check the tank temperature. / DCD MEMORY READ ERROR. / DCD MEMORY WRITE ERROR. / DCD PUMP ERROR / DCD SOL ERROR",
     "cause": "[신형 DCD] DCD FLAHS 메모리 데이터를 읽지 못할 경우. 현재 사용하지 않음. 차후 확장성을 위해 기능만 살려 둠\n[신형 DCD] DCD flash 메모리 데이터를 쓰지 못할 경우. 현재 사용하지 않음. 차후 확장성을 위해 기능만 살려 둠\n[신형 DCD] -펌프 전원 이상 또는 펌프 모터 고장으로 인한 에러\n[신형 DCD] - 저수조에 연결된 솔밸브에 전원이 정상적으로 인가되지 않았거나, 솔밸브 자체 불량으로 인해 발생할 수 있다.",
     "action": "[신형 DCD] 재 부팅 후 반복적으로 문제가 발생 할 경우 DCD 보드를 교체 한다.\n[신형 DCD] 재부팅 이후 반복적으로 발생할 경우 DCD 펌프를 교체 한다.\n[신형 DCD] 장비를 재부팅한 후 정상 동작 여부를 확인합니다. 재부팅 이후에도 동일 증상이 반복적으로 발생할 경우, 솔밸브를 교체합니다.",
     "detail": ""
@@ -173,7 +173,7 @@
    {
     "code": "N-10",
     "ko": "장비 압력이 낮습니다. 2분/10분 정도 기다려 주세요.",
-    "en": "LOVV pressu re Please wait about 10 minutes. / LOVV pressu re Please wait about 2 minutes. / LOVV pressu re. Please wait about 10 minutes.",
+    "en": "LOW pressu re Please wait about 10 minutes. / LOW pressu re Please wait about 2 minutes. / LOW pressu re. Please wait about 10 minutes.",
     "cause": "가스 압력이 시술운영 압력보다 낮을 경우 발생 함.",
     "action": "2분/10 대기 후 사용 할 수 있다. 신형 DCD 일 경우 구형 DCD 일 경우",
     "detail": ""

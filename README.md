@@ -53,12 +53,14 @@ Azure 앱 등록에는 **리디렉션 URI**(실행 주소)와 `Sites.ReadWrite.A
 
 | 문서 | 내용 |
 |---|---|
+| [docs/새세션-시작하기.md](docs/새세션-시작하기.md) | **여기부터** — 받는 법, 첫 프롬프트, 바로 쓰는 명령 |
 | [PRD.md](PRD.md) | 제품 요구사항 — 배경·목표·화면별 요구사항·성공 기준 |
 | [PLAN.md](PLAN.md) | 실행 계획 — 다음에 무엇부터 할지, 검증 기준 |
 | [CLAUDE.md](CLAUDE.md) | 작업 규칙 — 기술 스택 제약, 검증 방법, 비밀값 취급 |
 | [docs/인수인계.md](docs/인수인계.md) | 현재 상태, 미검증 항목, 다음 할 일 |
 | [docs/결정기록.md](docs/결정기록.md) | 왜 그렇게 만들었는지 |
 | [tools/README.md](tools/README.md) | 로컬 미리보기·발표자료 생성 도구 |
+| [tools/codebook/README.md](tools/codebook/README.md) | 설계서에서 에러코드 모음집 갱신하기 |
 
 ## 파일
 
