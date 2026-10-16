@@ -16,6 +16,7 @@
   :root {
     --bg: #f4f5f8; --surface: #ffffff; --ink: #1a2333; --ink-soft: #64708a; --line: #e6e9f0;
     --navy: #1e3a6e; --navy-dark: #12213f; --navy-tint: #eef2f9;
+    --topbar-h: 81px;
     --status-open: #157a45; --status-open-bg: #e6f6ec;
     --status-close: #64748b; --status-close-bg: #eef0f4;
     --status-hold: #b45309; --status-hold-bg: #fdf1e0;
@@ -34,12 +35,18 @@
     background-size: auto, auto, 28px 28px, auto;
   }
   .login-card { text-align: center; color: #fff; padding: 40px; max-width: 440px; }
-  .login-logo-text {
-    font-family: Georgia,"Times New Roman",serif; font-style: italic; font-weight: 700; font-size: 56px;
-    letter-spacing: -0.01em; margin-bottom: 18px;
-    background: linear-gradient(135deg, #ffffff 0%, #cdd9f2 55%, #93aee0 100%);
-    -webkit-background-clip: text; background-clip: text; color: transparent;
+  /* ---------- 회사 로고 ----------
+     CI 규정상 공식 로고를 그대로 씁니다. 비슷한 폰트로 흉내 내면 서체와 색이 달라져 규정 위반입니다.
+     여기 쓰는 것은 어두운 바탕용 리버스(흰색) 버전입니다. 공식 PNG의 잉크 농도만 알파로 옮겨
+     글자 모양은 원본 그대로이고 색만 단색 반전했습니다. 덕분에 남색 사이드바를 그대로 둘 수 있습니다. */
+  .brand-logo {
+    background-image: url("data:image/png;base64,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");
+    background-size: contain; background-repeat: no-repeat; background-position: center;
+    aspect-ratio: 154 / 61;
   }
+
+  .login-logo { display: inline-block; margin-bottom: 20px; }
+  .login-logo .brand-logo { width: 168px; }
   .login-badge { display: inline-block; margin-bottom: 18px; padding: 5px 14px; border-radius: 999px; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.25); }
   .login-card h2 { margin: 0 0 12px; font-size: 22px; font-weight: 700; letter-spacing: -0.01em; }
   .login-card p { margin: 0 0 26px; font-size: 14px; line-height: 1.6; color: rgba(255,255,255,0.82); }
@@ -51,15 +58,17 @@
     width: 236px; flex-shrink: 0; background: var(--navy-dark); color: #fff;
     display: flex; flex-direction: column; padding: 28px 20px; position: sticky; top: 0; height: 100vh;
   }
-  .sidebar-brand { margin-bottom: 22px; }
-  .sidebar-logo-text {
-    font-family: Georgia,"Times New Roman",serif; font-style: italic; font-weight: 700; font-size: 36px;
-    letter-spacing: -0.01em;
-    background: linear-gradient(135deg, #ffffff 0%, #cdd9f2 55%, #93aee0 100%);
-    -webkit-background-clip: text; background-clip: text; color: transparent;
+  /* 로고 칸 높이를 제목줄과 같게 두어 로고와 본문 제목의 눈높이를 맞춥니다.
+     리버스 로고라 바탕을 칠할 필요가 없고, 남색 메뉴바가 끊기지 않습니다. */
+  .sidebar-brand {
+    margin: -28px -20px 0;      /* 사이드바 안쪽 여백을 걷어내 윗변에 붙입니다 */
+    padding: calc((var(--topbar-h) - 41px) / 2) 20px 0;  /* 41px = 로고 높이(104 x 61/154) */
+    display: flex; align-items: center;
   }
-  .sidebar-tagline { font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.55); letter-spacing: 0.1em; margin-top: 6px; }
-  .sidebar-divider { height: 1px; background: rgba(255,255,255,0.12); margin-bottom: 18px; }
+  .sidebar-brand .brand-logo { width: 104px; }
+  .sidebar-tagline { font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.55); letter-spacing: 0.1em; margin-top: 7px; }
+  /* 로고 칸이 아래 여백을 더 이상 만들지 않으므로 구분선이 직접 띄웁니다 (모바일에서는 숨김) */
+  .sidebar-divider { height: 1px; background: rgba(255,255,255,0.12); margin: 18px 0; }
   .nav-group { display: flex; flex-direction: column; gap: 4px; }
   /* 분석 메뉴와 참고·도구 메뉴는 성격이 달라 선과 이름으로 나눕니다. */
   .nav-divider { margin: 13px 0 8px; display: flex; align-items: center; gap: 8px; }
@@ -1012,7 +1021,7 @@
      ======================================================================= */
   @media (max-width: 768px) {
     .login-card { padding: 28px 22px; max-width: 92vw; }
-    .login-logo-text { font-size: 40px; }
+    .login-logo .brand-logo { width: 132px; }
     .login-card h2 { font-size: 19px; }
     .login-card p { font-size: 13px; }
 
@@ -1022,8 +1031,8 @@
       width: 100%; height: auto; position: static; flex-direction: row; flex-wrap: wrap;
       align-items: center; padding: 14px 16px; gap: 10px 16px;
     }
-    .sidebar-brand { margin-bottom: 0; }
-    .sidebar-logo-text { font-size: 24px; }
+    .sidebar-brand { height: auto; margin: 0; padding: 0; }
+    .sidebar-brand .brand-logo { width: 84px; }
     .sidebar-tagline { font-size: 9px; margin-top: 2px; }
     .sidebar-divider { display: none; }
     .nav-group { flex-direction: row; flex-wrap: nowrap; gap: 6px; flex-basis: 100%; width: 100%; }
@@ -1136,7 +1145,7 @@
 
 <div id="loggedOutView" class="login-hero">
   <div class="login-card">
-    <div class="login-logo-text">Jeisys</div>
+    <div class="login-logo"><div class="brand-logo" role="img" aria-label="Jeisys"></div></div>
     <span class="login-badge">Quality Ops · Field Issue Dashboard</span>
     <h2>필드이슈 대시보드</h2>
     <p>제이시스메디칼 회사 계정(@jeisys.com)으로 로그인하면<br>필드이슈 접수현황 데이터를 확인할 수 있습니다.</p>
@@ -1147,10 +1156,8 @@
 <div id="dashboardView" style="display:none;">
   <div class="app-shell-outer">
     <aside class="app-sidebar">
-      <div class="sidebar-brand">
-        <div class="sidebar-logo-text">Jeisys</div>
-        <div class="sidebar-tagline">Field Issue Dashboard</div>
-      </div>
+      <div class="sidebar-brand"><div class="brand-logo" role="img" aria-label="Jeisys"></div></div>
+      <div class="sidebar-tagline">Field Issue Dashboard</div>
       <div class="sidebar-divider"></div>
       <nav class="nav-group">
         <button class="nav-item" data-view="detail" data-short="상세">상세 데이터</button>
@@ -2600,8 +2607,9 @@ function renderTable(items) {
               pill.title = [info.ko, info.action ? `조치: ${info.action}` : ""].filter(Boolean).join("\n");
             } else {
               /* 그 모델 코드북에 없는 코드입니다. 지우지 않고 옅게만 표시합니다.
-                 코드북(463건)이 아직 모든 코드를 담고 있지 않아서, 지우면 실제 코드를 잃습니다.
-                 (예: DENSITY의 N-103 16건, LINEARZ의 E-234 6건은 코드북에 없지만 실제 코드입니다) */
+                 코드북(483건)이 아직 모든 코드를 담고 있지 않아서, 지우면 실제 코드를 잃습니다.
+                 (예: LINEARZ의 E-234 6건은 코드북에 없지만 실제 코드입니다.
+                  DENSITY의 N-103 16건도 같은 경우였고, 설계서 검증으로 뒤늦게 코드북에 들어왔습니다) */
               pill.classList.add("no-info");
               pill.title = cbModel
                 ? `${cbModel} 에러코드 모음집에 없는 코드입니다. (모음집 보완 필요)`
