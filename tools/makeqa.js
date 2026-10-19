@@ -107,13 +107,13 @@ async function loadDashboard() {
   buildPeopleDirectory(allItems);
   populateFilterOptions("detail", allItems, renderDetailFiltered);
   populateFilterOptions("analysis", allItems, renderAnalysisFiltered);
+  populateFilterOptions("calendar", allItems, renderCalendarView);
   renderDetailFiltered();
   renderAnalysisFiltered();
   buildYearTabs(allItems);
   buildYearlyOccPick();
   renderYearlyCharts();
-  buildWeekTabs();
-  renderWeeklyView();
+  renderCalendarView();
   renderRepeatView();
   // 상단 '자동 최신화' 표시도 실제 화면과 같게 갱신합니다.
   lastLoadedAt = Date.now();

@@ -682,30 +682,35 @@
   /* 값을 넣는 곳이 화면에서 가장 먼저 눈에 들어와야 합니다.
      흰 카드 위에 흰 입력칸만 있으면 아래쪽 결과에 시선을 빼앗깁니다. */
   .qt-inputs { background: #f5f8fd; border: 1.5px solid #cfdcef; border-radius: 12px;
-    padding: 16px 18px 18px; margin-bottom: 4px; }
-  .qt-inputs + .qt-inputs { margin-top: 14px; }
-  .qt-step { display: flex; align-items: center; gap: 9px; margin-bottom: 13px; }
+    padding: 12px 15px 13px; margin-bottom: 4px; }
+  .qt-inputs + .qt-inputs { margin-top: 10px; }
+  .qt-step { display: flex; align-items: center; gap: 8px; margin-bottom: 9px; flex-wrap: wrap; }
   .qt-step .no { width: 22px; height: 22px; border-radius: 999px; background: var(--navy); color: #fff;
     font-size: 12px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-  .qt-step .tt { font-size: 14px; font-weight: 800; color: var(--navy); }
+  .qt-step .tt { font-size: 14px; font-weight: 800; color: var(--navy); white-space: nowrap; }
   .qt-step .sub { font-size: 12px; color: var(--ink-soft); font-weight: 500; }
   .qt-step .chip { margin-left: auto; font-size: 11px; font-weight: 700; color: var(--navy);
     background: #fff; border: 1px solid #cfdcef; border-radius: 999px; padding: 3px 10px; white-space: nowrap; }
 
-  .qt-form { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 13px 14px; align-items: end; }
-  .qt-field label { display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700;
-    color: var(--ink); margin-bottom: 7px; }
+  .qt-form { display: grid; grid-template-columns: repeat(auto-fit, minmax(138px, 1fr)); gap: 9px 12px; align-items: end; }
+  .qt-field label { display: flex; align-items: baseline; gap: 6px; font-size: 12.5px; font-weight: 700;
+    color: var(--ink); margin-bottom: 4px; white-space: nowrap; overflow: hidden; }
   .qt-field label::before { content: ""; width: 3px; height: 13px; background: var(--navy); border-radius: 2px; }
-  .qt-field .unit { font-weight: 500; color: var(--ink-soft); font-size: 11.5px; }
-  .qt-field input, .qt-field select { width: 100%; padding: 12px 13px; border: 1.5px solid #c9d5e8;
+  /* 보조 설명은 칸이 좁으면 잘리되, 본 이름은 절대 끊기지 않게 둡니다. */
+  .qt-field .unit { font-weight: 500; color: var(--ink-soft); font-size: 11.5px;
+    min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+  .qt-field input, .qt-field select { width: 100%; padding: 9px 11px; border: 1.5px solid #c9d5e8;
+    text-overflow: ellipsis;
     border-radius: 9px; font: inherit; font-size: 15.5px; font-weight: 600; color: var(--ink);
     background: var(--surface); font-variant-numeric: tabular-nums;
     transition: border-color .15s ease, box-shadow .15s ease; }
+  /* 선택칸은 오른쪽 화살표가 글자를 덮습니다. 그만큼 자리를 비워 둡니다. */
+  .qt-field select { padding-right: 28px; }
   .qt-field input::placeholder { font-weight: 400; color: #a9b4c6; }
   .qt-field input:hover, .qt-field select:hover { border-color: #9db0cd; }
   .qt-field input:focus, .qt-field select:focus { outline: none; border-color: var(--navy);
     box-shadow: 0 0 0 3px rgba(30,58,110,0.14); }
-  .qt-field textarea { width: 100%; min-height: 84px; padding: 9px 11px; border: 1px solid var(--line);
+  .qt-field textarea { width: 100%; min-height: 60px; padding: 8px 10px; border: 1px solid var(--line);
     border-radius: 8px; font: inherit; font-size: 13px; resize: vertical; line-height: 1.6; }
   .qt-full { grid-column: 1 / -1; }
   .qt-hint { font-size: 11.5px; color: var(--ink-soft); margin-top: 5px; line-height: 1.6; }
@@ -809,26 +814,31 @@
   .qt-batch .tag.ng { background: #fbeaea; color: #9e2f28; }
   .qt-batch-wrap { max-height: 280px; overflow: auto; border: 1px solid var(--line); border-radius: 9px; }
 
-  .qt-actions { display: flex; gap: 9px; margin-top: 15px; flex-wrap: wrap; align-items: center; }
-  .qt-actions .btn-primary { padding: 11px 26px; font-size: 14.5px; font-weight: 700; }
+  .qt-actions { display: flex; gap: 8px; margin-top: 11px; flex-wrap: wrap; align-items: center; }
+  .qt-actions .btn-primary { padding: 9px 24px; font-size: 14px; font-weight: 700; }
 
   /* 도구 탭 - 4개를 세로로 쌓으면 스크롤이 길어져 탭으로 나눕니다 */
   /* 도구 고르는 칸. 작은 알약 모양이면 눌러볼 생각을 안 하게 되어
      무엇을 해주는 도구인지 한 줄로 적은 큼직한 카드로 만듭니다. */
-  .qt-tabs { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px; }
-  .qt-tab { display: flex; align-items: flex-start; gap: 11px; text-align: left;
+  .qt-tabs-head { display: flex; align-items: center; gap: 8px; margin-bottom: 10px;
+    font-size: 12.5px; color: var(--ink-soft); }
+  .qt-tabs-head svg { width: 16px; height: 16px; stroke: var(--navy); fill: none; flex-shrink: 0; }
+  .qt-tabs-head b { font-size: 14px; font-weight: 800; color: var(--navy); }
+  .qt-tabs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+  .qt-tab { display: flex; align-items: center; gap: 9px; text-align: left;
     border: 1.5px solid var(--line); background: var(--surface); color: var(--ink);
-    border-radius: 12px; padding: 14px 15px; font: inherit; cursor: pointer;
+    border-radius: 10px; padding: 9px 12px; font: inherit; cursor: pointer;
     transition: border-color .15s ease, box-shadow .15s ease, transform .1s ease; }
   .qt-tab:hover { border-color: #9db0cd; box-shadow: 0 3px 10px rgba(20,30,60,.08); transform: translateY(-1px); }
-  .qt-tab .ic { flex-shrink: 0; width: 34px; height: 34px; border-radius: 9px;
+  .qt-tab .ic { flex-shrink: 0; width: 28px; height: 28px; border-radius: 8px;
     background: var(--navy-tint); display: flex; align-items: center; justify-content: center; }
   .qt-tab .ic svg { width: 18px; height: 18px; stroke: var(--navy); fill: none;
     stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
   .qt-tab .tx { min-width: 0; }
   /* 이름과 설명은 위아래로 놓습니다. span 그대로 두면 한 줄에 붙어버립니다. */
-  .qt-tab .nm { display: block; font-size: 14px; font-weight: 700; color: var(--ink); }
-  .qt-tab .ds { display: block; font-size: 11.5px; color: var(--ink-soft); margin-top: 3px; line-height: 1.45; }
+  .qt-tab .nm { display: block; font-size: 13.5px; font-weight: 700; color: var(--ink); line-height: 1.3; }
+  /* 설명은 패널 안 소개 띠와 겹치므로 탭에서는 감춥니다 (title 속성으로는 남습니다) */
+  .qt-tab .ds { display: none; }
   .qt-tab.active { border-color: var(--navy); background: #f7f9fd;
     box-shadow: 0 0 0 1px var(--navy), 0 3px 10px rgba(20,30,60,.08); }
   .qt-tab.active .ic { background: var(--navy); }
@@ -837,14 +847,33 @@
   .qt-panel { display: none; }
   .qt-panel.active { display: block; }
 
+  /* 화면이 넓으면 입력은 왼쪽, 결과는 오른쪽에 나란히 둡니다.
+     세로로 쌓으면 판정 결과를 보려고 매번 스크롤을 내려야 합니다.
+     1280px 미만에서는 한 칸이 330px 안팎까지 좁아져 글자가 줄줄이 접히므로
+     그때는 지금처럼 위아래로 둡니다. (1024px에서 실제로 확인한 값입니다) */
+  @media (min-width: 1280px) {
+    .qt-panel.active { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 12px 18px; align-items: start; }
+    .qt-panel.active > .chart-title-row,
+    .qt-panel.active > .qt-pitch,
+    .qt-panel.active > .qt-glossary { grid-column: 1 / -1; }
+    .qt-panel.active > .qt-inputs { grid-column: 1; }
+    .qt-panel.active > .qt-result { grid-column: 2; }
+    /* 참조표는 넓게 펼쳐야 한눈에 들어옵니다 */
+    .qt-panel.active > .aql-tablewrap { grid-column: 1 / -1; }
+    /* 위아래로 쌓을 때 쓰던 구분선은 나란히 놓으면 어색합니다 */
+    .qt-panel.active > .qt-result { margin-top: 0; padding-top: 0; border-top: 0; }
+    .qt-panel.active > .qt-result + .qt-result { margin-top: 14px; }
+  }
+
   /* 도구가 뭘 해주는지 한 문장으로. 작은 회색 글씨로는 아무도 안 읽습니다. */
-  .qt-pitch { display: flex; align-items: flex-start; gap: 10px; margin: 2px 0 14px;
-    padding: 13px 16px; background: linear-gradient(180deg, #f7f9fd 0%, #eef2f9 100%);
+  .qt-pitch { display: flex; align-items: flex-start; gap: 9px; margin: 0 0 9px;
+    padding: 9px 13px; background: linear-gradient(180deg, #f7f9fd 0%, #eef2f9 100%);
     border: 1px solid #dbe4f2; border-radius: 10px; }
   .qt-pitch .mk { flex-shrink: 0; width: 22px; height: 22px; border-radius: 6px; background: var(--navy);
     color: #fff; display: flex; align-items: center; justify-content: center;
     font-size: 12px; font-weight: 800; }
-  .qt-pitch p { margin: 0; font-size: 13.5px; line-height: 1.65; color: var(--ink); }
+  .qt-pitch p { margin: 0; font-size: 12.5px; line-height: 1.55; color: var(--ink); }
   .qt-pitch b { color: var(--navy); font-weight: 700; }
 
   /* 지금 보이는 결과가 예시라는 것을 분명히 알려주는 띠 */
@@ -865,9 +894,9 @@
   .btn-demo::before { content: "▶"; font-size: 10px; }
 
   /* 용어 풀이 - 품질 담당자도 Cpk/DPMO 정의는 헷갈립니다 */
-  .qt-glossary { display: flex; flex-wrap: wrap; gap: 7px 16px; margin: 2px 0 16px;
-    padding: 11px 14px; background: var(--navy-tint); border-radius: 9px;
-    font-size: 12px; color: #45526d; line-height: 1.6; }
+  .qt-glossary { display: flex; flex-wrap: wrap; gap: 4px 14px; margin: 0 0 10px;
+    padding: 7px 12px; background: var(--navy-tint); border-radius: 9px;
+    font-size: 11.5px; color: #45526d; line-height: 1.5; }
   .qt-glossary span { white-space: nowrap; }
   .qt-glossary b { color: var(--navy); font-weight: 700; }
   @media (max-width: 760px) { .qt-glossary span { white-space: normal; } }
@@ -928,6 +957,122 @@
     box-shadow: 0 2px 8px rgba(30,58,110,.22); }
   .week-tab.active .sub, .year-tab.active .sub { color: rgba(255,255,255,.75); }
   .week-tab.active .cnt, .year-tab.active .cnt { background: rgba(255,255,255,.22); color: #fff; }
+
+  /* ── 샘플링 검사 전체 표 ─────────────────────────────── */
+  /* 수량을 넣지 않아도 "500개를 수준 II로" 와 "1000개를 수준 I로"가 몇 개 차이인지
+     눈으로 바로 비교되도록, 표는 접지 않고 늘 펼쳐 둡니다. */
+  .aql-tablewrap { margin-top: 12px; padding-top: 11px; border-top: 1px solid var(--line); }
+  .aql-tablehead { display: flex; align-items: baseline; gap: 10px; margin-bottom: 9px; flex-wrap: wrap; }
+  .aql-tablehead b { font-size: 14px; font-weight: 800; color: var(--navy); }
+  .aql-tablehead span { font-size: 12px; color: var(--ink-soft); }
+  .aql-two { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  @media (min-width: 1050px) { .aql-two { grid-template-columns: minmax(0, 332px) minmax(0, 1fr); } }
+  .aql-cap { font-size: 11.5px; font-weight: 700; color: var(--ink-soft); margin-bottom: 5px; }
+  .aql-cap b { color: var(--navy); }
+  .aql-scroll { overflow-x: auto; }
+  .aql-legend { margin: 9px 0 0; font-size: 11px; color: #6b7891; line-height: 1.7; }
+  .aql-legend b { color: var(--navy); font-size: 13px; }
+  .aql-table { width: 100%; border-collapse: separate; border-spacing: 0;
+    font-variant-numeric: tabular-nums; }
+  .aql-table.lv { min-width: 300px; }
+  .aql-table.ac { min-width: 600px; }
+  .aql-table th, .aql-table td { border-bottom: 1px solid #eef1f6; padding: 2px 4px; text-align: center; }
+  .aql-table thead th { font-size: 11px; font-weight: 800; color: var(--navy);
+    background: var(--navy-tint); border-bottom: 1.5px solid #cfdcef; padding: 4px; }
+  .aql-table th.lot { text-align: right; white-space: nowrap; font-size: 11px;
+    font-weight: 700; color: var(--ink-soft); padding-right: 8px; }
+  .aql-table tbody th.lot { background: #fafbfd; }
+  /* 전역 표에는 칸 끝에 3px 간격용 ::after가 붙는데, 칸 안 숫자를 block으로 두면
+     그 간격이 줄을 하나 더 만들어 행 높이가 18px씩 늘어납니다. 이 표에서는 끕니다. */
+  .aql-table td::after, .aql-table th::after { content: none; }
+  .aql-table td { cursor: default; }
+  /* 표 1 - 시료문자(큰 글자)와 그 시료의 크기(작은 글자) */
+  .aql-table.lv td .n { font-size: 12.5px; font-weight: 800; color: var(--navy); }
+  .aql-table.lv td .m { font-size: 10px; font-weight: 600; color: #8390a8; margin-left: 4px; }
+  /* 표 2 - Ac와 Re를 원본처럼 두 칸으로 */
+  .aql-table.ac td .ac { font-weight: 800; color: var(--ink); }
+  .aql-table.ac td .re { font-weight: 600; color: #8390a8; margin-left: 6px; }
+  .aql-table.ac td.arrow { color: var(--navy); font-size: 14px; font-weight: 800; cursor: help; }
+  .aql-table.ac thead th { font-size: 10.5px; padding: 4px 2px; }
+  .aql-table.ac td { font-size: 11.5px; padding: 2px 3px; }
+  .aql-table th.lot.num { text-align: center; font-variant-numeric: tabular-nums; }
+  /* 입력한 수량이 속한 줄과 고른 검사수준 칸을 짚어 줍니다 */
+  .aql-table tbody tr:hover td { background: #f3f7fd; }
+  .aql-src { margin: 9px 0 0; font-size: 11.5px; color: var(--ink-soft); line-height: 1.6; }
+  .aql-src b { color: var(--ink); font-weight: 700; }
+
+  /* ── 월간/주간 현황 달력 ──────────────────────────────── */
+  /* 주 단위로는 "어느 날 무엇이 들어왔는지"와 "아무 것도 안 들어온 날"이
+     드러나지 않았습니다. 달력에서는 빈 칸도 정보입니다. */
+  .cal-top { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .cal-nav { display: flex; align-items: center; gap: 7px; }
+  .cal-nav button { border: 1.5px solid var(--line); background: var(--surface); color: var(--ink);
+    border-radius: 9px; font: inherit; font-weight: 700; cursor: pointer; padding: 7px 12px;
+    transition: border-color .15s ease, background .15s ease; }
+  .cal-nav button:hover { border-color: #9db0cd; background: var(--navy-tint); }
+  .cal-nav .arrow { font-size: 17px; line-height: 1; padding: 6px 13px; }
+  .cal-title { font-size: 17px; font-weight: 800; color: var(--navy);
+    min-width: 122px; text-align: center; font-variant-numeric: tabular-nums; }
+  .cal-legend { margin-left: auto; font-size: 12px; color: var(--ink-soft); }
+
+  /* 마지막 열은 그 주 합계입니다. 주간 분석을 없앤 대신 주 단위 흐름을 여기서 봅니다. */
+  .cal-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)) minmax(0, 0.74fr);
+    gap: 5px; align-items: stretch; }
+  .cal-dow { text-align: center; font-size: 12px; font-weight: 800; color: var(--ink-soft);
+    padding: 5px 0 7px; letter-spacing: 0.02em; }
+  .cal-dow.sun, .cal-dow.sat { background: #e8ebf1; border-radius: 6px; }
+  .cal-dow.sun { color: #c0392b; }
+  .cal-dow.sat { color: #2f5aa8; }
+  .cal-dow.wk { color: var(--navy); }
+
+  .cal-cell { min-height: 96px; border: 1px solid var(--line); border-radius: 9px;
+    background: var(--surface); padding: 7px 7px 8px; font: inherit; text-align: left;
+    display: flex; flex-direction: column; gap: 5px; overflow: hidden; }
+  /* 주말은 글자색만으로는 잘 안 보여 칸 배경부터 구분합니다.
+     주 구조가 먼저 읽혀야 "지난주 금요일쯤" 같은 눈대중이 됩니다. */
+  .cal-cell.we { background: #e8ebf1; border-color: #d5dae4; }
+  .cal-cell.pad { background: #fbfcfd; border-color: #f2f4f8; }
+  .cal-cell.we.pad { background: #eff1f6; border-color: #e3e7ee; }
+
+  /* 접수가 있는 날은 건수가 많을수록 진하게. 어느 날에 몰렸는지가 먼저 눈에 들어옵니다.
+     색만으로 구분하지 않도록 건수는 항상 숫자로 함께 적습니다. */
+  .cal-cell.has { background: #e4eefc; border-color: #c3d6ee; border-left: 3px solid #7d9ed4; }
+  .cal-cell.has[data-lv="2"] { background: #cfe1f8; border-color: #a8c3e6; border-left-color: #4a76bd; }
+  .cal-cell.has[data-lv="3"] { background: #b6cff2; border-color: #8aaedc; border-left-color: var(--navy); }
+  .cal-cell.has { cursor: pointer; transition: box-shadow .15s ease, transform .08s ease; }
+  .cal-cell.has:hover { box-shadow: 0 3px 10px rgba(20,30,60,.13); transform: translateY(-1px); }
+  .cal-cell.sel { border-color: var(--navy); box-shadow: 0 0 0 2px rgba(30,58,110,.3); }
+  .cal-cell.today { border-color: var(--navy); }
+
+  .cal-head { display: flex; align-items: center; gap: 6px; }
+  .cal-d { font-size: 14px; font-weight: 800; color: var(--ink); font-variant-numeric: tabular-nums;
+    line-height: 1.2; }
+  .cal-d.sun { color: #c0392b; }
+  .cal-d.sat { color: #2f5aa8; }
+  .cal-cell.pad .cal-d { color: #c3cad6; font-weight: 700; }
+  .cal-cell.today .cal-d { background: var(--navy); color: #fff; border-radius: 999px;
+    padding: 1px 8px; }
+  .cal-n { margin-left: auto; font-size: 12px; font-weight: 800; color: #fff;
+    background: var(--navy); border-radius: 999px; padding: 1px 9px; line-height: 1.5;
+    font-variant-numeric: tabular-nums; }
+  .cal-n.open { background: #157a45; }
+
+  .cal-chips { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+  /* 칸에 색이 깔리므로 칩은 흰 바탕으로 띄웁니다 */
+  .cal-chip { font-size: 11px; font-weight: 700; color: var(--ink); background: #fff;
+    border: 1px solid #d3deef; border-radius: 5px; padding: 2px 6px;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .cal-chip b { color: var(--navy); font-weight: 800; margin-left: 4px; }
+  .cal-more { font-size: 10.5px; font-weight: 700; color: #5c6b85; padding-left: 2px; }
+
+  /* 주 합계 칸 */
+  .cal-wk { min-height: 96px; border: 1px dashed #cbd5e7; border-radius: 9px; background: #fafbfe;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+    padding: 6px 4px; }
+  .cal-wk .n { font-size: 19px; font-weight: 800; color: var(--navy); font-variant-numeric: tabular-nums; }
+  .cal-wk .k { font-size: 10px; font-weight: 700; color: var(--ink-soft); }
+  .cal-wk.zero .n { color: #b6bfcd; }
+  .cal-wk.now { border-style: solid; border-color: var(--navy); background: var(--navy-tint); }
 
   /* 연도별 분석 - 발생기간 다중 선택 */
   .filter-sub-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
@@ -1060,6 +1205,20 @@
     .header-right button, .user-chip { font-size: 12.5px; padding: 7px 12px; }
 
     .app-content { padding: 14px 12px 40px; }
+    .qt-tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+    /* 모바일은 칸이 좁아 모델 칩이 들어가지 않습니다. 날짜와 건수만 남깁니다. */
+    .cal-grid { gap: 3px; grid-template-columns: repeat(7, minmax(0, 1fr)) minmax(0, 0.64fr); }
+    .cal-cell, .cal-wk { min-height: 52px; padding: 4px 3px; }
+    .cal-chips, .cal-more { display: none; }
+    .cal-d { font-size: 12px; }
+    .cal-cell.today .cal-d { padding: 1px 5px; }
+    .cal-n { font-size: 10px; padding: 0 6px; }
+    .cal-wk .n { font-size: 15px; }
+    .cal-wk .k { font-size: 9px; }
+    .cal-dow { font-size: 11px; padding: 3px 0 5px; }
+    .cal-title { min-width: 98px; font-size: 15.5px; }
+    .cal-legend { margin-left: 0; flex-basis: 100%; }
 
     .filter-card { padding: 14px 14px 12px; }
     /* 좁은 화면에서는 제목이 두 줄로 접히므로 요약 문구는 감추고 버튼만 남깁니다.
@@ -1163,7 +1322,7 @@
         <button class="nav-item" data-view="detail" data-short="상세">상세 데이터</button>
         <button class="nav-item active" data-view="analysis" data-short="현황">현황 분석</button>
         <button class="nav-item" data-view="yearly" data-short="연도별">연도별 분석</button>
-        <button class="nav-item" data-view="weekly" data-short="주간">주간 분석</button>
+        <button class="nav-item" data-view="calendar" data-short="월간">월간/주간 현황</button>
         <button class="nav-item" data-view="repeat" data-short="반복">반복 불량</button>
         <div class="nav-divider"><span>참고 · 도구</span></div>
         <button class="nav-item" data-view="codebook" data-short="에러코드">모델별 에러코드</button>
@@ -1285,39 +1444,32 @@
           </div>
         </div>
 
-        <div id="view-weekly" class="view">
-          <div class="filter-card">
-            <div class="filter-card-head">
-              <div class="filter-icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
-              <div><div class="filter-card-title">주 선택</div><div class="filter-card-sub">그 주에 새로 접수된 건만 모아 보여줍니다. (월요일 시작 · 접수 일자 기준)</div></div>
+        <div id="view-calendar" class="view">
+          <div id="filterCard_calendar"></div>
+
+          <div class="filter-card" style="padding:14px 18px;">
+            <div class="cal-top">
+              <div class="cal-nav">
+                <button type="button" class="arrow" id="calPrev" aria-label="이전 달">‹</button>
+                <span class="cal-title" id="calTitle"></span>
+                <button type="button" class="arrow" id="calNext" aria-label="다음 달">›</button>
+                <button type="button" id="calToday">이번 달</button>
+              </div>
+              <div class="cal-legend">날짜를 누르면 그 날 접수된 건이 아래에 펼쳐집니다 · 오른쪽 끝은 그 주 합계</div>
             </div>
-            <div class="week-tabs" id="weekTabs"></div>
           </div>
-          <div class="wk-summary" id="weeklySummary"></div>
+
+          <div class="wk-summary" id="calSummary"></div>
+
           <div class="chart-stack">
-            <div class="chart-row-2">
-              <div class="chart-card">
-                <div class="chart-title-row"><div class="chart-icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="20" x2="6" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="18" y1="20" x2="18" y2="14"/></svg></div><div class="chart-title">모델별 건수</div></div>
-                <div id="bar_product_weekly"></div>
-              </div>
-              <div class="chart-card">
-                <div class="chart-title-row"><div class="chart-icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="20" x2="6" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="18" y1="20" x2="18" y2="14"/></svg></div><div class="chart-title">불량유형(Lv.1)별 건수</div></div>
-                <div id="bar_defectType_weekly"></div>
-              </div>
-            </div>
-            <div class="chart-row-2">
-              <div class="chart-card">
-                <div class="chart-title-row"><div class="chart-icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg></div><div class="chart-title">발생기간별 건수</div><div class="chart-note">납품 후 경과</div></div>
-                <div id="bar_occurrence_weekly"></div>
-              </div>
-              <div class="chart-card">
-                <div class="chart-title-row"><div class="chart-icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="20" x2="6" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="18" y1="20" x2="18" y2="14"/></svg></div><div class="chart-title">국가별 건수</div></div>
-                <div id="bar_country_weekly"></div>
-              </div>
-            </div>
             <div class="chart-card">
-              <div class="chart-title-row"><div class="chart-icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></div><div class="chart-title">그 주 신규 접수 목록</div><div class="chart-note" id="weeklyListNote"></div></div>
-              <div id="weeklyList"></div>
+              <div class="chart-title-row"><div class="chart-icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div><div class="chart-title">접수 현황 달력</div><div class="chart-note" id="calNote"></div></div>
+              <div class="cal-grid" id="calGrid"></div>
+            </div>
+
+            <div class="chart-card" id="calDayCard" style="display:none;">
+              <div class="chart-title-row"><div class="chart-icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></div><div class="chart-title" id="calDayTitle">선택한 날 접수 건</div><div class="chart-note" id="calDayNote"></div></div>
+              <div id="calDayList"></div>
             </div>
           </div>
         </div>
@@ -1370,14 +1522,11 @@
         </div>
 
         <div id="view-tools" class="view">
-          <div class="filter-card">
-            <div class="filter-card-head">
-              <div class="filter-icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
-              <div><div class="filter-card-title">품질 도구</div><div class="filter-card-sub">값을 넣으면 계산만 하는 게 아니라 기준에 맞는지까지 판정해 드립니다.</div></div>
+          <div class="filter-card" style="padding:12px 16px;">
+            <div class="qt-tabs-head">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+              <b>품질 도구</b><span>값을 넣으면 계산만 하는 게 아니라 기준에 맞는지까지 판정해 드립니다.</span>
             </div>
-          </div>
-
-          <div class="filter-card" style="padding:14px 18px;">
             <div class="qt-tabs" id="qtTabs">
               <button type="button" class="qt-tab active" data-tab="tol">
                 <span class="ic"><svg viewBox="0 0 24 24"><line x1="3" y1="12" x2="21" y2="12"/><line x1="7" y1="8" x2="7" y2="16"/><line x1="12" y1="6" x2="12" y2="18"/><line x1="17" y1="8" x2="17" y2="16"/></svg></span>
@@ -1391,9 +1540,9 @@
                 <span class="ic"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg></span>
                 <span class="tx"><span class="nm">불량률 · 시그마</span><span class="ds">PPM · 시그마 · 이 숫자를 믿어도 되는지</span></span>
               </button>
-              <button type="button" class="qt-tab" data-tab="uph">
-                <span class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 14"/></svg></span>
-                <span class="tx"><span class="nm">생산성 UPH</span><span class="ds">개선 전후 비교 · 진짜 효율 개선인지</span></span>
+              <button type="button" class="qt-tab" data-tab="aql" title="로트 수량과 검사수준으로 샘플 수와 합부 기준을 판정합니다">
+                <span class="ic"><svg viewBox="0 0 24 24"><path d="M3 6h18"/><path d="M7 12h10"/><path d="M11 18h2"/></svg></span>
+                <span class="tx"><span class="nm">샘플링 검사</span><span class="ds">AQL · 몇 개 뽑아 몇 개까지 합격인지</span></span>
               </button>
             </div>
           </div>
@@ -1414,7 +1563,7 @@
               </div>
 
               <div class="qt-inputs">
-                <div class="qt-step"><span class="no">1</span><span class="tt">값 입력</span><span class="sub">세 칸을 채우고 아래 판정하기를 누르세요</span></div>
+                <div class="qt-step"><span class="no">1</span><span class="tt">값 입력</span><span class="sub">세 칸을 채우고 판정하기 · 여러 개면 아래 칸에 붙여넣기</span></div>
                 <div class="qt-form">
                 <div class="qt-field">
                   <label>측정값</label>
@@ -1431,34 +1580,25 @@
                 <div class="qt-field">
                   <label>오차 단위</label>
                   <select id="tolMode">
-                    <option value="pct">% (기준값 대비)</option>
+                    <option value="pct">% 비율</option>
                     <option value="abs">절대값</option>
                   </select>
+                </div>
+                <div class="qt-field qt-full">
+                  <label>측정값 목록 <span class="unit">여러 개일 때 · 엑셀에서 붙여넣기</span></label>
+                  <textarea id="tolBatch" placeholder="예: 39.5  40.2  44.8  41.0  36.1 — 줄바꿈·쉼표·공백·탭 모두 인식"></textarea>
                 </div>
               </div>
 
                 <div class="qt-actions">
                   <button type="button" class="btn-primary" id="tolCalc">판정하기</button>
+                  <button type="button" class="btn-primary" id="tolBatchCalc">묶음 판정하기</button>
                   <button type="button" class="btn-secondary" id="tolReset">초기화</button>
                   <button type="button" class="btn-demo" id="tolSample">예시로 먼저 보기</button>
                 </div>
               </div>
 
               <div class="qt-result" id="tolResult"></div>
-
-              <div class="qt-inputs">
-                <div class="qt-step"><span class="no">2</span><span class="tt">여러 값 한꺼번에 판정</span><span class="sub">측정값이 여러 개일 때</span><span class="chip">엑셀 붙여넣기 지원</span></div>
-                <div class="qt-form">
-                  <div class="qt-field qt-full">
-                    <label>측정값 목록</label>
-                    <textarea id="tolBatch" placeholder="엑셀에서 측정값 열을 복사해 그대로 붙여넣으세요.&#10;예: 39.5  40.2  44.8  41.0  36.1"></textarea>
-                    <div class="qt-hint">위 <b>기준값·허용오차</b>를 그대로 적용해 전부 판정하고, <b>합격률·평균·표준편차</b>와 불합격 건을 골라냅니다. 줄바꿈·쉼표·공백·탭 모두 인식합니다.</div>
-                  </div>
-                </div>
-                <div class="qt-actions">
-                  <button type="button" class="btn-primary" id="tolBatchCalc">묶음 판정하기</button>
-                </div>
-              </div>
               <div class="qt-result" id="tolBatchResult"></div>
             </div>
 
@@ -1478,7 +1618,7 @@
               </div>
 
               <div class="qt-inputs">
-                <div class="qt-step"><span class="no">1</span><span class="tt">규격과 측정값 입력</span><span class="sub">규격을 넣고 측정값을 붙여넣으세요</span><span class="chip">엑셀 붙여넣기 지원</span></div>
+                <div class="qt-step"><span class="no">1</span><span class="tt">규격과 측정값 입력</span><span class="sub">규격과 측정값을 넣으세요</span><span class="chip">엑셀 붙여넣기 지원</span></div>
                 <div class="qt-form">
                 <div class="qt-field">
                   <label>규격 상한 USL</label>
@@ -1544,62 +1684,94 @@
               <div class="qt-result" id="drResult"></div>
             </div>
 
-            <!-- ── 생산성 UPH / UPPH ──────────────────────────── -->
-            <div class="chart-card qt-panel" data-panel="uph">
+            <!-- ── 샘플링 검사 (AQL) ──────────────────────────── -->
+            <div class="chart-card qt-panel" data-panel="aql">
               <div class="chart-title-row">
-                <div class="chart-icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 14"/></svg></div>
-                <div class="chart-title">생산성 UPH · UPPH</div>
-                <div class="chart-note">개선 전후 향상률</div>
+                <div class="chart-icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M7 12h10"/><path d="M11 18h2"/></svg></div>
+                <div class="chart-title">샘플링 검사 (AQL)</div>
+                <div class="chart-note">몇 개 뽑아 몇 개까지 허용</div>
               </div>
-              <div class="qt-pitch"><span class="mk">↑</span><p>개선 전후를 나란히 놓고 <b>향상률을 자동 계산</b>합니다. 인원을 늘려 물량만 소화한 것인지 <b>진짜 효율이 올라간 것인지</b> 구분해서, <b>1건당 인력 시간</b>까지 비교해 줍니다.</p></div>
+              <div class="qt-pitch"><span class="mk">!</span><p>로트 수량과 검사수준을 고르면 <b>몇 개를 뽑아야 하는지</b>와 <b>몇 개까지 합격인지</b>를 바로 알려줍니다. 불량 수까지 넣으면 <b>합부 판정</b>까지 합니다. 아래 전체 표는 늘 펼쳐져 있어 <b>수량을 넣지 않아도 눈으로 비교</b>할 수 있습니다.</p></div>
               <div class="qt-glossary">
-                <span><b>UPH</b> 시간당 처리 수량</span>
-                <span><b>UPPH</b> 인당·시간당 처리 수량 — 인력 투입까지 반영</span>
-                <span><b>처리시간</b> 1건 처리에 걸린 시간</span>
+                <span><b>검사수준</b> 얼마나 촘촘히 볼지 — S-1이 가장 느슨, G-III가 가장 빡빡 (보통은 G-II)</span>
+                <span><b>AQL</b> 합격시킬 수 있는 불량률 상한</span>
+                <span><b>Ac / Re</b> 합격판정개수 / 불합격판정개수</span>
               </div>
 
               <div class="qt-inputs">
-                <div class="qt-step"><span class="no">1</span><span class="tt">개선 전</span><span class="sub">비워두면 현재 수치만 계산합니다</span><span class="chip">선택 입력</span></div>
+                <div class="qt-step"><span class="no">1</span><span class="tt">조건 선택</span><span class="sub">불량 수까지 넣으면 합부 판정</span><span class="chip">보통검사 · 1회 샘플링</span></div>
                 <div class="qt-form">
-                <div class="qt-field">
-                  <label>처리 수량</label>
-                  <input type="number" id="uphQtyA" min="0" step="any" placeholder="예: 400">
+                  <div class="qt-field">
+                    <label>로트 수량 <span class="unit">(개)</span></label>
+                    <input type="number" id="aqlLot" min="1" step="1" placeholder="예: 500">
+                  </div>
+                  <div class="qt-field">
+                    <label>검사수준</label>
+                    <select id="aqlLevel">
+                      <option value="S-1">S-1</option>
+                      <option value="S-2">S-2</option>
+                      <option value="S-3">S-3</option>
+                      <option value="S-4">S-4</option>
+                      <option value="G-I">G-I</option>
+                      <option value="G-II" selected>G-II</option>
+                      <option value="G-III">G-III</option>
+                    </select>
+                  </div>
+                  <div class="qt-field">
+                    <label>AQL <span class="unit">(%)</span></label>
+                    <select id="aqlValue">
+                      <option value="0.010">0.010</option>
+                      <option value="0.015">0.015</option>
+                      <option value="0.025">0.025</option>
+                      <option value="0.040">0.040</option>
+                      <option value="0.065">0.065</option>
+                      <option value="0.10">0.10</option>
+                      <option value="0.15">0.15</option>
+                      <option value="0.25">0.25</option>
+                      <option value="0.40">0.40</option>
+                      <option value="0.65" selected>0.65</option>
+                      <option value="1.0">1.0</option>
+                      <option value="1.5">1.5</option>
+                      <option value="2.5">2.5</option>
+                      <option value="4.0">4.0</option>
+                      <option value="6.5">6.5</option>
+                      <option value="10">10</option>
+                      <option value="15">15</option>
+                    </select>
+                  </div>
+                  <div class="qt-field">
+                    <label>불량 수 <span class="unit">(선택)</span></label>
+                    <input type="number" id="aqlDefect" min="0" step="1" placeholder="예: 1">
+                  </div>
                 </div>
-                <div class="qt-field">
-                  <label>투입 시간 <span class="unit">(시간)</span></label>
-                  <input type="number" id="uphHrA" min="0" step="any" placeholder="예: 8">
-                </div>
-                <div class="qt-field">
-                  <label>투입 인원 <span class="unit">(명)</span></label>
-                  <input type="number" id="uphPplA" min="0" step="any" placeholder="예: 2">
-                </div>
-              </div>
-
-                </div>
-
-              <div class="qt-inputs">
-                <div class="qt-step"><span class="no">2</span><span class="tt">개선 후 (또는 현재)</span><span class="sub">이 칸만 채워도 계산됩니다</span></div>
-                <div class="qt-form">
-                <div class="qt-field">
-                  <label>처리 수량</label>
-                  <input type="number" id="uphQtyB" min="0" step="any" placeholder="예: 520">
-                </div>
-                <div class="qt-field">
-                  <label>투입 시간 <span class="unit">(시간)</span></label>
-                  <input type="number" id="uphHrB" min="0" step="any" placeholder="예: 8">
-                </div>
-                <div class="qt-field">
-                  <label>투입 인원 <span class="unit">(명)</span></label>
-                  <input type="number" id="uphPplB" min="0" step="any" placeholder="예: 2">
-                </div>
-              </div>
                 <div class="qt-actions">
-                  <button type="button" class="btn-primary" id="uphCalc">계산하기</button>
-                  <button type="button" class="btn-secondary" id="uphReset">초기화</button>
-                  <button type="button" class="btn-demo" id="uphSample">예시로 먼저 보기</button>
+                  <button type="button" class="btn-primary" id="aqlCalc">판정하기</button>
+                  <button type="button" class="btn-secondary" id="aqlReset">초기화</button>
+                  <button type="button" class="btn-demo" id="aqlSample">예시로 먼저 보기</button>
                 </div>
               </div>
-              <div class="qt-result" id="uphResult"></div>
+
+              <div class="qt-result" id="aqlResult"></div>
+
+              <div class="aql-tablewrap">
+                <div class="aql-tablehead">
+                  <b>보통 검사 샘플링 표</b>
+                  <span>사내 AQL 표 그대로 · 조건을 골라도 바뀌지 않습니다</span>
+                </div>
+                <div class="aql-two">
+                  <div class="aql-half">
+                    <div class="aql-cap">① 로트의 크기(N) × 검사수준 → <b>시료문자</b></div>
+                    <div class="aql-scroll"><table class="aql-table lv" id="aqlLevelTable"></table></div>
+                  </div>
+                  <div class="aql-half wide">
+                    <div class="aql-cap">② 시료문자 × AQL → <b>Ac / Re</b> (합격 / 불합격 판정개수)</div>
+                    <div class="aql-scroll"><table class="aql-table ac" id="aqlTable"></table></div>
+                  </div>
+                </div>
+                <p class="aql-legend"><b>↓</b> 화살표 아래쪽의 최초의 샘플링 방식을 적용한다. 시료의 크기가 로트의 크기 이상이면 전수검사한다.<br>
+                  <b>↑</b> 화살표 위쪽의 최초의 샘플링 방식을 적용한다. · 화살표 칸에 마우스를 올리면 실제 적용되는 방식이 뜹니다.</p>
+                <p class="aql-src">사내 <b>AQL 표(1회 샘플링 방식)</b>를 그대로 옮긴 것입니다. 검사수준 S-1~S-4 · G-I~G-III, AQL 0.010~15 전부 들어 있습니다.</p>
+              </div>
             </div>
           </div>
         </div>
@@ -1784,7 +1956,7 @@ function makeFilterState() {
   MULTI_KEYS.forEach((k) => (s[k] = new Set()));
   return s;
 }
-const filterState = { detail: makeFilterState(), analysis: makeFilterState() };
+const filterState = { detail: makeFilterState(), analysis: makeFilterState(), calendar: makeFilterState() };
 let selectedYear = null;
 
 /* 처음 접속했을 때 기본으로 보여줄 접수 연도.
@@ -1796,11 +1968,11 @@ const DEFAULT_YEAR_FROM = "2026";
    건드리기 전까지는 새로고침 때마다 기본 연도를 다시 맞춰주기 때문에,
    10월·11월처럼 새 달의 데이터가 들어와도 별도 조작 없이 자동으로 포함됩니다.
    한 번이라도 직접 선택하면 그 선택을 그대로 존중하고 건드리지 않습니다. */
-const monthFilterTouched = { detail: false, analysis: false };
+const monthFilterTouched = { detail: false, analysis: false, calendar: true };
 /* 발생기간 필터도 같은 방식으로 기억합니다.
    현황 분석은 '3개월이내'가 기본 선택인데, 사용자가 직접 바꾼 뒤에는
    새로고침 때마다 기본값으로 되돌리지 않기 위해서입니다. */
-const occFilterTouched = { detail: false, analysis: false };
+const occFilterTouched = { detail: false, analysis: false, calendar: false };
 
 /* =========================================================================
    3) 색상 팔레트
@@ -2146,8 +2318,12 @@ function renderChoicePills(displayName, rawValue) {
 /* =========================================================================
    9) 필터 카드 (상세 데이터 / 현황 분석 공용, ns로 구분)
    ========================================================================= */
+/* 달력 화면은 월을 직접 넘기므로 '접수 월' 필터를 빼야 합니다.
+   둘 다 두면 10월을 보는 중에 필터는 11월만 선택된 상태가 될 수 있습니다. */
+const FILTER_SKIP = { calendar: ["month"] };
 function filterCardHTML(ns) {
-  const fields = FILTER_FIELDS.map((f) => `
+  const skip = FILTER_SKIP[ns] || [];
+  const fields = FILTER_FIELDS.filter((f) => !skip.includes(f.key)).map((f) => `
     <div class="filter-field">
       <label>${f.label}</label>
       <div class="msel" id="msel_${ns}_${f.key}"><button type="button" class="msel-btn">전체</button><div class="msel-panel"></div></div>
@@ -2281,7 +2457,7 @@ function uniqueValues(items, internalName) {
   return Array.from(set).sort((a, b) => a.localeCompare(b, "ko"));
 }
 function populateFilterOptions(ns, items, onChange) {
-  if (FIELD.receivedDate) {
+  if (FIELD.receivedDate && !(FILTER_SKIP[ns] || []).includes("month")) {
     const months = new Set();
     items.forEach((it) => { const raw = it.fields[FIELD.receivedDate]; if (raw) months.add(String(raw).slice(0, 7)); });
     const sorted = Array.from(months).sort().reverse();
@@ -2306,7 +2482,7 @@ function populateFilterOptions(ns, items, onChange) {
        납품 직후 발생한 건이 품질 신호로 가장 중요한데, 전체를 한꺼번에 보면
        오래된 건에 묻혀 그 신호가 잘 드러나지 않기 때문입니다.
        (다른 기간이 필요하면 필터에서 직접 고르면 되고, 그 뒤로는 선택을 그대로 둡니다) */
-    if (ns === "analysis" && !occFilterTouched[ns] && ordered.includes("3개월이내")) {
+    if ((ns === "analysis" || ns === "calendar") && !occFilterTouched[ns] && ordered.includes("3개월이내")) {
       filterState[ns].occurrence.clear();
       filterState[ns].occurrence.add("3개월이내");
     }
@@ -2489,11 +2665,15 @@ function wireFilterCard(ns, onApply) {
 
 document.getElementById("filterCard_detail").innerHTML = filterCardHTML("detail");
 document.getElementById("filterCard_analysis").innerHTML = filterCardHTML("analysis");
+document.getElementById("filterCard_calendar").innerHTML = filterCardHTML("calendar");
 // 상세 데이터는 표를 넓게 보는 화면이라 기본으로 접고, 현황 분석은 펼친 채로 둡니다.
 initFilterToggle("detail", true);
 initFilterToggle("analysis", false);
+initFilterToggle("calendar", false);
 wireFilterCard("detail", () => renderDetailFiltered());
 wireFilterCard("analysis", () => renderAnalysisFiltered());
+wireFilterCard("calendar", () => renderCalendarView());
+wireCalendarNav();
 
 /* =========================================================================
    10) 상세 데이터 표
@@ -3774,103 +3954,203 @@ const MODEL_ALIASES = {
   "ACGEN": "AcGen"
 };
 /* =========================================================================
-   13-1) 주간 분석
+   13-1) 월간 달력
    ========================================================================= */
-/* 날짜를 그 주의 월요일로 맞춥니다.
-   toISOString은 UTC로 바꾸면서 한국 시간 기준 날짜를 하루 앞당겨 버리므로 쓰지 않습니다. */
+/* 주간 분석을 대신합니다. 주 단위로는 "어느 날 무엇이 들어왔는지"와
+   "아무 것도 안 들어온 날"이 드러나지 않았습니다. 달력에서는 빈 칸도 정보입니다.
+   접수 월 필터는 이 화면에 두지 않습니다 - 달력이 직접 월을 넘기는데
+   필터로도 월을 거르면 10월을 보는 중에 11월만 선택돼 빈 달력이 나올 수 있습니다. */
 const ymd = (d) => d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
-function weekStartOf(dateLike) {
-  const s = String(dateLike || "").slice(0, 10);
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(s)) return null;
-  const d = new Date(s + "T00:00:00");
-  if (isNaN(d.getTime())) return null;
-  d.setDate(d.getDate() - ((d.getDay() + 6) % 7));   // 월요일=0이 되도록
-  return ymd(d);
-}
-/* 7주(이번 주 ~ 6주 전)만 보여줍니다.
-   8주까지 두면 탭이 한 줄을 넘겨 한 칸만 아래로 떨어지는데,
-   그만큼 오래된 주는 실제로 거의 보지 않아 줄 바꿈만 만들었습니다. */
-const WEEKS_TO_SHOW = 7;
-let selectedWeek = null;
+const calState = { ym: null, day: null };
 
-function weekLabel(startYmd, idx) {
-  const s = new Date(startYmd + "T00:00:00");
-  const e = new Date(s); e.setDate(e.getDate() + 6);
-  const range = (s.getMonth() + 1) + "/" + s.getDate() + "~" + (e.getMonth() + 1) + "/" + e.getDate();
-  const name = idx === 0 ? "이번 주" : idx === 1 ? "지난주" : idx + "주 전";
-  return { name, range };
+function calShiftYm(ym, delta) {
+  const p = ym.split("-").map(Number);
+  const d = new Date(p[0], p[1] - 1 + delta, 1);
+  return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0");
+}
+function calThisYm() {
+  const d = new Date();
+  return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0");
 }
 
-function weekItemsOf(startYmd) {
-  return allItems.filter((it) => weekStartOf(it.fields[FIELD.receivedDate]) === startYmd);
+/* 조회 조건을 거친 뒤 그 달 접수분만 남깁니다. */
+function calItemsOf(ym) {
+  return getFilteredItems("calendar").filter(
+    (it) => String(it.fields[FIELD.receivedDate] || "").slice(0, 7) === ym);
 }
 
-function buildWeekTabs() {
-  const box = document.getElementById("weekTabs");
-  if (!box) return;
-  const thisWeek = weekStartOf(ymd(new Date()));
-  const weeks = [];
-  for (let i = 0; i < WEEKS_TO_SHOW; i++) {
-    const d = new Date(thisWeek + "T00:00:00");
-    d.setDate(d.getDate() - i * 7);
-    weeks.push(ymd(d));
-  }
-  /* 기본값은 '지난주'입니다. 이번 주는 아직 진행 중이라 숫자가 계속 변해서
-     한 주를 통째로 놓고 보기에는 지난주가 맞습니다. */
-  if (!selectedWeek || !weeks.includes(selectedWeek)) selectedWeek = weeks[1];
+function calRenderSummary(ym, items) {
+  const prevCount = calItemsOf(calShiftYm(ym, -1)).length;
+  const diff = items.length - prevCount;
+  const diffHtml = prevCount === 0 && items.length === 0 ? "전월도 0건"
+    : diff === 0 ? "전월과 동일 (" + prevCount + "건)"
+    : '<span class="' + (diff > 0 ? "up" : "down") + '">' + (diff > 0 ? "▲" : "▼") + Math.abs(diff) +
+      "</span> 전월 대비 (전월 " + prevCount + "건)";
 
-  box.innerHTML = weeks.map((w, i) => {
-    const L = weekLabel(w, i);
-    const c = weekItemsOf(w).length;
-    return '<button class="week-tab' + (w === selectedWeek ? " active" : "") + '" data-week="' + w + '">' +
-      '<span class="nm">' + escapeHtml(L.name) + '<span class="sub">' + L.range + '</span></span>' +
-      '<span class="cnt">' + c + '</span></button>';
-  }).join("");
+  const byStatus = { open: 0, close: 0, hold: 0 };
+  items.forEach((it) => {
+    const c = statusClass(it.fields[FIELD.status]);
+    if (c && byStatus[c] !== undefined) byStatus[c]++;
+  });
+  /* 납품 직후 발생 건은 품질 신호로 더 무겁게 봅니다.
+     주간 분석에서 쓰던 기준(3·6개월이내)을 그대로 가져왔습니다. */
+  const fresh = items.filter((it) => REPEAT_OCCURRENCE.includes(formatFieldValue(it.fields[FIELD.occurrence]))).length;
+  const days = new Set(items.map((it) => String(it.fields[FIELD.receivedDate] || "").slice(0, 10))).size;
 
-  box.querySelectorAll(".week-tab").forEach((btn) => {
+  document.getElementById("calSummary").innerHTML =
+    '<div class="wk-card"><div class="wk-label">이 달 접수</div><div class="wk-value">' + items.length +
+      '</div><div class="wk-sub">' + diffHtml + '</div></div>' +
+    '<div class="wk-card open"><div class="wk-label">진행중 OPEN</div><div class="wk-value">' + byStatus.open +
+      '</div><div class="wk-sub">' + (items.length ? Math.round(byStatus.open / items.length * 100) : 0) +
+      '% · 이 달 접수분 기준</div></div>' +
+    '<div class="wk-card close"><div class="wk-label">완료 CLOSE</div><div class="wk-value">' + byStatus.close +
+      (byStatus.hold ? '<span style="font-size:14px;color:#c2610a;"> +Hold ' + byStatus.hold + '</span>' : '') +
+      '</div><div class="wk-sub">' + (items.length ? Math.round(byStatus.close / items.length * 100) : 0) +
+      '% · 이 달 접수분 기준</div></div>' +
+    '<div class="wk-card delta"><div class="wk-label">접수가 있던 날</div><div class="wk-value">' + days +
+      '</div><div class="wk-sub">발생기간 6개월이내 ' + fresh + '건</div></div>';
+}
+
+const CAL_DOW = ["일", "월", "화", "수", "목", "금", "토"];
+/* 한 칸에 모델을 다 적으면 달력이 금세 지저분해지고, 건수만 적으면
+   "무슨 모델인지"가 안 보입니다. 상위 2개만 적고 나머지는 접습니다. */
+const CAL_CHIPS_PER_DAY = 2;
+/* 건수에 따라 칸 농도를 3단계로 나눕니다. 어느 날에 몰렸는지가 먼저 보이도록.
+   상대값(그 달 최대치) 대신 고정값을 쓰는 이유는, 달마다 기준이 달라지면
+   지난달과 이번달을 나란히 비교할 수 없기 때문입니다. */
+function calLevel(n) { return n >= 4 ? 3 : n >= 2 ? 2 : 1; }
+
+function calRenderGrid(ym, items) {
+  const grid = document.getElementById("calGrid");
+  const p = ym.split("-").map(Number);
+  const y = p[0], m = p[1];
+  const lead = new Date(y, m - 1, 1).getDay();
+  const daysInMonth = new Date(y, m, 0).getDate();
+  const today = ymd(new Date());
+
+  const byDay = new Map();
+  items.forEach((it) => {
+    const d = String(it.fields[FIELD.receivedDate] || "").slice(0, 10);
+    if (!byDay.has(d)) byDay.set(d, []);
+    byDay.get(d).push(it);
+  });
+
+  let html = CAL_DOW.map((d, i) =>
+    '<div class="cal-dow' + (i === 0 ? " sun" : i === 6 ? " sat" : "") + '">' + d + '</div>').join("");
+  html += '<div class="cal-dow wk">주계</div>';
+
+  const cells = [];
+  for (let i = 0; i < lead; i++) cells.push(null);
+  for (let d = 1; d <= daysInMonth; d++) cells.push(d);
+  while (cells.length % 7 !== 0) cells.push(null);
+
+  let weekSum = 0, weekHasToday = false;
+  cells.forEach((d, idx) => {
+    const dow = idx % 7;
+    const weekend = dow === 0 || dow === 6;
+    const dowCls = dow === 0 ? " sun" : dow === 6 ? " sat" : "";
+
+    if (d === null) {
+      html += '<div class="cal-cell pad' + (weekend ? " we" : "") + '"></div>';
+    } else {
+      const date = ym + "-" + String(d).padStart(2, "0");
+      const list = byDay.get(date) || [];
+      const isToday = date === today;
+      if (isToday) weekHasToday = true;
+      weekSum += list.length;
+
+      const byModel = new Map();
+      list.forEach((it) => {
+        const name = formatFieldValue(it.fields[FIELD.product]) || "(모델 없음)";
+        byModel.set(name, (byModel.get(name) || 0) + 1);
+      });
+      const models = Array.from(byModel.entries()).sort((a, b) => b[1] - a[1]);
+      const openCount = list.filter((it) => statusClass(it.fields[FIELD.status]) === "open").length;
+
+      let inner = '<div class="cal-head"><span class="cal-d' + dowCls + '">' + d + '</span>';
+      if (list.length) inner += '<span class="cal-n' + (openCount ? " open" : "") + '">' + list.length + '</span>';
+      inner += '</div>';
+
+      if (list.length) {
+        inner += '<div class="cal-chips">';
+        models.slice(0, CAL_CHIPS_PER_DAY).forEach((pair) => {
+          inner += '<span class="cal-chip" title="' + escapeHtml(pair[0]) + ' ' + pair[1] + '건">' +
+            escapeHtml(pair[0]) + '<b>' + pair[1] + '</b></span>';
+        });
+        inner += '</div>';
+        if (models.length > CAL_CHIPS_PER_DAY) {
+          inner += '<span class="cal-more">외 ' + (models.length - CAL_CHIPS_PER_DAY) + '종</span>';
+        }
+      }
+
+      const cls = "cal-cell" + (weekend ? " we" : "") + (list.length ? " has" : "") +
+        (isToday ? " today" : "") + (calState.day === date ? " sel" : "");
+      html += list.length
+        ? '<button type="button" class="' + cls + '" data-lv="' + calLevel(list.length) +
+          '" data-date="' + date + '">' + inner + '</button>'
+        : '<div class="' + cls + '">' + inner + '</div>';
+    }
+
+    // 한 줄이 끝나면 그 주 합계를 붙입니다.
+    if (dow === 6) {
+      html += '<div class="cal-wk' + (weekSum ? "" : " zero") + (weekHasToday ? " now" : "") + '">' +
+        '<span class="n">' + weekSum + '</span><span class="k">건</span></div>';
+      weekSum = 0; weekHasToday = false;
+    }
+  });
+
+  grid.innerHTML = html;
+  grid.querySelectorAll(".cal-cell.has").forEach((btn) => {
     btn.addEventListener("click", () => {
-      selectedWeek = btn.dataset.week;
-      box.querySelectorAll(".week-tab").forEach((b) => b.classList.toggle("active", b === btn));
-      renderWeeklyView();
+      // 같은 날을 다시 누르면 접습니다.
+      calState.day = calState.day === btn.dataset.date ? null : btn.dataset.date;
+      calRenderGrid(ym, items);
+      calRenderDay(items);
     });
   });
 }
 
-function renderWeeklyView() {
-  if (!selectedWeek) return;
-  const items = weekItemsOf(selectedWeek);
+function calRenderDay(items) {
+  const card = document.getElementById("calDayCard");
+  if (!calState.day) { card.style.display = "none"; return; }
+  const list = items.filter((it) => String(it.fields[FIELD.receivedDate] || "").slice(0, 10) === calState.day);
+  const p = calState.day.split("-").map(Number);
+  const dow = CAL_DOW[new Date(p[0], p[1] - 1, p[2]).getDay()];
+  card.style.display = "";
+  document.getElementById("calDayTitle").textContent = p[1] + "월 " + p[2] + "일 (" + dow + ") 접수 건";
+  document.getElementById("calDayNote").textContent = list.length + "건";
+  renderDetailPanel(document.getElementById("calDayList"), list);
+}
 
-  // 전주와 비교해 늘었는지 줄었는지 보여줍니다.
-  const prev = new Date(selectedWeek + "T00:00:00");
-  prev.setDate(prev.getDate() - 7);
-  const prevCount = weekItemsOf(ymd(prev)).length;
-  const diff = items.length - prevCount;
-  const diffHtml = prevCount === 0 && items.length === 0 ? "전주도 0건"
-    : diff === 0 ? "전주와 동일"
-    : '<span class="' + (diff > 0 ? "up" : "down") + '">' + (diff > 0 ? "▲" : "▼") + Math.abs(diff) + "</span> 전주 대비 (전주 " + prevCount + "건)";
+function renderCalendarView() {
+  if (!calState.ym) calState.ym = calThisYm();
+  const ym = calState.ym;
+  const p = ym.split("-").map(Number);
+  document.getElementById("calTitle").textContent = p[0] + "년 " + p[1] + "월";
 
-  const byStatus = { open: 0, close: 0, hold: 0 };
-  items.forEach((it) => { const c = statusClass(it.fields[FIELD.status]); if (c && byStatus[c] !== undefined) byStatus[c]++; });
+  const items = calItemsOf(ym);
+  // 달을 넘겼는데 펼쳐둔 날이 그 달이 아니면 닫습니다.
+  if (calState.day && calState.day.slice(0, 7) !== ym) calState.day = null;
 
-  // 발생기간이 짧은 건(3·6개월이내)은 갓 납품된 장비에서 난 문제라 더 주의해서 봅니다.
-  const fresh = items.filter((it) => REPEAT_OCCURRENCE.includes(formatFieldValue(it.fields[FIELD.occurrence]))).length;
+  calRenderSummary(ym, items);
+  document.getElementById("calNote").textContent =
+    items.length ? "접수 " + items.length + "건" : "이 달에는 접수된 건이 없습니다";
+  calRenderGrid(ym, items);
+  calRenderDay(items);
+}
 
-  const L = weekLabel(selectedWeek, 0);
-  document.getElementById("weeklySummary").innerHTML =
-    '<div class="wk-card"><div class="wk-label">신규 접수</div><div class="wk-value">' + items.length + '</div><div class="wk-sub">' + diffHtml + '</div></div>' +
-    '<div class="wk-card open"><div class="wk-label">진행중 OPEN</div><div class="wk-value">' + byStatus.open + '</div><div class="wk-sub">' + (items.length ? Math.round(byStatus.open / items.length * 100) : 0) + '% · 이 주 접수분 기준</div></div>' +
-    '<div class="wk-card close"><div class="wk-label">완료 CLOSE</div><div class="wk-value">' + byStatus.close + (byStatus.hold ? '<span style="font-size:14px;color:#c2610a;"> +Hold ' + byStatus.hold + '</span>' : '') + '</div><div class="wk-sub">' + (items.length ? Math.round(byStatus.close / items.length * 100) : 0) + '% · 이 주 접수분 기준</div></div>' +
-    '<div class="wk-card delta"><div class="wk-label">발생기간 6개월이내</div><div class="wk-value">' + fresh + '</div><div class="wk-sub">납품 후 얼마 안 돼 발생한 건</div></div>';
-
-  renderBarList(document.getElementById("bar_product_weekly"), items, FIELD.product, "product", 24);
-  renderBarList(document.getElementById("bar_defectType_weekly"), items, FIELD.defectType1, "defectType", 24);
-  renderBarList(document.getElementById("bar_occurrence_weekly"), items, FIELD.occurrence, "occurrence", 24);
-  renderBarList(document.getElementById("bar_country_weekly"), items, FIELD.country, "productGroup", 24);
-
-  document.getElementById("weeklyListNote").textContent = L.range + " 접수 " + items.length + "건";
-  const sorted = items.slice().sort((a, b) =>
-    String(b.fields[FIELD.receivedDate] || "").localeCompare(String(a.fields[FIELD.receivedDate] || "")));
-  renderDetailPanel(document.getElementById("weeklyList"), sorted);
+function wireCalendarNav() {
+  const go = (delta) => {
+    calState.ym = calShiftYm(calState.ym || calThisYm(), delta);
+    renderCalendarView();
+  };
+  document.getElementById("calPrev").addEventListener("click", () => go(-1));
+  document.getElementById("calNext").addEventListener("click", () => go(1));
+  document.getElementById("calToday").addEventListener("click", () => {
+    calState.ym = calThisYm();
+    calState.day = null;
+    renderCalendarView();
+  });
 }
 
 /* =========================================================================
@@ -4467,94 +4747,174 @@ function qtCurveSvg(mean, sd, usl, lsl, xs) {
     '</svg></div>';
 }
 
-/* ── 생산성 UPH · UPPH ──────────────────────────────────── */
-function qtUphCalc() {
-  const box = document.getElementById("uphResult");
-  const g = (id) => qtNum(id);
-  const calc = (qty, hr, ppl) => {
-    if (!isFinite(qty) || !isFinite(hr) || hr <= 0 || qty < 0) return null;
-    const uph = qty / hr;
-    const hasPpl = isFinite(ppl) && ppl > 0;
-    return { qty, hr, ppl: hasPpl ? ppl : null, uph, upph: hasPpl ? qty / (ppl * hr) : null,
-      sec: qty > 0 ? hr * 3600 / qty : NaN,
-      // 1건에 투입된 사람의 시간(인·초). 인원이 늘면 이 값은 올라갑니다.
-      manSec: (hasPpl && qty > 0) ? ppl * hr * 3600 / qty : NaN };
-  };
-  const A = calc(g("uphQtyA"), g("uphHrA"), g("uphPplA"));
-  const B = calc(g("uphQtyB"), g("uphHrB"), g("uphPplB"));
+/* ── 샘플링 검사 (AQL) ──────────────────────────────────── */
+/* 사내 "AQL 표 (1회 샘플링 방식)"을 그대로 옮긴 것입니다.
+   검사수준 S-1~S-4 · G-I~G-III, AQL 0.010~15 전부 들어 있습니다.
 
-  if (!B) {
-    box.className = "qt-result on";
-    box.innerHTML = qtNote("warn", "<b>개선 후</b>의 처리 수량과 투입 시간을 입력해 주세요. (투입 시간은 0보다 커야 합니다)");
-    return;
+   Ac/Re는 표를 통째로 베끼지 않고 원본의 구조를 코드로 옮겼습니다.
+   어느 AQL 열이든 모양이 같습니다 - Ac=0 계획이 한 번 나오고, 그 아래
+   두 칸은 화살표(위 칸은 ↑로 그 0 계획을, 아래 칸은 ↓로 다음 계획을 가리킴),
+   이어서 1·2·3·5·7·10·14·21이 차례로 붙습니다.
+   그래서 열마다 "Ac=1이 시작하는 시료문자"만 알면 열 전체가 결정됩니다.
+
+   아래 시작 위치와 시료문자 표는 사내 표 두 장을 화면에서 확대해 한 칸씩
+   대조해 맞춘 값입니다. 바꾸실 일이 있으면 이 블록만 고치면 됩니다. */
+
+const AQL_LEVELS = ["S-1", "S-2", "S-3", "S-4", "G-I", "G-II", "G-III"];
+/* 각 줄의 7글자가 위 검사수준 순서대로의 시료문자입니다. */
+const AQL_LOTS = [
+  { max: 8,        label: "2 ~ 8",             codes: "AAAAAAB" },
+  { max: 15,       label: "9 ~ 15",            codes: "AAAAABC" },
+  { max: 25,       label: "16 ~ 25",           codes: "AABBBCD" },
+  { max: 50,       label: "26 ~ 50",           codes: "ABBCCDE" },
+  { max: 90,       label: "51 ~ 90",           codes: "BBCCCEF" },
+  { max: 150,      label: "91 ~ 150",          codes: "BBCDDFG" },
+  { max: 280,      label: "151 ~ 280",         codes: "BCDEEGH" },
+  { max: 500,      label: "281 ~ 500",         codes: "BCDEFHJ" },
+  { max: 1200,     label: "501 ~ 1,200",       codes: "CCEFGJK" },
+  { max: 3200,     label: "1,201 ~ 3,200",     codes: "CDEGHKL" },
+  { max: 10000,    label: "3,201 ~ 10,000",    codes: "CDFGJLM" },
+  { max: 35000,    label: "10,001 ~ 35,000",   codes: "CDFHKMN" },
+  { max: 150000,   label: "35,001 ~ 150,000",  codes: "DEGJLNP" },
+  { max: 500000,   label: "150,001 ~ 500,000", codes: "DEGJMPQ" },
+  { max: Infinity, label: "500,001 이상",       codes: "DEHKNQR" },
+];
+const AQL_LETTERS = "ABCDEFGHJKLMNPQR";
+const AQL_N = { A: 2, B: 3, C: 5, D: 8, E: 13, F: 20, G: 32, H: 50,
+                J: 80, K: 125, L: 200, M: 315, N: 500, P: 800, Q: 1250, R: 2000 };
+const AQL_MAIN = [1, 2, 3, 5, 7, 10, 14, 21];
+const AQL_VALUES = ["0.010", "0.015", "0.025", "0.040", "0.065", "0.10", "0.15",
+                    "0.25", "0.40", "0.65", "1.0", "1.5", "2.5", "4.0", "6.5", "10", "15"];
+/* 열마다 Ac=1이 시작하는 시료문자 위치. Ac=0 계획은 그보다 3칸 위입니다.
+   AQL이 한 단계 커질 때마다 한 칸씩 당겨집니다. */
+const AQL_MAIN_START = {
+  "0.010": 17, "0.015": 16, "0.025": 15, "0.040": 14, "0.065": 13, "0.10": 12,
+  "0.15": 11, "0.25": 10, "0.40": 9, "0.65": 8, "1.0": 7, "1.5": 6,
+  "2.5": 5, "4.0": 4, "6.5": 3, "10": 2, "15": 1,
+};
+
+/* 화살표 칸은 "그 방향의 최초 샘플링 방식을 적용한다"는 뜻이라,
+   시료문자가 바뀌고 따라서 시료의 크기도 같이 바뀝니다. */
+function aqlPlan(letter, aql) {
+  const start = AQL_MAIN_START[aql];
+  const zero = start - 3;                       // Ac=0 계획의 자리
+  const last = start + AQL_MAIN.length - 1;     // Ac=21 계획의 자리
+  const hasZero = zero >= 0;                    // AQL 10·15는 0 계획이 표 밖입니다
+  const base = letter;
+  let i = AQL_LETTERS.indexOf(letter);
+  let moved = null;
+
+  if (hasZero && i < zero) { i = zero; moved = "아래"; }
+  else if (hasZero && i === zero + 1) { i = zero; moved = "위"; }
+  else if (hasZero && i === zero + 2) {
+    /* 아래쪽에 쓸 계획이 없으면(표 끝) 위쪽 계획을 씁니다 - 0.015의 R칸이 그 경우입니다. */
+    if (start < AQL_LETTERS.length) { i = start; moved = "아래"; }
+    else { i = zero; moved = "위"; }
+  }
+  else if (!hasZero && i < start) { i = start; moved = "아래"; }
+  else if (i > last) { i = last; moved = "위"; }
+
+  const useLetter = AQL_LETTERS[i];
+  const ac = (hasZero && i === zero) ? 0 : AQL_MAIN[i - start];
+  return { base, letter: useLetter, n: AQL_N[useLetter], baseN: AQL_N[base], ac, re: ac + 1, moved };
+}
+
+function aqlRowOf(lot) {
+  if (!isFinite(lot) || lot < 2) return null;
+  return AQL_LOTS.find((r) => lot <= r.max) || null;
+}
+
+/* 표는 조건에 따라 바뀌지 않습니다. 사내 기준표를 그대로 붙여둔 참조용이라,
+   눈으로 찾아 읽는 쪽이 빠릅니다. 그래서 한 번만 그리고 두 번 그리지 않습니다. */
+let aqlTableDrawn = false;
+function aqlRenderTable() {
+  if (aqlTableDrawn) return;
+  aqlTableDrawn = true;
+
+  // 표 1 - 로트 크기와 검사수준으로 시료문자를 찾습니다.
+  let a = '<thead><tr><th class="lot">로트의 크기</th>' +
+    AQL_LEVELS.map((L) => '<th>' + L + '</th>').join("") + '</tr></thead><tbody>';
+  AQL_LOTS.forEach((r) => {
+    a += '<tr><th class="lot">' + r.label + '</th>' +
+      AQL_LEVELS.map((L, i) => '<td><span class="n">' + r.codes[i] + '</span>' +
+        '<span class="m">' + AQL_N[r.codes[i]] + '</span></td>').join("") + '</tr>';
+  });
+  document.getElementById("aqlLevelTable").innerHTML = a + '</tbody>';
+
+  // 표 2 - 시료문자와 AQL로 합격·불합격 판정개수를 찾습니다.
+  let b = '<thead><tr><th class="lot">시료<br>문자</th><th class="lot">시료의<br>크기</th>' +
+    AQL_VALUES.map((q) => '<th>' + q + '</th>').join("") + '</tr></thead><tbody>';
+  AQL_LETTERS.split("").forEach((L) => {
+    b += '<tr><th class="lot">' + L + '</th><th class="lot num">' + AQL_N[L] + '</th>';
+    AQL_VALUES.forEach((q) => {
+      const p = aqlPlan(L, q);
+      b += p.moved
+        ? '<td class="arrow" title="' + (p.moved === "위" ? "위" : "아래") + '쪽 최초의 샘플링 방식 적용 → 시료문자 ' +
+            p.letter + ' · ' + p.n + '개 · Ac ' + p.ac + '/Re ' + p.re + '">' +
+            (p.moved === "위" ? "↑" : "↓") + '</td>'
+        : '<td><span class="ac">' + p.ac + '</span><span class="re">' + p.re + '</span></td>';
+    });
+    b += '</tr>';
+  });
+  document.getElementById("aqlTable").innerHTML = b + '</tbody>';
+}
+
+function qtAqlCalc() {
+  const box = document.getElementById("aqlResult");
+  const lot = qtNum("aqlLot");
+  const level = document.getElementById("aqlLevel").value;
+  const aql = document.getElementById("aqlValue").value;
+  const defect = qtNum("aqlDefect");
+
+  const show = (kind, msg) => { box.className = "qt-result on"; box.innerHTML = qtNote(kind, msg); };
+  if (!isFinite(lot)) return show("warn", "로트 수량을 입력해 주세요.");
+  if (lot < 2) return show("warn", "로트 수량은 <b>2개 이상</b>이어야 합니다.");
+
+  const row = aqlRowOf(lot);
+  const p = aqlPlan(row.codes[AQL_LEVELS.indexOf(level)], aql);
+  const notes = [];
+
+  /* 뽑아야 할 수가 로트보다 크거나 같으면 샘플링이 의미가 없습니다. */
+  const full = p.n >= lot;
+  if (p.moved) {
+    notes.push(qtNote("", "이 칸은 규격 표에서 <b>화살표</b>로 " + p.moved +
+      "쪽 계획을 쓰게 되어 있어, 샘플문자가 <b>" + p.letter + "</b>로 바뀌고 샘플 크기도 <b>" +
+      p.n + "개</b>가 됩니다."));
+  }
+  if (full) {
+    notes.push(qtNote("warn", "샘플 수(" + p.n + "개)가 로트 수량(" + lot +
+      "개) 이상입니다. 이 경우 <b>전수검사</b>해야 합니다."));
   }
 
-  const notes = [];
-  let verdict = qtVerdict("warn", "현재 수치");
-  let baHtml = "";
-
-  if (A) {
-    const upDiff = (B.uph - A.uph) / A.uph * 100;
-    const pphDiff = (A.upph && B.upph) ? (B.upph - A.upph) / A.upph * 100 : NaN;
-    const key = isFinite(pphDiff) ? pphDiff : upDiff;
-    const keyName = isFinite(pphDiff) ? "인당 생산성(UPPH)" : "시간당 처리량(UPH)";
-    verdict = qtVerdict(key > 0 ? "pass" : key < 0 ? "fail" : "warn",
-      key > 0 ? keyName + " " + qtFmt(key, 1) + "% 향상" :
-      key < 0 ? keyName + " " + qtFmt(Math.abs(key), 1) + "% 하락" : "변화 없음");
-
-    const col = (t, v, u, cls) => '<div class="qt-ba-col ' + (cls || "") + '"><div class="t">' + t +
-      '</div><div class="n">' + v + '</div><div class="u">' + u + '</div></div>';
-    baHtml =
-      '<div class="qt-ba">' +
-        col("개선 전 UPH", qtFmt(A.uph, 1), A.qty + "개 / " + qtFmt(A.hr, 2) + "시간") +
-        '<div class="qt-ba-arrow">→</div>' +
-        col("개선 후 UPH", qtFmt(B.uph, 1), B.qty + "개 / " + qtFmt(B.hr, 2) + "시간", "after") +
-      '</div>';
-    if (A.upph && B.upph) baHtml +=
-      '<div class="qt-ba" style="margin-top:12px;">' +
-        col("개선 전 UPPH", qtFmt(A.upph, 1), A.ppl + "명 기준") +
-        '<div class="qt-ba-arrow">→</div>' +
-        col("개선 후 UPPH", qtFmt(B.upph, 1), B.ppl + "명 기준", "after") +
-      '</div>';
-
-    if (isFinite(pphDiff)) {
-      notes.push(qtNote(pphDiff > 0 ? "good" : pphDiff < 0 ? "bad" : "",
-        "인당 처리량이 <b>" + qtFmt(A.upph, 1) + " → " + qtFmt(B.upph, 1) + "건/인·시간</b>으로 " +
-        (pphDiff >= 0 ? "<b>" + qtFmt(pphDiff, 1) + "% 늘었습니다.</b>" : "<b>" + qtFmt(Math.abs(pphDiff), 1) + "% 줄었습니다.</b>")));
-      /* 처리량과 인당 생산성이 다른 방향이면 그 이유를 짚어줍니다.
-         인원을 늘려 총량만 늘린 경우가 여기 걸립니다. */
-      if (upDiff > 0 && pphDiff < 0) notes.push(qtNote("warn",
-        "전체 처리량은 늘었지만 <b>인당 생산성은 떨어졌습니다.</b> 인원 투입으로 물량을 소화한 것이라 효율 개선으로 보기는 어렵습니다."));
-      if (upDiff < 0 && pphDiff > 0) notes.push(qtNote("",
-        "전체 처리량은 줄었지만 인당 생산성은 올랐습니다. 인원이 줄어든 상황에서의 효율 개선입니다."));
+  let verdict = "", verdictHtml = "";
+  if (isFinite(defect)) {
+    if (defect < 0) return show("warn", "불량 수는 0 이상이어야 합니다.");
+    if (defect > p.n) {
+      notes.push(qtNote("warn", "불량 수(" + defect + ")가 샘플 수(" + p.n + ")보다 많습니다. 값을 확인해 주세요."));
     }
-    if (isFinite(A.sec) && isFinite(B.sec)) {
-      const saved = A.sec - B.sec;
-      notes.push(qtNote(saved > 0 ? "good" : "",
-        "1건 처리 시간(벽시계) <b>" + qtFmt(A.sec, 1) + "초 → " + qtFmt(B.sec, 1) + "초</b>" +
-        (saved > 0 ? " (<b>" + qtFmt(saved, 1) + "초 단축</b>)" : saved < 0 ? " (" + qtFmt(-saved, 1) + "초 증가)" : "")));
-    }
-    /* 인원이 바뀌었으면 '1건에 사람 시간이 얼마나 들었나'를 따로 보여줍니다.
-       인건비 관점에서는 이쪽이 진짜 효율입니다. */
-    if (isFinite(A.manSec) && isFinite(B.manSec)) {
-      const d = A.manSec - B.manSec;
-      notes.push(qtNote(d > 0 ? "good" : d < 0 ? "bad" : "",
-        "1건에 투입된 인력 시간 <b>" + qtFmt(A.manSec, 1) + "인·초 → " + qtFmt(B.manSec, 1) + "인·초</b>" +
-        (d > 0 ? " (<b>" + qtFmt(d, 1) + "인·초 절감</b>)"
-         : d < 0 ? " (<b>" + qtFmt(-d, 1) + "인·초 증가</b> — 인건비 기준으로는 나빠졌습니다)" : "")));
-    }
+    const pass = defect <= p.ac;
+    verdict = pass ? "pass" : "fail";
+    verdictHtml = qtVerdict(verdict, pass ? "로트 합격" : "로트 불합격");
+    notes.push(qtNote(pass ? "good" : "bad",
+      pass
+        ? "불량 <b>" + defect + "개</b>는 합격판정개수 <b>" + p.ac + "개</b> 이하입니다. " +
+          (p.ac - defect > 0 ? "<b>" + (p.ac - defect) + "개</b>까지는 더 나와도 합격입니다." : "<b>한 개만 더</b> 나오면 불합격입니다.")
+        : "불량 <b>" + defect + "개</b>는 불합격판정개수 <b>" + p.re + "개</b> 이상입니다. 로트를 불합격 처리합니다."));
   } else {
-    notes.push(qtNote("", "개선 전 값을 넣으면 <b>향상률</b>과 <b>1건 처리 시간 단축</b>까지 함께 계산합니다."));
+    notes.push(qtNote("", "불량 수를 넣으면 합격·불합격까지 판정해 드립니다."));
   }
 
   box.className = "qt-result on";
-  box.innerHTML = verdict +
+  box.innerHTML = verdictHtml +
     '<div class="qt-stats">' +
-      qtStat("UPH", qtFmt(B.uph, 1), "건/시간", "accent") +
-      qtStat("UPPH", B.upph ? qtFmt(B.upph, 1) : "–", B.upph ? "건/인·시간" : "인원 입력 시", B.upph ? "accent" : "") +
-      qtStat("1건 처리시간", isFinite(B.sec) ? qtFmt(B.sec, 1) : "–", "초") +
-      qtStat("1건 인력시간", isFinite(B.manSec) ? qtFmt(B.manSec, 1) : "–", isFinite(B.manSec) ? "인·초" : "인원 입력 시") +
-    '</div>' + baHtml +
+      qtStat("뽑을 샘플", String(p.n), "개", "accent") +
+      qtStat("합격 Ac", String(p.ac), "개 이하", "good") +
+      qtStat("불합격 Re", String(p.re), "개 이상", "bad") +
+      qtStat("샘플문자", p.letter, "", "") +
+    '</div>' +
+    qtNote("", "로트 <b>" + lot.toLocaleString("ko-KR") + "개</b>(" + row.label + ") · 검사수준 <b>" +
+      level + "</b> · AQL <b>" + aql + "%</b> → <b>" + p.n + "개</b>를 뽑아 불량이 <b>" +
+      p.ac + "개 이하</b>면 합격입니다.") +
     '<div class="qt-notes">' + notes.join("") + '</div>';
 }
 
@@ -4564,7 +4924,7 @@ const QT_DEMO = {
   tol: { sample: "tolSample", results: ["tolResult", "tolBatchResult"] },
   cap: { sample: "capSample", results: ["capResult"] },
   dr:  { sample: "drSample",  results: ["drResult"] },
-  uph: { sample: "uphSample", results: ["uphResult"] },
+  aql: { sample: "aqlSample", results: ["aqlResult"] },
 };
 const qtDemoShown = {};   // 도구마다 한 번만 미리 채웁니다
 
@@ -4637,30 +4997,40 @@ function qtClearDemoFlag(resultId) {
     qtCapabilityCalc();
   });
 
-  on("uphCalc", () => { qtUphCalc(); qtClearDemoFlag("uphResult"); });
-  on("uphReset", () => {
-    qtDemoShown.uph = false;
-    ["uphQtyA", "uphHrA", "uphPplA", "uphQtyB", "uphHrB", "uphPplB"].forEach((id) => { document.getElementById(id).value = ""; });
-    document.getElementById("uphResult").className = "qt-result";
+  on("aqlCalc", () => { qtAqlCalc(); qtClearDemoFlag("aqlResult"); });
+  on("aqlReset", () => {
+    qtDemoShown.aql = false;
+    ["aqlLot", "aqlDefect"].forEach((id) => { document.getElementById(id).value = ""; });
+    document.getElementById("aqlLevel").value = "G-II";
+    document.getElementById("aqlValue").value = "0.65";
+    document.getElementById("aqlResult").className = "qt-result";
+    aqlRenderTable();
   });
-  on("uphSample", () => {
-    document.getElementById("uphQtyA").value = "400";
-    document.getElementById("uphHrA").value = "8";
-    document.getElementById("uphPplA").value = "2";
-    document.getElementById("uphQtyB").value = "520";
-    document.getElementById("uphHrB").value = "8";
-    document.getElementById("uphPplB").value = "2";
-    qtUphCalc();
+  on("aqlSample", () => {
+    document.getElementById("aqlLot").value = "500";
+    document.getElementById("aqlLevel").value = "G-II";
+    document.getElementById("aqlValue").value = "0.65";
+    document.getElementById("aqlDefect").value = "1";
+    qtAqlCalc();
   });
 
   ["capUSL", "capLSL"].forEach((id) => {
     const el2 = document.getElementById(id);
     if (el2) el2.addEventListener("keydown", (e) => { if (e.key === "Enter") qtCapabilityCalc(); });
   });
-  ["uphQtyA", "uphHrA", "uphPplA", "uphQtyB", "uphHrB", "uphPplB"].forEach((id) => {
+  ["aqlLot", "aqlDefect"].forEach((id) => {
     const el2 = document.getElementById(id);
-    if (el2) el2.addEventListener("keydown", (e) => { if (e.key === "Enter") qtUphCalc(); });
+    if (el2) el2.addEventListener("keydown", (e) => { if (e.key === "Enter") qtAqlCalc(); });
   });
+  /* 수준이나 AQL을 바꾸면 표가 바로 따라가야 비교가 됩니다. */
+  ["aqlLevel", "aqlValue"].forEach((id) => {
+    const el2 = document.getElementById(id);
+    if (el2) el2.addEventListener("change", () => {
+      if (document.getElementById("aqlResult").classList.contains("on")) qtAqlCalc();
+      else aqlRenderTable();
+    });
+  });
+  aqlRenderTable();   // 수량을 넣지 않아도 표는 처음부터 보입니다
 })();
 
 /* ── 버튼 연결 ──────────────────────────────────────────── */
@@ -5231,6 +5601,7 @@ async function loadCodebook() {
         });
         populateFilterOptions("detail", allItems, renderDetailFiltered);
         populateFilterOptions("analysis", allItems, renderAnalysisFiltered);
+        populateFilterOptions("calendar", allItems, renderCalendarView);
       }
       renderDetailFiltered();
       renderAnalysisFiltered();
@@ -5401,13 +5772,13 @@ async function loadDashboard() {
     buildPeopleDirectory(items);
     populateFilterOptions("detail", items, renderDetailFiltered);
     populateFilterOptions("analysis", items, renderAnalysisFiltered);
+    populateFilterOptions("calendar", items, renderCalendarView);
     renderDetailFiltered();
     renderAnalysisFiltered();
     buildYearTabs(items);
     buildYearlyOccPick();
     renderYearlyCharts();
-    buildWeekTabs();
-    renderWeeklyView();
+    renderCalendarView();
     renderRepeatView();
     lastLoadedAt = Date.now();
     clearMessage();
