@@ -1932,7 +1932,8 @@ function extractErrorCodes(text, productName) {
   return Array.from(new Set(found));
 }
 
-const MULTI_KEYS = ["month", "occurrence", "product", "productGroup", "country", "defectType1", "defectType2", "status", "errorCode"];
+const ANALYST_NONE = "(미지정)";
+const MULTI_KEYS = ["month", "occurrence", "product", "productGroup", "country", "defectType1", "defectType2", "status", "analyst", "errorCode"];
 const FILTER_FIELDS = [
   { key: "month", label: "접수 월" },
   { key: "occurrence", label: "발생기간" },
@@ -1942,6 +1943,7 @@ const FILTER_FIELDS = [
   { key: "defectType1", label: "불량유형(Lv.1)" },
   { key: "defectType2", label: "H/W 원인유형(Lv.2)" },
   { key: "status", label: "진행현황" },
+  { key: "analyst", label: "분석 담당자" },
   { key: "errorCode", label: "접수 에러코드" }
 ];
 
@@ -2225,6 +2227,7 @@ async function loadColumns(token, site) {
   FIELD.symptomDetail = findInternal("불량 상세 내용");
   FIELD.sapId = findInternal("SAP ID");
   FIELD.serial1 = findInternal("S/N (1)");
+  FIELD.analyst = findInternal("분석 담당자");
 }
 async function loadAllItems(token, site) {
   let items = [];
@@ -2320,7 +2323,7 @@ function renderChoicePills(displayName, rawValue) {
    ========================================================================= */
 /* 달력 화면은 월을 직접 넘기므로 '접수 월' 필터를 빼야 합니다.
    둘 다 두면 10월을 보는 중에 필터는 11월만 선택된 상태가 될 수 있습니다. */
-const FILTER_SKIP = { calendar: ["month"] };
+const FILTER_SKIP = { analysis: ["analyst"], calendar: ["month", "analyst"] };
 function filterCardHTML(ns) {
   const skip = FILTER_SKIP[ns] || [];
   const fields = FILTER_FIELDS.filter((f) => !skip.includes(f.key)).map((f) => `
@@ -2495,6 +2498,23 @@ function populateFilterOptions(ns, items, onChange) {
   };
   ["product", "productGroup", "country", "defectType1", "defectType2", "status"].forEach(simple);
 
+  if (FIELD.analyst && !(FILTER_SKIP[ns] || []).includes("analyst")) {
+    const tally = new Map();
+    let none = 0;
+    items.forEach((it) => {
+      const people = toPersonArray(it.fields[FIELD.analyst]);
+      if (!people.length) { none++; return; }
+      people.forEach((p) => tally.set(p.name, (tally.get(p.name) || 0) + 1));
+    });
+    const opts = Array.from(tally.entries())
+      .sort((a, b) => a[0].localeCompare(b[0], "ko-KR"))
+      .map(([name, c]) => ({ value: name, label: name + " (" + c + ")" }));
+    /* 담당자가 안 정해진 건을 따로 골라볼 수 있어야 합니다.
+       "아직 아무도 안 맡은 건"이 바로 찾아야 하는 것이기 때문입니다. */
+    if (none) opts.push({ value: ANALYST_NONE, label: ANALYST_NONE + " (" + none + ")" });
+    buildMultiSelect(ns, "analyst", opts, onChange);
+  }
+
   // 에러코드 목록 (건수 많은 순으로 보여줘야 자주 쓰는 코드를 먼저 고를 수 있습니다)
   const codeTally = new Map();
   items.forEach((it) => {
@@ -2631,6 +2651,13 @@ function itemMatchesFilters(ns, item) {
   if (f.defectType1.size && !f.defectType1.has(formatFieldValue(item.fields[FIELD.defectType1]))) return false;
   if (f.defectType2.size && !f.defectType2.has(formatFieldValue(item.fields[FIELD.defectType2]))) return false;
   if (f.status.size && !f.status.has(formatFieldValue(item.fields[FIELD.status]))) return false;
+  if (f.analyst.size) {
+    const people = toPersonArray(item.fields[FIELD.analyst]);
+    const hit = people.length
+      ? people.some((p) => f.analyst.has(p.name))
+      : f.analyst.has(ANALYST_NONE);
+    if (!hit) return false;
+  }
   // 에러코드는 한 건에 여러 개가 있을 수 있어, 고른 코드 중 하나라도 들어있으면 통과시킵니다.
   if (f.errorCode.size) {
     const codes = item.fields[ERROR_CODE_FIELD] || [];

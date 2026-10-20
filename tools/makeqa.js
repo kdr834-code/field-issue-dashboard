@@ -36,6 +36,7 @@ const MOCK_COLS = [
   { name: "f_grade",    displayName: "조건 등급", choice: { choices: ["S1","S2","S3","S4","S5"] } },
   { name: "f_status",   displayName: "진행현황", choice: { choices: ["OPEN","CLOSE","Hold"] } },
   { name: "f_owner",    displayName: "접수자" },
+  { name: "f_analyst",  displayName: "분석 담당자" },
   { name: "f_result",   displayName: "분석 처리결과" },
   { name: "f_loc",      displayName: "고품 현 위치", choice: { choices: ["OQC팀","품질개선팀","CTS센터","IQC팀","회수중","회수 예정 없음","출고완료","재작업","폐기"] } },
   { name: "f_done",     displayName: "완료 일자" }
@@ -50,7 +51,7 @@ const MOCK_SEED = [
   ["Cellec V","H/P","싱가포르","2026-01-22","15개월이상","SG Aesthetic","E-102(RF:2) 발생","조립","S4","OPEN"],
   ["Smoothcool","Etc","인도","2025-11-30","12개월이내","Delhi Center","냉각 성능 저하","원자재","S5","CLOSE"]
 ];
-/* 주간 분석 화면을 확인하려면 최근 몇 주에 걸친 접수일자가 필요합니다.
+/* 월간/주간 현황 달력을 확인하려면 최근 몇 주에 걸친 접수일자가 필요합니다.
    앞쪽 절반은 최근 8주 안으로 날짜를 다시 뿌려 줍니다. */
 const ymdLocal = (d) => d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
 function recentDate(i, k) {
@@ -77,6 +78,12 @@ MOCK_SEED.forEach((row, i) => {
            '미입력 제외' 동작까지 확인할 수 있게 합니다. */
         f_cause2: k === 5 ? "" : ["PCB/보드","케이블/커넥터","냉각계통","전원부","핸드피스","센서"][(i + (k >= 3 ? 1 : 0)) % 6],
         f_owner: "김동률 (Dongryul Kim)", f_result: k % 3 === 0 ? "폐기요청" : "",
+        /* 분석 담당자는 SharePoint 사람 필드라 {LookupId, LookupValue} 모양으로 옵니다.
+           담당자 필터와 '(미지정)' 동작을 확인할 수 있게 6건 중 1건은 비워 둡니다. */
+        f_analyst: k === 4 ? null : [{
+          LookupId: ((i + k) % 3) + 1,
+          LookupValue: ["김동률 (Dongryul Kim)", "박지훈 (Jihoon Park)", "이수민 (Sumin Lee)"][(i + k) % 3],
+        }],
         f_loc: ["OQC팀","품질개선팀","CTS센터","회수중","회수 예정 없음","폐기"][k % 6],
         // CLOSE 건만 완료 일자를 가집니다. 접수 후 0~2개월 뒤 완료된 것으로 둡니다.
         f_done: row[9] === "CLOSE" ? (() => {
@@ -101,6 +108,7 @@ async function loadDashboard() {
   FIELD.product = "f_product"; FIELD.productGroup = "f_group"; FIELD.country = "f_country";
   FIELD.defectType1 = "f_defect"; FIELD.defectType2 = "f_cause2"; FIELD.hospital = "f_hospital";
   FIELD.symptom = "f_symptom"; FIELD.sapId = "f_product"; FIELD.serial1 = "f_product";
+  FIELD.analyst = "f_analyst";
   allItems = allItemsMock.slice().sort((a,b) => String(b.fields.f_date).localeCompare(String(a.fields.f_date)));
   // 실제 화면과 동일하게 불량 증상에서 에러코드를 뽑아둡니다.
   allItems.forEach(it => { it.fields[ERROR_CODE_FIELD] = extractErrorCodes(it.fields.f_symptom, it.fields.f_product); });
