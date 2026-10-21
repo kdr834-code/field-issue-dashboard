@@ -97,6 +97,37 @@ MOCK_SEED.forEach((row, i) => {
   }
 });
 
+/* Master Version 가짜 데이터. 실제 PDF 파싱 결과와 같은 모양입니다.
+   대분류 4개 · 모델이 여러 향지로 갈리는 경우까지 넣어 세로 병합도 확인됩니다. */
+const MOCK_MV = (() => {
+  const mk = (name, regions, vers) => regions.map((r, i) => ({
+    known: true, cells: [name, r, ...vers[i]],
+  }));
+  const H = ["모델", "향지", "S/W", "F/W", "비고"];
+  return {
+    rev: "12", total: 14, updatedAt: "2026-10-18T09:30",
+    uploadedBy: "김동률 (Dongryul Kim)",
+    groups: [
+      { name: "IPL", headers: H, rows: [
+        ...mk("Cellec V", ["국내", "일본", "해외"], [["1.2.4","3.01","-"],["1.2.4","3.01","-"],["1.2.2","3.00","북미 전용"]]),
+        ...mk("Smoothcool", ["국내", "중국"], [["0.9.8","2.14","-"],["0.9.7","2.14","-"]]),
+      ]},
+      { name: "RF", headers: H, rows: [
+        ...mk("DENSITY", ["국내", "일본", "해외", "중국"], [["4.0.1","5.22","-"],["4.0.1","5.22","-"],["4.0.0","5.21","-"],["3.9.8","5.20","허가 대기"]]),
+        ...mk("POTENZA", ["국내", "해외"], [["2.3.0","1.08","-"],["2.3.0","1.08","-"]]),
+      ]},
+      { name: "HIFU", headers: H, rows: [
+        ...mk("ULTRAcel Q+", ["국내", "일본"], [["6.1.2","2.40","-"],["6.1.1","2.40","-"]]),
+        ...mk("LINEARZ", ["국내"], [["1.0.5","1.11","-"]]),
+      ]},
+      { name: "LASER", headers: H, rows: [
+        ...mk("TRI-BEAM", ["국내", "해외"], [["3.3.1","4.07","-"],["3.3.0","4.06","-"]]),
+        ...mk("AQUAcel", ["국내"], [["0.8.2","1.02","시험 생산"]]),
+      ]},
+    ],
+  };
+})();
+
 async function loadDashboard() {
   allColumns = MOCK_COLS;
   visibleColumns = MOCK_COLS.slice();
@@ -123,6 +154,10 @@ async function loadDashboard() {
   renderYearlyCharts();
   renderCalendarView();
   renderRepeatView();
+  /* Master Version은 PDF를 올려야 채워지는 화면이라 미리보기에서는 늘 비어 있었습니다.
+     레이아웃을 확인할 수 없으니 네 대분류에 가짜 값을 채워 둡니다. */
+  mvData = MOCK_MV;
+  mvRender("");
   // 상단 '자동 최신화' 표시도 실제 화면과 같게 갱신합니다.
   lastLoadedAt = Date.now();
   updateLiveChip();

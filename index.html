@@ -585,7 +585,11 @@
   .mv-head-right { margin-left: auto; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
 
   /* 그룹(IPL/RF/HIFU/LASER) 표 */
-  .mv-group { margin-bottom: 14px; }
+  /* 대분류 네 개가 세로로 쌓이면 스크롤이 길어집니다.
+     표가 열이 적어 절반 폭으로 충분하므로 넓은 화면에서는 둘씩 놓습니다. */
+  .mv-groups { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0 14px; align-items: start; }
+  @media (min-width: 1100px) { .mv-groups { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .mv-group { margin-bottom: 14px; min-width: 0; }
   /* 대분류 머리를 통째로 누를 수 있게 만들어, 어디를 눌러야 접히는지 헤매지 않게 합니다. */
   .mv-group-head { display: flex; align-items: center; gap: 10px; width: 100%;
     background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
@@ -966,7 +970,7 @@
   .aql-tablehead b { font-size: 14px; font-weight: 800; color: var(--navy); }
   .aql-tablehead span { font-size: 12px; color: var(--ink-soft); }
   .aql-two { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; }
-  @media (min-width: 1050px) { .aql-two { grid-template-columns: minmax(0, 332px) minmax(0, 1fr); } }
+  @media (min-width: 1050px) { .aql-two { grid-template-columns: minmax(0, 396px) minmax(0, 1fr); } }
   .aql-cap { font-size: 11.5px; font-weight: 700; color: var(--ink-soft); margin-bottom: 5px; }
   .aql-cap b { color: var(--navy); }
   .aql-scroll { overflow-x: auto; }
@@ -974,27 +978,28 @@
   .aql-legend b { color: var(--navy); font-size: 13px; }
   .aql-table { width: 100%; border-collapse: separate; border-spacing: 0;
     font-variant-numeric: tabular-nums; }
-  .aql-table.lv { min-width: 300px; }
-  .aql-table.ac { min-width: 600px; }
+  .aql-table.lv { min-width: 290px; }
+  .aql-table.ac { min-width: 560px; }
   .aql-table th, .aql-table td { border-bottom: 1px solid #eef1f6; padding: 2px 4px; text-align: center; }
   .aql-table thead th { font-size: 11px; font-weight: 800; color: var(--navy);
     background: var(--navy-tint); border-bottom: 1.5px solid #cfdcef; padding: 4px; }
-  .aql-table th.lot { text-align: right; white-space: nowrap; font-size: 11px;
-    font-weight: 700; color: var(--ink-soft); padding-right: 8px; }
+  .aql-table th.lot { text-align: right; white-space: nowrap; font-size: 10.5px;
+    font-weight: 700; color: var(--ink-soft); padding-right: 6px; }
   .aql-table tbody th.lot { background: #fafbfd; }
   /* 전역 표에는 칸 끝에 3px 간격용 ::after가 붙는데, 칸 안 숫자를 block으로 두면
      그 간격이 줄을 하나 더 만들어 행 높이가 18px씩 늘어납니다. 이 표에서는 끕니다. */
   .aql-table td::after, .aql-table th::after { content: none; }
   .aql-table td { cursor: default; }
   /* 표 1 - 시료문자(큰 글자)와 그 시료의 크기(작은 글자) */
+  .aql-table.lv td { padding: 2px 2px; }
   .aql-table.lv td .n { font-size: 12.5px; font-weight: 800; color: var(--navy); }
   .aql-table.lv td .m { font-size: 10px; font-weight: 600; color: #8390a8; margin-left: 4px; }
   /* 표 2 - Ac와 Re를 원본처럼 두 칸으로 */
   .aql-table.ac td .ac { font-weight: 800; color: var(--ink); }
-  .aql-table.ac td .re { font-weight: 600; color: #8390a8; margin-left: 6px; }
-  .aql-table.ac td.arrow { color: var(--navy); font-size: 14px; font-weight: 800; cursor: help; }
-  .aql-table.ac thead th { font-size: 10.5px; padding: 4px 2px; }
-  .aql-table.ac td { font-size: 11.5px; padding: 2px 3px; }
+  .aql-table.ac td .re { font-weight: 600; color: #8390a8; margin-left: 4px; }
+  .aql-table.ac td.arrow { color: var(--navy); font-size: 12px; font-weight: 800; cursor: help; }
+  .aql-table.ac thead th { font-size: 10px; padding: 4px 1px; }
+  .aql-table.ac td { font-size: 11px; padding: 2px 1px; }
   .aql-table th.lot.num { text-align: center; font-variant-numeric: tabular-nums; }
   /* 입력한 수량이 속한 줄과 고른 검사수준 칸을 짚어 줍니다 */
   .aql-table tbody tr:hover td { background: #f3f7fd; }
@@ -5465,7 +5470,8 @@ function mvRender(keyword) {
       warnCount + '건</b> 있습니다. 새 모델이 추가됐을 수 있으니 <b>원본 PDF와 대조</b>해 주세요.</div>' : "") +
     (q ? "" : '<div class="mv-foldall"><button type="button" id="mvFoldAll">모두 접기</button>' +
       '<button type="button" id="mvOpenAll">모두 펼치기</button></div>') +
-    (q && shown === 0 ? '<div class="chart-card"><div class="mv-empty">검색 결과가 없습니다.</div></div>' : body);
+    (q && shown === 0 ? '<div class="chart-card"><div class="mv-empty">검색 결과가 없습니다.</div></div>'
+                        : '<div class="mv-groups">' + body + '</div>');
 
   // 대분류 머리를 누르면 접히고 펼쳐집니다.
   view.querySelectorAll(".mv-group-head").forEach((btn) => {
